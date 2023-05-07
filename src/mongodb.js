@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-mongoose.connect("mongodb+srv://s3978387:bull1001@cluster0.uuhro1a.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://s3975979:Sang5850@cluster0.uuhro1a.mongodb.net/?retryWrites=true&w=majority")
 .then(()=>{
     console.log("mongodb connected");
 })
@@ -10,7 +10,7 @@ mongoose.connect("mongodb+srv://s3978387:bull1001@cluster0.uuhro1a.mongodb.net/?
 })
 
 const LogInSchema = new mongoose.Schema({
-    name:{
+    username:{
         type:String,
         require:true,
     },
@@ -18,8 +18,20 @@ const LogInSchema = new mongoose.Schema({
     password:{
         type:String,
         require:true,
+    },
+
+    address:{
+        type:String,
+        require:true,
+    },
+
+    name:{
+        type:String,
+        require:true,
     }
 })
+
+
 
 const collection = new mongoose.model("LogInCollection",LogInSchema)
 

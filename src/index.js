@@ -2,16 +2,23 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 3000;
-const hbs = require("hbs");
+const handlebars = require('express-handlebars');
 const async = require("hbs/lib/async");
-const templatePath = path.join(__dirname,'../templates')
+const templatePath = path.join(__dirname,'resources/views')
 const collection = require("./mongodb");
 const { error } = require("console");
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+// const publicPath = path.join(__dirname, "/public");
 
+// app.use(express.static(publicPath));
+
+
+app.engine('handlebars', handlebars.engine({
+    extname:'.hbs'
+}));
 
 app.use(express.json());
-app.set("view engine", "hbs");
+app.set("view engine", "handlebars");
 app.set("views", templatePath);
 app.use(express.urlencoded({extended:false}));
 
@@ -28,11 +35,11 @@ app.post("/signup",async (req,res) => {
     try{
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
-        console.log(salt);
-        console.log(hashedPassword);
         const data={
+            username:req.body.username,
+            password:hashedPassword,
             name:req.body.name,
-            password:hashedPassword
+            address:req.body.address,
         }
         await collection.insertMany([data]);
     
@@ -49,7 +56,9 @@ app.post("/signup",async (req,res) => {
 
 app.post("/login",async (req,res) => {
     try{
-        const check = await collection.findOne({name:req.body.name})
+        const check = await collection.findOne({username:req.body.username})
+        console.log(`find it`);
+        console.log(req.body.password);
 
         if (await bcrypt.compare(req.body.password, check.password)){
             res.render("home")
@@ -57,18 +66,17 @@ app.post("/login",async (req,res) => {
         else{
             res.send("Wrong password");
         }
+        
+        console.log(check);
+        console.log(req.body.password);
     }
 
     catch{
         res.send("Wrong passwords or username");
-
     }
 
     res.render("home")
-
 })
 
-app.listen(port, ()=>{
-    console.log('port connected');
-})
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
 
