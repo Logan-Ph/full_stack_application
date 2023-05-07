@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+    <title>Banner</title>
+    <style>
+        .swipper-container {
+            width: 80%;
+            height: 100%;
+        }
+
+        .banner-images {
+            width: 70%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swipper">
+        <swiper-container class="swiper-wrapper">
+            <swiper-slide>
+                <img src="/images/banner1.jpg" alt="banner1" class="banner-images" loading="lazy">
+            </swiper-slide>
+            <swiper-slide>
+                <img src="/images/banner2.jpg" alt="banner2" class="banner-images" loading="lazy">
+            </swiper-slide>
+        </swiper-container>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</body>
+
+</html>
