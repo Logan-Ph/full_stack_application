@@ -8,15 +8,15 @@ const templatePath = path.join(__dirname,'resources/views')
 const collection = require("./mongodb");
 const { error } = require("console");
 const bcrypt = require('bcrypt');
-// const publicPath = path.join(__dirname, "/public");
+const publicPath = path.join(__dirname, "/public");
 
-// app.use(express.static(publicPath));
 
 
 app.engine('handlebars', handlebars.engine({
     extname:'.hbs'
 }));
 
+app.use(express.static(publicPath));
 app.use(express.json());
 app.set("view engine", "handlebars");
 app.set("views", templatePath);

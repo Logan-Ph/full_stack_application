@@ -1,0 +1,495 @@
+.body{
+    overflow-x: hidden;
+}
+
+.container-fuild{
+    background-color: #fff;
+}
+
+.top-banner .container-fuild{
+    padding: 0;
+}
+.top-banner img{
+    width: 100%;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+
+}
+
+.navb-logo img{
+    width: 150px;
+    height: auto;
+
+}
+
+.navb-items{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    letter-spacing: 3px;
+}
+
+.item{
+    text-align: center;
+    margin-inline: 30px;
+    padding: 10px 0;
+    transition: all .1s ease;
+    cursor: pointer;
+}
+
+.item:hover{
+    transform: scale(1.0);
+    font-weight: bold;
+}
+
+.item a{
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-decoration: none;
+    color: #070A52;
+}
+.item a:hover{
+    color: #D21312;
+}
+
+.item-button{
+    background-color: #D21312;
+    width: 120px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s;
+    padding: 15px 25px;
+    border-radius: 10px;
+}
+
+.item-button:hover{
+    background-color: #070A52 ;
+    transform: scale(1.0);
+}
+
+.item-button a{
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+/* Modal */
+.fa-bars::before {
+    content: "\f0c9";
+    font-size: 35px;
+    font-weight: bold;
+    color: black;
+}
+.modal.show .modal-dialog{
+    margin: 0px;
+    padding: 0px;
+    width: 300px;
+}
+
+.modal-content{
+    border-radius: 0;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #fefefe;
+}
+
+.modal-header img{
+    width: 120px;
+    height: auto;
+    margin-top: 17.5px;
+}
+
+.modal-header .btn-close{
+    color: #070A52;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.modal-header i{
+    color: #070A52;
+    font-size: 30px;
+}
+
+.modal-body{
+    width: 88%;
+    margin: 0 auto;
+    padding: 75px 0 0 0;
+    flex: unset;
+}
+
+.modal-body .modal-line{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 7px 0px;
+    margin-bottom: 50px;
+    cursor: pointer;
+    transition: all .5s ease;
+    border-bottom: 1px solid navy;
+}
+
+.modal-body .modal-line:hover{
+    color: #D21312;
+    border-bottom: 1px solid #D21312;
+}
+
+.modal-line a{
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2.5px;
+    color: #070A52;
+    text-decoration: none;
+}
+
+.modal-line a:hover{
+    color: red;
+}
+
+.modal-line i{
+    color: currentColor;
+    font-size: 20px;
+    width: 35px;
+    margin-right: 15px;
+    padding: 0 0 3px;
+    color: #070A52;
+}
+
+.dropdown-menu[data-bs-popper] {
+    top: 30% !important;
+    left: 25px !important;
+}
+
+.navb-button{
+    width: 100%;
+    height: 50px;
+    background-color: #070A52;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .5s ease;
+    border-radius: 20px;
+
+}
+.navb-button a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+}
+
+.navb-button:hover{
+    background-color: #D21312;
+
+}
+
+.mobile-modal-footer{
+    width: 88%;
+    margin: 0 auto;
+    padding: 20% 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mobile-modal-footer i{
+    color: #070A52;
+    font-size: 25px;
+}
+
+.mobile-modal-footer i:hover{
+    color:#D21312;
+}
+
+
+@media screen and (max-width: 1000px){ 
+    .navb-items{
+        display: none;
+    }
+    .navbar{
+        display: flex;
+        justify-content: space-around !important;
+        align-items: center;
+    }
+    .navb-logo img{
+        width: 150px;
+    }
+}
+
+
+
+@media screen and (max-width: 450px){
+    .fa-bars::before {
+        content: "\f0c9";
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .nav-logo{
+        margin-left: 0px;
+    }
+    .navb-logo img{
+        width: 120px;
+        height: auto;
+    }
+    .modal-dialog{
+        width: 300px !important;
+        margin: 0;
+        padding: 0;
+    }
+    .modal-content{
+        border-radius: 0;
+        height: 100vh;
+        overflow-y: scroll;
+    }
+    
+    .modal-header{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #fefefe;
+    }
+    
+    .modal-header img{
+        width: 100px;
+        height: auto;
+        margin-top: 17.5px;
+    }
+    
+    .modal-header .btn-close{
+        color: #070A52;
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    
+    .modal-header i{
+        color: #070A52;
+        font-size: 30px;
+    }
+    
+    .modal-body{
+    
+        width: 88%;
+        margin: 0 auto;
+        padding: 75px 0 0 0;
+        flex: unset;
+    }
+    
+    .modal-body .modal-line{
+    
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 7px 0px;
+        margin-bottom: 50px;
+        cursor: pointer;
+        transition: all .5s ease;
+        border-bottom: 1px solid navy;
+    }
+    
+    .modal-body .modal-line:hover{
+        color: #D21312;
+        border-bottom: 1px solid #D21312;
+    }
+    
+    .modal-line a{
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 2.5px;
+        color: navy;
+    }
+    
+    .modal-line a:hover{
+        color: red;
+    }
+    
+    .modal-line i{
+    
+        color: currentColor;
+        font-size: 20px;
+        width: 35px;
+        margin-right: 15px;
+        padding: 0 0 3px;
+    }
+
+    .dropdown-menu[data-bs-popper] {
+        top: 24% !important;
+        left: 14px !important;
+    }
+    .dropdown-menu ul li a{
+        font-size: 12px;
+    }
+    .navb-button{
+        width: 100%;
+        height: 50px;
+        background-color: #070A52;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        transition: all .5s ease;
+        border-radius: 20px;
+    
+    }
+    
+    .navb-button:hover{
+        background-color: #D21312;
+    
+    }
+    
+    .mobile-modal-footer{
+        width: 88%;
+        margin: 0 auto;
+        padding: 20% 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 25px;
+        color: navy;
+    }
+    
+    .mobile-modal-footer i:hover{
+        color:#D21312;
+    }
+}
+
+/* Footer style */
+.container-fuild {
+    background-color: rgb(245, 244, 244);
+    padding: 50px 0px;
+}
+
+.footer-logo{
+    width: 120px;
+}
+.download-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.app-img{
+    width: 150px;
+}
+.app-img img{
+    width: 100%;
+}
+.install-img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.storage{
+    width: 120px;
+    height: 45px;
+    object-fit: cover;
+}
+
+.storage img{
+    width: inherit;
+    height: inherit;
+
+}
+.single-box h3{
+    font-size: 22px;
+    font-weight: 500;
+    color: navy;
+    margin-top: 20px;
+}
+
+.single-box .card-area i{
+    color: black;
+    font-size: 30px ;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.single-box ul{
+    list-style: none;
+    padding: 0;
+}
+
+.single-box ul li a{
+    text-decoration: none;
+    color: rgb(2, 2, 121);
+    line-height: 2.5;
+    font-weight: 400;
+    font-size: 20px;
+    transition: transform 0.8s;
+}
+
+.single-box ul li:hover{
+    transform: scale(1.1);
+    font-weight: bold;
+}
+
+.single-box h2{
+    color: #D21312;
+    font-weight: 700;
+    font-size: 25px;
+    margin-top: 30px
+}
+
+#basic-addon2{
+    background: #D21312;
+    color: aliceblue;
+    padding: 10px;
+}
+
+.input-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-control{
+    width: 80px;
+}
+
+.single-item{
+    margin-top: 25px;
+}
+
+.single-item h2{
+    color: rgb(4, 4, 138);
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.socials i{
+    font-size: 30px;
+    color: black;
+    margin-right: 15px;
+}
+
+.socials i:hover{
+    transform: scale(1.5);
+    color: #010683;
+}
