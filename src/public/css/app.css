@@ -1,3 +1,4 @@
+
 .body {
   overflow-x: hidden; }
 
@@ -396,3 +397,7 @@
 .socials i:hover {
   transform: scale(1.5);
   color: #010683; }
+
+.alert {
+  color: red; }
+
