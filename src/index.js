@@ -36,6 +36,10 @@ app.get("/signup-user", (req, res) => {
     res.render("signup-user")
 })
 
+app.get("/add-product", (req, res) => {
+    res.render("add-product")
+})
+
 app.get("/signup-vendor", (req, res) => {
     res.render("signup-vendor")
 })
