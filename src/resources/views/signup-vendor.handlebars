@@ -13,7 +13,9 @@
 <body>
     <div class="container">
         <div class="text-center">
-            <h2>SIGN UP AS SELLER</h2>
+            <h1>SIGN UP AS VENDOR</h1>
+            <p class="lead">Not a vendor? <span><a class="link-opacity-50-hover" href="signup-vendor.handlebars">Sign up as Customer</a></span> / <span><a class="link-opacity-50-hover" href="signup-shipper.hbs">Sign up as Shipper</a></span>
+            </p>
         </div>
         <div class="row justify-content-center row-gap-3">
           <form action="/sign up" method="post" class="col-md-8 col-10 bg-light p-3 my-3">
@@ -49,8 +51,7 @@
                 <input type="text" name="business-address" id="business-address" placeholder="Enter your business address" class="form-control" minlength="5" required title="Please enter at least 5 characters">
             </div>
             <div class="text-center">
-                <button type="reset" class="btn btn-primary fs-6">Reset</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
          
           </form>
