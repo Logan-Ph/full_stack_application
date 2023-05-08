@@ -13,14 +13,15 @@
 <body>
     <div class="container">
         <div class="text-center">
-            <h2>SIGN UP AS CUSTOMER</h2>
+            <h1>SIGN UP AS CUSTOMER</h1>
+            <p class="lead">Not a customer? <span><a class="link-opacity-50-hover" href="signup-vendor.handlebars">Sign up as Vendor</a></span> / <span><a class="link-opacity-50-hover" href="signup-shipper.handlebars">Sign up as Shipper</a></span>
+            </p>
         </div>
         <div class="row justify-content-center row-gap-3">
           <form action="/signup" method="post" class="col-md-8 col-10 bg-light p-3 my-3">
             <div class="form-group mb-2">
                 <label for="username" class="form-label">Username:</label>
-                <input
-                type="text" id="username" name="username" pattern="[a-zA-Z0-9]+{8, 15}" placeholder="Enter your username" class="form-control" aria-describedby="usernameHelp" title="Please enter again">
+                <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+{8, 15}" placeholder="Enter your username" class="form-control" aria-describedby="usernameHelp" title="Please enter again">
                 <div id="usernameHelp" class="form-text">Username must contain only letters (lower and upper case) and digits, has a length from 8 to 15 characters</div>
             </div>
             <div class="form-group mb-2">
@@ -45,8 +46,7 @@
                 <input type="text" name="address" id="address" placeholder="Enter your address" class="form-control" required>
             </div>
             <div class="text-center">
-                <button type="reset" class="btn btn-primary fs-6">Reset</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
             </div>
           </form>
         </div>
