@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 60px; }
+  padding: 0 60px !important; }
 
 .navb-logo img {
   width: 150px;

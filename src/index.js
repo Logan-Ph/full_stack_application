@@ -25,7 +25,11 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/", (req, res) => {
-    res.render("login")
+    res.render("home")
+})
+
+app.get("/home", (req, res) => {
+    res.render("home")
 })
 
 app.get("/signup-user", (req, res) => {
@@ -40,6 +44,9 @@ app.get("/signup-shipper", (req, res) => {
     res.render("signup-shipper")
 })
 
+app.get("/login", (req, res) => {
+    res.render("login")
+})
 
 app.post("/signup-user", async (req, res) => {
     try {
@@ -172,7 +179,7 @@ app.post("/signup-shipper", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
-        if (await bcrypt.compare(req.body.password, check.password)) {
+        if (await bcrypt.compare(req.body.password, check.password))  {
             res.render("home")
         }
         else {
@@ -182,9 +189,10 @@ app.post("/login", async (req, res) => {
         }
 
     }
-
     catch {
-        res.render("login")
+        res.render('login', {
+            showUser: true,
+        });
     }
 })
 
