@@ -5,18 +5,17 @@ const port = 3000;
 const handlebars = require('express-handlebars');
 const async = require("hbs/lib/async");
 const templatePath = path.join(__dirname,'resources/views')
-const collection = require("./mongodb");
+const user = require("./mongodb-user");
 const { error } = require("console");
 const bcrypt = require('bcrypt');
-// const publicPath = path.join(__dirname, "/public");
+const publicPath = path.join(__dirname, "/public");
 
-// app.use(express.static(publicPath));
 
 
 app.engine('handlebars', handlebars.engine({
     extname:'.hbs'
 }));
-
+app.use(express.static(publicPath));
 app.use(express.json());
 app.set("view engine", "handlebars");
 app.set("views", templatePath);
@@ -27,36 +26,49 @@ app.get("/",(req,res) => {
     res.render("login")
 })
 
-app.get("/signup",(req,res) => {
-    res.render("signup")
+app.get("/signup-user",(req,res) => {
+    res.render("signup-user")
 })
 
-app.post("/signup",async (req,res) => {
+app.post("/signup-user",async (req,res) => {
     try{
-        const salt = await bcrypt.genSalt();
-        const hashedPassword = await bcrypt.hash(req.body.password, salt);
-        const data={
-            username:req.body.username,
-            password:hashedPassword,
-            name:req.body.name,
-            address:req.body.address,
+        const check = await user.findOne({username:req.body.username})
+
+        if (check){
+            res.json('username already existed!')
         }
-        await collection.insertMany([data]);
-    
-        res.render("login");
+        else{
+            try{
+                const salt = await bcrypt.genSalt();
+                const hashedPassword = await bcrypt.hash(req.body.password, salt);
+                const data={
+                    username:req.body.username,
+                    password:hashedPassword,
+                    name:req.body.name,
+                    address:req.body.address,
+                }
+                await user.insertMany([data]);
+            
+                res.render("login");
+                
+            }
         
-    }
+            catch{
+                console.log("error 1 ")
+            }
+        
+        }
 
+    }
     catch{
-        console.log("error")
+        console.log("error 2 ")
     }
-
 
 })
 
 app.post("/login",async (req,res) => {
     try{
-        const check = await collection.findOne({username:req.body.username})
+        const check = await user.findOne({username:req.body.username})
         console.log(`find it`);
         console.log(req.body.password);
 

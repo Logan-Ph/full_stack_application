@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-mongoose.connect("mongodb+srv://s3975979:Sang5850@cluster0.uuhro1a.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://s3975979:Sang5850@cluster0.uuhro1a.mongodb.net/vender?retryWrites=true&w=majority")
 .then(()=>{
     console.log("mongodb connected");
 })
@@ -33,6 +33,6 @@ const LogInSchema = new mongoose.Schema({
 
 
 
-const collection = new mongoose.model("LogInCollection",LogInSchema)
+const vender = new mongoose.model("LogInVender",LogInSchema)
 
-module.exports = collection
+module.exports = vender
