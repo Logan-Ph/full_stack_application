@@ -52,6 +52,9 @@ app.get("/login", (req, res) => {
     res.render("login")
 })
 
+app.get("/privacy-policy", (req, res) =>{
+    res.render("privacy-policy")
+})
 app.post("/signup-user", async (req, res) => {
     try {
         const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
