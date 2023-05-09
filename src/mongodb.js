@@ -75,8 +75,32 @@ const LogInVendor = new mongoose.Schema({
     }
 })
 
+const Product = new mongoose.Schema({
+    product_name:{
+        type:String,
+        require:true,
+    },
+
+    category:{
+        type:String,
+        enum: ["cosmetics","electronic-devices"],
+        require:true,
+    },
+
+    price:{
+        type:Number,
+        require:true,
+    },
+
+    description:{
+        type:String,
+        require:true,
+    }
+})
+
 const shipper = new mongoose.model("LogInShipper",LogInShipper)
 const user = new mongoose.model("LogInUser",LogInUser)
 const vendor = new mongoose.model("LogInVendor",LogInVendor)
+const product = new mongoose.model("Product",Product)
 
-module.exports = {shipper,user,vendor}
+module.exports = {shipper,user,vendor,product}
