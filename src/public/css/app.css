@@ -47,6 +47,16 @@
 .item a:hover {
   color: #D21312; }
 
+.dropdown-menu .show::before {
+  display: none; }
+
+.dropdown-menu::after {
+  display: block; }
+
+.dropdown-menu[data-bs-popper] {
+  top: 95% !important;
+  left: 25px !important; }
+
 .item-button {
   background-color: #D21312;
   width: 120px;
@@ -67,7 +77,8 @@
   font-weight: 500;
   color: #fff;
   text-decoration: none;
-  letter-spacing: 2px; }
+  letter-spacing: 2px;
+  padding: 15px 25px; }
 
 /* Modal */
 .fa-bars::before {
@@ -149,10 +160,6 @@
   padding: 0 0 3px;
   color: #070A52; }
 
-.dropdown-menu[data-bs-popper] {
-  top: 30% !important;
-  left: 25px !important; }
-
 .navb-button {
   width: 100%;
   height: 50px;
@@ -196,7 +203,10 @@
     justify-content: space-around !important;
     align-items: center; }
   .navb-logo img {
-    width: 150px; } }
+    width: 150px; }
+  .dropdown-menu[data-bs-popper] {
+    top: 51% !important;
+    left: 25px !important; } }
 
 @media screen and (max-width: 450px) {
   .fa-bars::before {
@@ -268,7 +278,7 @@
     margin-right: 15px;
     padding: 0 0 3px; }
   .dropdown-menu[data-bs-popper] {
-    top: 24% !important;
+    top: 50% !important;
     left: 14px !important; }
   .dropdown-menu ul li a {
     font-size: 12px; }
@@ -399,3 +409,85 @@
 
 .alert {
   color: red; }
+
+.privacy-container {
+  margin: 0;
+  padding: 20px 20px;
+  background-image: url("/image/b1.avif");
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; }
+
+.terms-box {
+  max-width: 700px;
+  background-color: #fefefe;
+  color: black;
+  padding: 90px 30px;
+  box-shadow: 5px 5px 5px #fefefe; }
+
+.term-text {
+  padding: 0 20px;
+  height: 400px;
+  overflow-y: auto;
+  font-size: 15px;
+  font-weight: 500;
+  color: black; }
+
+.term-text::-webkit-scrollbar {
+  width: 5px;
+  background-color: navy; }
+
+.term-text::-webkit-scrollbar-thumb {
+  background-color: #D21312;
+  height: 20px; }
+
+.terms-box h2 {
+  text-transform: uppercase;
+  text-align: center;
+  color: #070A52;
+  font-size: 35px;
+  font-weight: 900;
+  padding: 5px 0px;
+  text-shadow: 3px 3px 3px #0105835a; }
+
+.terms-box h4 {
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  padding: 10px 30px; }
+
+.terms-box h4 span {
+  color: #D21312; }
+
+.buttons {
+  display: flex;
+  padding: 0 20px;
+  justify-content: center;
+  align-items: center; }
+
+.privacy-button {
+  margin: 0px 20px;
+  height: 50px;
+  width: calc(50% - 6px);
+  border: 0;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  transition: .3s linear; }
+
+.red {
+  background-color: #D21312; }
+
+.navy {
+  background-color: #070A52; }
+
+.privacy-button:hover {
+  opacity: .6; }
+
+.terms-box .term-text p {
+  font-size: 20px; }
