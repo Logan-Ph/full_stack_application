@@ -12,22 +12,24 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container my-5">
         <div class="text-center">
             <h1>SIGN UP AS VENDOR</h1>
             <p class="lead">Not a vendor? <span><a class="link-opacity-50-hover" href="/signup-user">Sign up as
                         Customer</a></span> / <span><a class="link-opacity-50-hover" href="/signup-shipper">Sign up as
                         Shipper</a></span>
             </p>
+            <p class="fst-italic">Already have account? <span><a class="link-opacity-50-hover" href="/login">Log in</a></span>
+            </p>
         </div>
         <div class="row justify-content-center row-gap-3">
             <form action="/signup-vendor" method="post" class="col-md-8 col-10 bg-light p-3 my-3">
                 {{#if showUser}}
-                <div style="color: red;">Username already existed!</div>
+                <div class="alert alert-warning">Username already existed!</div>
                 {{/if}}
 
                 {{#if showBussiness}}
-                <div style="color: red;">Business name already existed!</div>
+                <div class="alert alert-warning">Business name already existed!</div>
                 {{/if}}
                 <div class="form-group mb-2">
                     <label for="username" class="form-label">Username:</label>

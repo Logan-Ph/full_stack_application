@@ -11,16 +11,18 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container my-5">
         <div class="text-center">
             <h1>SIGN UP AS CUSTOMER</h1>
             <p class="lead">Not a customer? <span><a class="link-opacity-50-hover" href="/signup-vendor">Sign up as Vendor</a></span> / <span><a class="link-opacity-50-hover" href="/signup-shipper">Sign up as Shipper</a></span>
+            </p>
+            <p class="fst-italic">Already have account? <span><a class="link-opacity-50-hover" href="/login">Log in</a></span>
             </p>
         </div>
         <div class="row justify-content-center row-gap-3">
           <form action="/signup-user" method="post" class="col-md-8 col-10 bg-light p-3 my-3">
             {{#if showUser}}
-                <div style="color: red;">Username already existed!</div>
+                <div class="alert alert-warning">Username already existed!</div>
             {{/if}}
 
             <div class="form-group mb-2">
