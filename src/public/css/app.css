@@ -399,3 +399,16 @@
 
 .alert {
   color: red; }
+
+/*View Product Vendor Page*/
+@media (min-width: 768px) {
+  .log-out {
+    order: 3; /* change the order of the element */
+    margin-left: auto; /* push the element to the right */
+  } 
+}
+
+.no-product {
+  display: none !important;
+  max-width: 100% !important;
+}
