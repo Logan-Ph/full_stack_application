@@ -187,7 +187,9 @@ app.post("/login", async (req, res) => {
     try {
         const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
         if (await bcrypt.compare(req.body.password, check.password))  {
-            res.render("home")
+            
+
+            res.render("home");
         }
         else {
             res.render('login', {
