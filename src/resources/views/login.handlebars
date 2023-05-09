@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container my-5">
         <div class="text-center">
             <h1>SIGN UP AS CUSTOMER</h1>
             <p class="lead">New meber? <span><a class="link-opacity-50-hover" href="/signup-user">Sign up as
@@ -23,7 +23,7 @@
         <div class="row justify-content-center row-gap-3">
             <form action="/login" method="post" class="col-md-8 col-10 bg-light p-3 my-3">
                 {{#if showUser}}
-                <div style="color: red;">Wrong username or password</div>
+                <div class="alert alert-warning">Wrong username or password</div>
                 {{/if}}
                 <div class="form-group mb-2">
                     <label for="username" class="form-label">Username:</label>
