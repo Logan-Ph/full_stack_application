@@ -92,6 +92,10 @@ app.get("/view-product", (req, res) => {
     res.render("view-product")
 })
 
+app.get("/shipper", (req, res) => {
+    res.render("shipper")
+})
+
 app.post("/add-product", async (req, res) => {
     try {
         try {
