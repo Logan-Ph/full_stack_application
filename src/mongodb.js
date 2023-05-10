@@ -33,6 +33,11 @@ const LogInShipper = new mongoose.Schema({
         type:String,
         enum: ["HCM","HN","DN"],
         require:true,
+    },
+
+    img:{
+        data: Buffer,
+        contentType: String
     }
 })
 
@@ -55,6 +60,11 @@ const LogInUser = new mongoose.Schema({
     name:{
         type:String,
         require:true,
+    },
+
+    img:{
+        data: Buffer,
+        contentType: String
     }
 })
 
@@ -77,6 +87,11 @@ const LogInVendor = new mongoose.Schema({
     bussiness_address:{
         type:String,
         require:true,
+    },
+
+    img:{
+        data: Buffer,
+        contentType: String
     }
 })
 
@@ -100,7 +115,13 @@ const Product = new mongoose.Schema({
     description:{
         type:String,
         require:true,
+    },
+
+    img:{
+        data: Buffer,
+        contentType: String
     }
+
 })
 
 const shipper = new mongoose.model("LogInShipper",LogInShipper)
