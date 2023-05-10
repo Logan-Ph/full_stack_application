@@ -1,9 +1,12 @@
 const express = require("express");
+const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const app = express();
 const path = require("path");
 const port = 3000;
-const handlebars = require('express-handlebars');
+const handlebars = require("express-handlebars");
 const async = require("hbs/lib/async");
+const { connectionUrl } = require("./config"); // Import the connectionUrl from config.js
 const templatePath = path.join(__dirname, 'resources/views')
 const { shipper, user, vendor, product } = require("./mongodb");
 const { error } = require("console");
@@ -11,7 +14,6 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 const publicPath = path.join(__dirname, "/public");
-
 const fs = require("fs");
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -37,14 +39,30 @@ app.engine('handlebars', handlebars.engine({
         path.join(__dirname, 'resources/views/partials'),
     ]
 }));
+
+
 app.use(express.static(publicPath));
 app.use(express.json());
 app.use(cors());
 app.set("view engine", "handlebars");
 app.set("views", templatePath);
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }));
+app.use(session({
+  secret: "secretKey",
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 3600000 }, // 1 hour
+  store: MongoStore.create({
+    mongoUrl: connectionUrl, // use the imported connectionUrl
+    collectionName: 'sessions'
+  })
+}));
 
+app.get("/home", (req, res) => {
+  res.redirect("/");
+});
 
 app.get("/", async (req, res, next) => {
     try {
@@ -52,7 +70,7 @@ app.get("/", async (req, res, next) => {
             let imageValueConverted = Buffer.from(users.map(User => User.toJSON())[0].img.data.data).toString('base64');
             res.render('home', {
                 showUser: true,
-
+                loggedInUser: req.session.user,
                 users: users.map(User => User.toJSON()),
                 imageValueConverted:imageValueConverted
             });
@@ -65,28 +83,44 @@ app.get("/", async (req, res, next) => {
 
 
 app.get("/signup-user", (req, res) => {
-    res.render("signup-user")
-})
+  if (req.session.user) {
+    res.redirect("/home");
+    return;
+  }
+  res.render("signup-user");
+});
 
 app.get("/add-product", (req, res) => {
-    res.render("add-product")
-})
+  res.render("add-product");
+});
 
 app.get("/signup-vendor", (req, res) => {
-    res.render("signup-vendor")
-})
+  if (req.session.user) {
+    res.redirect("/home");
+    return;
+  }
+  res.render("signup-vendor");
+});
 
 app.get("/signup-shipper", (req, res) => {
-    res.render("signup-shipper")
-})
+  if (req.session.user) {
+    res.redirect("/home");
+    return;
+  }
+  res.render("signup-shipper");
+});
 
 app.get("/login", (req, res) => {
-    res.render("login")
-})
+  if (req.session.user) {
+    res.redirect("/home");
+    return;
+  }
+  res.render("login");
+});
 
 app.get("/privacy-policy", (req, res) => {
-    res.render("privacy-policy")
-})
+  res.render("privacy-policy");
+});
 
 app.get("/view-product", (req, res) => {
     res.render("view-product")
@@ -111,52 +145,6 @@ app.post("/add-product", async (req, res) => {
             console.log(error.message)
         }
 
-    }
-    catch {
-        console.log(error.message)
-    }
-})
-
-// app.post("/signup-user", upload.single("image"), async (req, res, next) => {
-//     try {
-//         const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
-
-//         if (check) {
-//             res.render('signup-user', {
-//                 showUser: true,
-//             });
-//         }
-//         else {
-//             try {
-//                 const salt = await bcrypt.genSalt();
-//                 const hashedPassword = await bcrypt.hash(req.body.password, salt);
-//                 const user_info = {
-//                     username: req.body.username,
-//                     password: hashedPassword,
-//                     name: req.body.name,
-//                     address: req.body.address,
-//                     img: {
-//                         data: fs.readFileSync(path.join("/uploads/" + req.file.filename)),
-//                         contentType: "image/png",
-//                     }
-//                 }
-//                 await user.insertMany([user_info]);
-
-//                 res.render("login");
-//             }
-
-//             catch {
-//                 console.log("lỗi 1")
-//             }
-
-//         }
-
-//     }
-//     catch {
-//         console.log("lỗi 2")
-//     }
-
-// })
 
 app.post("/signup-user", upload.single("image"), async (req, res) => {
     const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
@@ -239,9 +227,7 @@ app.post("/signup-vendor", async (req, res) => {
     }
     catch {
         console.log(error.message)
-    }
-
-})
+});
 
 app.post("/signup-shipper", async (req, res) => {
     try {
@@ -278,16 +264,27 @@ app.post("/signup-shipper", async (req, res) => {
     }
     catch {
         console.log(error.message)
-    }
 
-})
 
 app.post("/login", async (req, res) => {
-    try {
-        const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
-        if (await bcrypt.compare(req.body.password, check.password)) {
-            try {
-                await user.find({}, { name: 1, address: 1, username: 1, _id: 0 }).then(users => {
+  
+  try {
+    const check =
+      (await user.findOne({ username: req.body.username })) ||
+      (await vendor.findOne({ username: req.body.username })) ||
+      (await shipper.findOne({ username: req.body.username }));
+
+    if (check && await bcrypt.compare(req.body.password, check.password)) {
+      // Store user information in session
+      req.session.user = {
+        username: check.username,
+      };
+
+      // console.log("User object stored in session:", req.session.user); 
+
+      // Redirect to home route
+      try {
+           await user.find({}, { name: 1, address: 1, username: 1, _id: 0 }).then(users => {
                     res.render('home', {
                         showUser: true,
 
@@ -300,19 +297,35 @@ app.post("/login", async (req, res) => {
                 console.log(error.message);
             }
         }
-        else {
-            res.render('login', {
-                showUser: true,
-            });
-        }
+    } else {
+      res.render("login", {
+        showUser: true,
+        message: "Wrong username or password", // Add a message for wrong username or password
+      });
+    }
+  } catch (error) {
+    // console.log("Error:", error); // Log the error for debugging purposes
+    res.render("login", {
+      showUser: true,
+      message: "An error occurred. Please try again.", // Add a message for any other errors
+    });
+  }
+});
 
-    }
-    catch {
-        res.render('login', {
-            showUser: true,
-        });
-    }
-})
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/home");
+});
+
+app.get('/user', (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/login');
+    return;
+  }
+  res.render('account', {
+    username: req.session.user.username,
+  });
+});
+
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
-

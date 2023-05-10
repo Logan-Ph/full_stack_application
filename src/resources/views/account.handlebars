@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="public/signup.css">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+            crossorigin="anonymous">
+        <title>Manage My Account</title>
+    </head>
+
+    <body>
+            <div class="playground">
+                <div class="playground-main">
+                    <div class="playground-nav">
+                        <div class="member-info">
+                            <p><span>Hello,&nbsp;</span><span
+                                    id="lzd_current_logon_user_name">Khang</span>
+                            </p>
+                            <div id="lzd_current_logon_user_isVerified"
+                                class="label verified">
+                                <img src="#" height="20px">
+                            </div>
+
+                        </div>
+                        <ul class="nav-container">
+                            <li class="item" id="Manage-My-Account"><a
+                                    class="active" href="#"
+                                    data-spm="Manage-My-Account"><span>Manage My
+                                        Account</span></a>
+                                <ul class="item-container">
+                                    <li id="My-profile" class="sub"><a href="#"
+                                            data-spm="My-profile">My Profile</a></li>
+                                    <li id="Address-book" class="sub"><a
+                                            href="#" data-spm="Address-book">Address
+                                            Book</a>
+                                    </li>
+                                    <li id="Payment-methods" class="sub"><a
+                                            href="#" data-spm="Payment-methods">My
+                                            Payment
+                                            Options</a></li>
+                                </ul>
+                            </li>
+                            <li class="item" id="My-Orders"><a href="#"
+                                    data-spm="My-Orders"><span>My Orders</span></a>
+                                <ul class="item-container">
+                                    <li id="Returns" class="sub"><a href="#"
+                                            data-spm="Returns">My Returns</a></li>
+                                    <li id="Cancellations" class="sub"><a
+                                            href="#" data-spm="Cancellations">My
+                                            Cancellations</a></li>
+                                </ul>
+                            </li>
+                            <li class="item" id="My-Reviews"><a href="#"
+                                    data-spm="My-Reviews"><span>My Reviews</span></a>
+                                <ul class="item-container">
+
+                                </ul>
+                            </li>
+                            <li class="item" id="My-Wishlists"><a href="#"
+                                    data-spm="My-Wishlists"><span>My Wishlist
+                                        &amp;
+                                        Followed Stores</span></a>
+                                <ul class="item-container">
+
+                                </ul>
+                            </li>
+                            <li class="item" id="Sell-On-Lazada"><a href="#"
+                                    data-spm="Sell-On-Lazada"><span>Sell On
+                                        Lazada</span></a>
+                                <ul class="item-container">
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="playground-right">
+                        <div class="#">
+                            <div class="breadcrumb"><a>Manage My Account</a></div>
+                            <div id="container" class="container">
+                                <div class="dashboard" data-spm="1">
+                                    <div class="dashboard-profile">
+                                        <div class="dashboard-mod-title">Personal
+                                            Profile <span>|</span> <a
+                                                data-spm="dprofile_edit"
+                                                href="#/profile/edit">EDIT</a></div>
+                                        <div class="dashboard-info">
+                                            <div class="dashboard-info-item">NKhang</div>
+                                            <div class="dashboard-info-item">example@example.com</div>
+                                            <div class="dashboard-info-item
+                                                dashboard-info-item-check">
+                                                <div
+                                                    class="dashboard-info-item-check-sub"><label><span
+                                                            class="next-checkbox
+                                                            "><span
+                                                                class="next-checkbox-inner"><i
+                                                                    class="next-icon
+                                                                    next-icon-select
+                                                                    next-icon-xs"></i></span><input
+                                                                type="checkbox"
+                                                                aria-checked="false"
+                                                                value="on"></span><span
+                                                            class="next-checkbox-label">Receive
+                                                            marketing
+                                                            emails</span></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dashboard-address">
+                                        <div class="dashboard-address-item
+                                            shipping">
+                                            <div class="dashboard-mod-title">Address
+                                                Book <span>|</span> <a
+                                                    href="/address#/book"
+                                                    data-spm="dprofile_edit">EDIT</a></div>
+                                            <div
+                                                class="dashboard-address-default">DEFAULT
+                                                SHIPPING ADDRESS</div>
+                                            <div
+                                                class="dashboard-address-username">Khang</div>
+                                            <div
+                                                class="dashboard-address-detail">Nguyen
+                                                Van Linh</div>
+                                            <div
+                                                class="dashboard-address-detail">District
+                                                7</div>
+                                            <div
+                                                class="dashboard-address-phone">(+84)
+                                                090000000</div>
+                                        </div>
+                                    </div>
+                                    <div class="recent-orders"
+                                        data-spm="recent-orders">
+                                        <div class="recent-orders-hd">Recent
+                                            Orders</div>
+                                        <div class="next-table
+                                            only-bottom-border">
+                                            <div class="next-table-inner">
+                                                <div class="next-table-header">
+                                                    <div
+                                                        class="next-table-header-inner">
+                                                        <table>
+                                                            <colgroup>
+                                                                <col
+                                                                    style="width:
+                                                                    20%;">
+                                                                <col
+                                                                    style="width:
+                                                                    20%;">
+                                                                <col
+                                                                    style="width:
+                                                                    30%;">
+                                                                <col
+                                                                    style="width:
+                                                                    20%;">
+                                                                <col
+                                                                    style="width:
+                                                                    15%;">
+                                                            </colgroup>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th
+                                                                        rowspan="1"
+                                                                        class="next-table-header-node
+                                                                        first">
+                                                                        <div
+                                                                            class="next-table-cell-wrapper">Order
+                                                                            #</div>
+                                                                    </th>
+                                                                    <th
+                                                                        rowspan="1"
+                                                                        class="next-table-header-node">
+                                                                        <div
+                                                                            class="next-table-cell-wrapper">Placed
+                                                                            On</div>
+                                                                    </th>
+                                                                    <th
+                                                                        rowspan="1"
+                                                                        class="next-table-header-node">
+                                                                        <div
+                                                                            class="next-table-cell-wrapper">Items</div>
+                                                                    </th>
+                                                                    <th
+                                                                        rowspan="1"
+                                                                        style="text-align:
+                                                                        right;"
+                                                                        class="next-table-header-node">
+                                                                        <div
+                                                                            class="next-table-cell-wrapper">Total</div>
+                                                                    </th>
+                                                                    <th
+                                                                        rowspan="1"
+                                                                        style="text-align:
+                                                                        right;"
+                                                                        class="next-table-header-node
+                                                                        last">
+                                                                        <div
+                                                                            class="next-table-cell-wrapper"></div>
+                                                                    </th>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="next-table-body">
+                                                    <table>
+                                                        <colgroup>
+                                                            <col style="width:
+                                                                20%;">
+                                                            <col style="width:
+                                                                20%;">
+                                                            <col style="width:
+                                                                30%;">
+                                                            <col style="width:
+                                                                20%;">
+                                                            <col style="width:
+                                                                15%;">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr
+                                                                class="next-table-row
+                                                                first">
+                                                                <td
+                                                                    class="next-table-cell
+                                                                    first">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">349643936811111
+                                                                    </div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">22/04/2022</div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">
+                                                                        <div>
+                                                                            <div
+                                                                                class="recent-item"><img
+                                                                                    src="https://vn-live.slatic.net/p/d6d5db7c5b4612f9a382c2512873ab81.jpg"
+                                                                                    title="Iphone
+                                                                                    13">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell"
+                                                                    style="text-align:
+                                                                    right;">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">₫
+                                                                        1,000</div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell
+                                                                    last"
+                                                                    style="text-align:
+                                                                    right;">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper"><a
+                                                                            href="https://my.lazada.vn/customer/order/view/?tradeOrderId=349643936811111"
+                                                                            class="manage-order">MANAGE</a></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr
+                                                                class="next-table-row">
+                                                                <td
+                                                                    class="next-table-cell
+                                                                    first">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">347855019111111
+                                                                    </div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">20/04/2022</div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">
+                                                                        <div>
+                                                                            <div
+                                                                                class="recent-item"><img
+                                                                                    src="https://vn-live.slatic.net/p/bba8079f66c7ae271387631eca65f70b.jpg"
+                                                                                    title="Apple
+                                                                                    Watch
+                                                                                    Series
+                                                                                    7">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell"
+                                                                    style="text-align:
+                                                                    right;">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">₫
+                                                                        1,000</div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell
+                                                                    last"
+                                                                    style="text-align:
+                                                                    right;">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper"><a
+                                                                            href="https://my.lazada.vn/customer/order/view/?tradeOrderId=347855019111111"
+                                                                            class="manage-order">MANAGE</a></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr
+                                                                class="next-table-row
+                                                                last">
+                                                                <td
+                                                                    class="next-table-cell
+                                                                    first">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">343816599511111
+                                                                    </div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">16/03/2022</div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">
+                                                                        <div>
+                                                                            <div
+                                                                                class="recent-item"><img
+                                                                                    src="https://vn-live.slatic.net/p/b1ff0a298209abaad9846bd7608accf3.jpg"
+                                                                                    title="Apple
+                                                                                    Watch
+                                                                                    Series
+                                                                                    7
+                                                                                    45mm
+                                                                                    GPS">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell"
+                                                                    style="text-align:
+                                                                    right;">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper">₫
+                                                                        1,000</div>
+                                                                </td>
+                                                                <td
+                                                                    class="next-table-cell
+                                                                    last"
+                                                                    style="text-align:
+                                                                    right;">
+                                                                    <div
+                                                                        class="next-table-cell-wrapper"><a
+                                                                            href="https://my.lazada.vn/customer/order/view/?tradeOrderId=343816599511111"
+                                                                            class="manage-order">MANAGE</a></div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+            crossorigin="anonymous"></script>
+    </body>
+
+</html>
