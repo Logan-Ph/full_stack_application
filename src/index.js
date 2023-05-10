@@ -5,8 +5,10 @@ const port = 3000;
 const handlebars = require('express-handlebars');
 const async = require("hbs/lib/async");
 const templatePath = path.join(__dirname, 'resources/views')
-const { shipper, user, vendor,product } = require("./mongodb");
+const { shipper, user, vendor, product } = require("./mongodb");
 const { error } = require("console");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
 const bcrypt = require('bcrypt');
 const publicPath = path.join(__dirname, "/public");
 
@@ -23,14 +25,22 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-
-app.get("/", (req, res) => {
-    res.render("home")
+app.get("/", async (req, res, next) => {
+    try{
+        await user.find({},{name:1,address:1,username:1, _id:0}).then(users =>{
+            res.render('home', {
+                showUser: true,
+    
+                users: users.map(User => User.toJSON())
+                
+            });
+        })
+    }
+    catch (error){
+        console.log(error.message);
+    }
 })
 
-app.get("/home", (req, res) => {
-    res.render("home")
-})
 
 app.get("/signup-user", (req, res) => {
     res.render("signup-user")
@@ -55,6 +65,11 @@ app.get("/login", (req, res) => {
 app.get("/privacy-policy", (req, res) =>{
     res.render("privacy-policy")
 })
+
+app.get("/view-product", (req, res) => {
+    res.render("view-product")
+})
+
 app.post("/signup-user", async (req, res) => {
     try {
         const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
@@ -187,9 +202,19 @@ app.post("/login", async (req, res) => {
     try {
         const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
         if (await bcrypt.compare(req.body.password, check.password))  {
+            try{
+                await user.find({},{name:1,address:1,username:1, _id:0}).then(users =>{
+                    res.render('home', {
+                        showUser: true,
             
-
-            res.render("home");
+                        users: users.map(User => User.toJSON())
+                        
+                    });
+                })
+            }
+            catch (error){
+                console.log(error.message);
+            }
         }
         else {
             res.render('login', {
