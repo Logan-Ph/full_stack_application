@@ -287,12 +287,7 @@ app.post("/login", async (req, res) => {
             // Redirect to home route
             try {
                 await user.find({}, { name: 1, address: 1, username: 1, _id: 0 }).then(users => {
-                    res.render('home', {
-                        showUser: true,
-
-                        users: users.map(User => User.toJSON())
-
-                    });
+                    res.redirect('/');
                 })
             }
             catch (error) {
@@ -304,7 +299,7 @@ app.post("/login", async (req, res) => {
                 showUser: true,
                 message: "Wrong username or password", // Add a message for wrong username or password
             });
-        }
+        }login
     }
     catch (error) {
         // console.log("Error:", error); // Log the error for debugging purposes
