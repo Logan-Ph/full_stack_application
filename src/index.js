@@ -35,7 +35,7 @@ var upload = multer({ storage: storage });
 
 app.engine('handlebars', handlebars.engine({
     extname: '.hbs',
-    partialsDir  : [
+    partialsDir: [
         path.join(__dirname, 'resources/views/partials'),
     ]
 }));
@@ -50,29 +50,29 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
-  secret: "secretKey",
-  resave: true,
-  saveUninitialized: true,
-  cookie: { maxAge: 3600000 }, // 1 hour
-  store: MongoStore.create({
-    mongoUrl: connectionUrl, // use the imported connectionUrl
-    collectionName: 'sessions'
-  })
+    secret: "secretKey",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 3600000 }, // 1 hour
+    store: MongoStore.create({
+        mongoUrl: connectionUrl, // use the imported connectionUrl
+        collectionName: 'sessions'
+    })
 }));
 
 app.get("/home", (req, res) => {
-  res.redirect("/");
+    res.redirect("/");
 });
 
 app.get("/", async (req, res, next) => {
     try {
-        await user.find({}, {img:1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
+        await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
             let imageValueConverted = Buffer.from(users.map(User => User.toJSON())[0].img.data.data).toString('base64');
             res.render('home', {
                 showUser: true,
                 loggedInUser: req.session.user,
                 users: users.map(User => User.toJSON()),
-                imageValueConverted:imageValueConverted
+                imageValueConverted: imageValueConverted
             });
         })
     }
@@ -83,43 +83,43 @@ app.get("/", async (req, res, next) => {
 
 
 app.get("/signup-user", (req, res) => {
-  if (req.session.user) {
-    res.redirect("/home");
-    return;
-  }
-  res.render("signup-user");
+    if (req.session.user) {
+        res.redirect("/home");
+        return;
+    }
+    res.render("signup-user");
 });
 
 app.get("/add-product", (req, res) => {
-  res.render("add-product");
+    res.render("add-product");
 });
 
 app.get("/signup-vendor", (req, res) => {
-  if (req.session.user) {
-    res.redirect("/home");
-    return;
-  }
-  res.render("signup-vendor");
+    if (req.session.user) {
+        res.redirect("/home");
+        return;
+    }
+    res.render("signup-vendor");
 });
 
 app.get("/signup-shipper", (req, res) => {
-  if (req.session.user) {
-    res.redirect("/home");
-    return;
-  }
-  res.render("signup-shipper");
+    if (req.session.user) {
+        res.redirect("/home");
+        return;
+    }
+    res.render("signup-shipper");
 });
 
 app.get("/login", (req, res) => {
-  if (req.session.user) {
-    res.redirect("/home");
-    return;
-  }
-  res.render("login");
+    if (req.session.user) {
+        res.redirect("/home");
+        return;
+    }
+    res.render("login");
 });
 
 app.get("/privacy-policy", (req, res) => {
-  res.render("privacy-policy");
+    res.render("privacy-policy");
 });
 
 app.get("/view-product", (req, res) => {
@@ -128,23 +128,22 @@ app.get("/view-product", (req, res) => {
 
 app.post("/add-product", async (req, res) => {
     try {
-        try {
-            const data = {
-                username: req.body.username,
-                password: hashedPassword,
-                name: req.body.name,
-                address: req.body.address,
-            }
-            await user.insertMany([data]);
-
-            res.render("login");
-
+        const data = {
+            username: req.body.username,
+            password: hashedPassword,
+            name: req.body.name,
+            address: req.body.address,
         }
+        await user.insertMany([data]);
 
-        catch {
-            console.log(error.message)
-        }
+        res.render("login");
 
+    }
+
+    catch {
+        console.log(error.message)
+    }
+})
 
 app.post("/signup-user", upload.single("image"), async (req, res) => {
     const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
@@ -227,6 +226,7 @@ app.post("/signup-vendor", async (req, res) => {
     }
     catch {
         console.log(error.message)
+    }
 });
 
 app.post("/signup-shipper", async (req, res) => {
@@ -264,27 +264,29 @@ app.post("/signup-shipper", async (req, res) => {
     }
     catch {
         console.log(error.message)
+    }
+});
 
 
 app.post("/login", async (req, res) => {
-  
-  try {
-    const check =
-      (await user.findOne({ username: req.body.username })) ||
-      (await vendor.findOne({ username: req.body.username })) ||
-      (await shipper.findOne({ username: req.body.username }));
 
-    if (check && await bcrypt.compare(req.body.password, check.password)) {
-      // Store user information in session
-      req.session.user = {
-        username: check.username,
-      };
+    try {
+        const check =
+            (await user.findOne({ username: req.body.username })) ||
+            (await vendor.findOne({ username: req.body.username })) ||
+            (await shipper.findOne({ username: req.body.username }));
 
-      // console.log("User object stored in session:", req.session.user); 
+        if (check && await bcrypt.compare(req.body.password, check.password)) {
+            // Store user information in session
+            req.session.user = {
+                username: check.username,
+            };
 
-      // Redirect to home route
-      try {
-           await user.find({}, { name: 1, address: 1, username: 1, _id: 0 }).then(users => {
+            // console.log("User object stored in session:", req.session.user); 
+
+            // Redirect to home route
+            try {
+                await user.find({}, { name: 1, address: 1, username: 1, _id: 0 }).then(users => {
                     res.render('home', {
                         showUser: true,
 
@@ -297,34 +299,35 @@ app.post("/login", async (req, res) => {
                 console.log(error.message);
             }
         }
-    } else {
-      res.render("login", {
-        showUser: true,
-        message: "Wrong username or password", // Add a message for wrong username or password
-      });
+        else {
+            res.render("login", {
+                showUser: true,
+                message: "Wrong username or password", // Add a message for wrong username or password
+            });
+        }
     }
-  } catch (error) {
-    // console.log("Error:", error); // Log the error for debugging purposes
-    res.render("login", {
-      showUser: true,
-      message: "An error occurred. Please try again.", // Add a message for any other errors
-    });
-  }
+    catch (error) {
+        // console.log("Error:", error); // Log the error for debugging purposes
+        res.render("login", {
+            showUser: true,
+            message: "An error occurred. Please try again.", // Add a message for any other errors
+        });
+    }
 });
 
 app.get("/logout", (req, res) => {
-  req.session.destroy();
-  res.redirect("/home");
+    req.session.destroy();
+    res.redirect("/home");
 });
 
 app.get('/user', (req, res) => {
-  if (!req.session.user) {
-    res.redirect('/login');
-    return;
-  }
-  res.render('account', {
-    username: req.session.user.username,
-  });
+    if (!req.session.user) {
+        res.redirect('/login');
+        return;
+    }
+    res.render('account', {
+        username: req.session.user.username,
+    });
 });
 
 
