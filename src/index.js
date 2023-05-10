@@ -228,4 +228,20 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/home");
+});
+
+app.get('/user', (req, res) => {
+  if (!req.session.user) {
+    res.redirect('/login');
+    return;
+  }
+  res.render('account', {
+    username: req.session.user.username,
+  });
+});
+
+
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));

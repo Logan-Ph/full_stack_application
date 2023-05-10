@@ -49,7 +49,15 @@
 
                 <div class="item-button">
                     {{#if loggedInUser}}
-                    <a>{{loggedInUser.username}}</a>
+                    <div class="modal-line">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false"> {{loggedInUser.username}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/user">Account Settings</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </div>
                     {{else}}
                     <a href="/login" type="button">Login</a>
                     {{/if}}
@@ -94,7 +102,16 @@
 
                             <div class="navb-button">
                                 {{#if loggedInUser}}
-                                <a>{{loggedInUser.username}}</a>
+                                <div class="modal-line">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{loggedInUser.username}}
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="/user">Account Settings</a></li>
+                                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                                    </ul>
+                                </div>
                                 {{else}}
                                 <a href="/login" type="button">Login</a>
                                 {{/if}}
