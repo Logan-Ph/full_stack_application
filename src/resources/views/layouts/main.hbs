@@ -48,7 +48,11 @@
                 </div>
 
                 <div class="item-button">
+                    {{#if loggedInUser}}
+                    <a>{{loggedInUser.username}}</a>
+                    {{else}}
                     <a href="/login" type="button">Login</a>
+                    {{/if}}
                 </div>
             </div>
 
@@ -89,12 +93,14 @@
                             </div>
 
                             <div class="navb-button">
-                                <% if (user) { %>
-                                    <a>><%= user.username %>!</a>
-                                    <% } else { %>
-                                        <a href="/login" type="button">Login</a>
-                                        <% } %>
+                                {{#if loggedInUser}}
+                                <a>{{loggedInUser.username}}</a>
+                                {{else}}
+                                <a href="/login" type="button">Login</a>
+                                {{/if}}
                             </div>
+
+
 
                         </div>
 

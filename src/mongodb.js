@@ -1,13 +1,18 @@
 const mongoose = require("mongoose");
+const { connectionUrl } = require("./config"); // Import the connectionUrl from config.js
 
-mongoose.connect("mongodb+srv://s3975979:Sang5850@cluster0.uuhro1a.mongodb.net/login?retryWrites=true&w=majority")
+
+mongoose.connect(connectionUrl)
 .then(()=>{
+    
     console.log("login database connected");
 })
 .catch (()=> {
     console.log("login database connected failed!");
 })
-
+module.exports = {
+    connectionUrl
+};
 const LogInShipper = new mongoose.Schema({
     username:{
         type:String,

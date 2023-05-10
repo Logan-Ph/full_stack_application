@@ -1,6 +1,6 @@
 const express = require("express");
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const app = express();
 const path = require("path");
 const port = 3000;
@@ -8,6 +8,7 @@ const handlebars = require("express-handlebars");
 const async = require("hbs/lib/async");
 const templatePath = path.join(__dirname, "resources/views");
 const { shipper, user, vendor, product } = require("./mongodb");
+const { connectionUrl } = require("./config"); // Import the connectionUrl from config.js
 const { error } = require("console");
 const bcrypt = require("bcrypt");
 const publicPath = path.join(__dirname, "/public");
@@ -24,31 +25,22 @@ app.set("view engine", "handlebars");
 app.set("views", templatePath);
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
-    secret: 'mysecret',
-    resave: false,
-    saveUninitialized: false
-  }));
-  app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(function(username, password, done) {
-    // Check username and password
-    // Call done(err, user) with error or user object
-  }));
-  // Set up serialization and deserialization of user
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
-  
-  passport.deserializeUser(function(id, done) {
-    // Retrieve user object from database using id
-  });
+  secret: "secretKey",
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 3600000 }, // 1 hour
+  store: MongoStore.create({
+    mongoUrl: connectionUrl, // use the imported connectionUrl
+    collectionName: 'sessions'
+  })
+}));
 
-app.get(["/", "/home"], (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render("home", { user: req.user });
-  } else {
-    res.render("home");
-  }
+app.get("/", (req, res) => {
+  res.render("home", {loggedInUser: req.session.user});
+});
+
+app.get("/home", (req, res) => {
+  res.redirect("/");
 });
 
 app.get("/signup-user", (req, res) => {
@@ -74,6 +66,7 @@ app.get("/login", (req, res) => {
 app.get("/privacy-policy", (req, res) => {
   res.render("privacy-policy");
 });
+
 app.post("/signup-user", async (req, res) => {
   try {
     const check =
@@ -186,33 +179,46 @@ app.post("/signup-shipper", async (req, res) => {
   }
 });
 
+// Middleware to redirect logged-in users from the login page
+const redirectIfLoggedIn = (req, res, next) => {
+  if (req.session.user) {
+    res.redirect('/home');
+  } else {
+    next();
+  }
+};
+
 app.post("/login", async (req, res) => {
-    try {
-      const checkUser = await user.findOne({ username: req.body.username });
-      const checkVendor = await vendor.findOne({ username: req.body.username });
-      const checkShipper = await shipper.findOne({ username: req.body.username });
-  
-      if (checkUser && checkVendor && checkShipper) {
-        const check = checkUser || checkVendor || checkShipper;
-        if (await bcrypt.compare(req.body.password, check.password)) {
-          res.render("home");
-        } else {
-          res.render("login", {
-            showUser: true,
-          });
-        }
-      } else {
-        res.render("login", {
-          showUser: true,
-        });
-      }
-    } catch (err) {
-      console.log(err);
+  console.log("Login route called"); 
+  try {
+    const check =
+      (await user.findOne({ username: req.body.username })) ||
+      (await vendor.findOne({ username: req.body.username })) ||
+      (await shipper.findOne({ username: req.body.username }));
+
+    if (check && await bcrypt.compare(req.body.password, check.password)) {
+      // Store user information in session
+      req.session.user = {
+        username: check.username,
+      };
+
+      console.log("User object stored in session:", req.session.user); 
+
+      // Redirect to home route
+      res.redirect("/home");
+    } else {
       res.render("login", {
         showUser: true,
+        message: "Wrong username or password", // Add a message for wrong username or password
       });
     }
-  });
-  
+  } catch (error) {
+    console.log("Error:", error); // Log the error for debugging purposes
+    res.render("login", {
+      showUser: true,
+      message: "An error occurred. Please try again.", // Add a message for any other errors
+    });
+  }
+});
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
