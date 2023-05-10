@@ -44,6 +44,10 @@ app.get("/home", (req, res) => {
 });
 
 app.get("/signup-user", (req, res) => {
+  if (req.session.user) {
+    res.redirect("/home");
+    return;
+  }
   res.render("signup-user");
 });
 
@@ -52,14 +56,26 @@ app.get("/add-product", (req, res) => {
 });
 
 app.get("/signup-vendor", (req, res) => {
+  if (req.session.user) {
+    res.redirect("/home");
+    return;
+  }
   res.render("signup-vendor");
 });
 
 app.get("/signup-shipper", (req, res) => {
+  if (req.session.user) {
+    res.redirect("/home");
+    return;
+  }
   res.render("signup-shipper");
 });
 
 app.get("/login", (req, res) => {
+  if (req.session.user) {
+    res.redirect("/home");
+    return;
+  }
   res.render("login");
 });
 
@@ -179,17 +195,8 @@ app.post("/signup-shipper", async (req, res) => {
   }
 });
 
-// Middleware to redirect logged-in users from the login page
-const redirectIfLoggedIn = (req, res, next) => {
-  if (req.session.user) {
-    res.redirect('/home');
-  } else {
-    next();
-  }
-};
 
 app.post("/login", async (req, res) => {
-  console.log("Login route called"); 
   try {
     const check =
       (await user.findOne({ username: req.body.username })) ||
@@ -202,7 +209,7 @@ app.post("/login", async (req, res) => {
         username: check.username,
       };
 
-      console.log("User object stored in session:", req.session.user); 
+      // console.log("User object stored in session:", req.session.user); 
 
       // Redirect to home route
       res.redirect("/home");
@@ -213,7 +220,7 @@ app.post("/login", async (req, res) => {
       });
     }
   } catch (error) {
-    console.log("Error:", error); // Log the error for debugging purposes
+    // console.log("Error:", error); // Log the error for debugging purposes
     res.render("login", {
       showUser: true,
       message: "An error occurred. Please try again.", // Add a message for any other errors
