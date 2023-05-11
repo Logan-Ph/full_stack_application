@@ -96,6 +96,11 @@ const LogInVendor = new mongoose.Schema({
 })
 
 const Product = new mongoose.Schema({
+    owner:{
+        type:String,
+        require:true,
+    },
+
     product_name:{
         type:String,
         require:true,

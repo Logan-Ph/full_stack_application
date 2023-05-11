@@ -47,7 +47,6 @@ app.use(cors());
 app.set("view engine", "handlebars");
 app.set("views", templatePath);
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: "secretKey",
@@ -71,15 +70,35 @@ app.get("/home", async (req, res, next) => {
     }
     else {
         if ((!req.session.user.check_shipper) && (!req.session.user.check_vendor)) {
+            // try {
+            //     await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
+            //         let map_user = users.map(User => User.toJSON());
+            //         for (let i = 0; i < map_user.length; i++) {
+            //             map_user[i].img = Buffer.from(map_user[i].img.data.data).toString('base64');
+            //         }
+
+            //         res.render('home', {
+            //             showUser: true,
+            //             loggedInUser: req.session.user,
+            //             users: map_user,
+            //         });
+            //     })
+            // }
+            // catch (error) {
+            //     console.log(error.message);
+            // }
+
             try {
-                await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
-                    let imageValueConverted = Buffer.from(users.map(User => User.toJSON())[0].img.data.data).toString('base64');
-                    console.log("\n" + imageValueConverted);
+                await product.find({}, { img: 1, product_name: 1, category: 1, price: 1, _id: 0 }).then(products => {
+                    let map_product = products.map(Product => Product.toJSON());
+                    for (let i=0; i < map_product.length; i++){
+                        map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                    }
+
                     res.render('home', {
                         showUser: true,
                         loggedInUser: req.session.user,
-                        users: users.map(User => User.toJSON()),
-                        imageValueConverted: imageValueConverted
+                        products: map_product,
                     });
                 })
             }
@@ -100,15 +119,15 @@ app.get("/signup-user", (req, res) => {
 });
 
 app.get("/add-product", (req, res) => {
-    try{
-        if (req.session.user.check_vendor){
+    try {
+        if (req.session.user.check_vendor) {
             res.render("add-product");
         }
-        else{
+        else {
             res.redirect("/")
         }
     }
-    catch{
+    catch {
         res.redirect("/")
     }
 });
@@ -145,49 +164,71 @@ app.get("/privacy-policy", (req, res) => {
     res.render("privacy-policy");
 });
 
-app.get("/view-product", (req, res) => {
-    try{
-        if (req.session.user.check_vendor){
-            res.render("view-product");
+app.get("/view-product", async (req, res, next) => {
+    try {
+        if (req.session.user.check_vendor) {
+                try {
+                    await product.find({owner:req.session.user.check_vendor.username}, { img: 1, product_name: 1, category: 1, price: 1, _id: 0 }).then(products => {
+                        let map_product = products.map(Product => Product.toJSON());
+                        for (let i=0; i < map_product.length; i++){
+                            map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                        }
+
+                        res.render('view-product', {
+                            loggedInUser: req.session.user,
+                            products: map_product,
+                        });
+                    })
+                }
+                catch (error) {
+                    console.log(error.message);
+                }
         }
-        else{
+        else {
             res.redirect("/")
+            res.render("view-product")
         }
     }
-    catch{
+    catch {
         res.redirect("/")
     }
 })
 
 app.get("/shipper", (req, res) => {
-    try{
-        if (req.session.user.check_shipper){
+    try {
+        if (req.session.user.check_shipper) {
             res.render("shipper");
         }
-        else{
+        else {
             res.redirect("/")
         }
     }
-    catch{
+    catch {
         res.redirect("/")
     }
 })
 
-app.post("/add-product", async (req, res) => {
-    try {
-        const data = {
-            username: req.body.username,
-            password: hashedPassword,
-            name: req.body.name,
-            address: req.body.address,
-        }
-        await user.insertMany([data]);
-
-        res.render("login");
-    }
-    catch {
-        console.log(error.message)
-    }
+app.post("/add-product", upload.single("image"), async (req, res) => {
+    const product_info = product({
+        owner: req.session.user.check_vendor.username,
+        product_name: req.body.product_name,
+        category: req.body.category,
+        price: req.body.price,
+        description: req.body.description,
+        img: {
+            data: fs.readFileSync("uploads/" + req.file.filename),
+            contentType: "image/png",
+        },
+    });
+    product_info
+        .save()
+        .then((res) => {
+            console.log("product information is saved");
+        })
+        .catch((err) => {
+            console.log(err, "error has occur");
+        });
+    res.render("add-product");
 })
 
 app.post("/signup-user", upload.single("image"), async (req, res) => {
@@ -213,7 +254,7 @@ app.post("/signup-user", upload.single("image"), async (req, res) => {
         user_info
             .save()
             .then((res) => {
-                console.log("info is saved");
+                console.log("user information is saved");
             })
             .catch((err) => {
                 console.log(err, "error has occur");
