@@ -65,16 +65,16 @@ app.get("/", (req, res) => {
 });
 
 app.get("/home", async (req, res, next) => {
-    if ((! req.session.user)) {
+    if ((!req.session.user)) {
         res.redirect("/");
         return;
     }
-    else{
-        if ((!req.session.user.check_vendor)&& (!req.session.user.check_vendor)){
+    else {
+        if ((!req.session.user.check_shipper) && (!req.session.user.check_vendor)) {
             try {
                 await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
                     let imageValueConverted = Buffer.from(users.map(User => User.toJSON())[0].img.data.data).toString('base64');
-                    console.log("\n" +imageValueConverted);
+                    console.log("\n" + imageValueConverted);
                     res.render('home', {
                         showUser: true,
                         loggedInUser: req.session.user,
@@ -100,10 +100,17 @@ app.get("/signup-user", (req, res) => {
 });
 
 app.get("/add-product", (req, res) => {
-    // if ((req.session.user) && (req.session.user.check_vendor)) {
-    res.render("add-product");
-    // }
-    res.render("login")
+    try{
+        if (req.session.user.check_vendor){
+            res.render("add-product");
+        }
+        else{
+            res.redirect("/")
+        }
+    }
+    catch{
+        res.redirect("/")
+    }
 });
 
 app.get("/signup-vendor", (req, res) => {
@@ -123,18 +130,19 @@ app.get("/signup-shipper", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-    if (req.session.user) {
-        if (req.session.user.vendor) {
-            res.redirect("/view-product");
-        }
-        else if (req.session.user.shipper) {
-            res.redirect("/shipper");
-        }
-        else{
-            res.redirect("/home");
-        }
+    console.log(req.session.user.check_vendor);
+    console.log(req.session.user.check_shipper);
+
+
+    if (req.session.user.check_vendor) {
+        res.redirect("/view-product");
     }
-    res.render("login");
+    else if (req.session.user.check_shipper) {
+        res.redirect("/shipper");
+    }
+    else {
+        res.redirect("/home");
+    }
 });
 
 app.get("/privacy-policy", (req, res) => {
@@ -142,14 +150,31 @@ app.get("/privacy-policy", (req, res) => {
 });
 
 app.get("/view-product", (req, res) => {
-    if ((req.session.user) && (req.session.user.check_vendor)) {
-        res.render("view-product");
+    try{
+        if (req.session.user.check_vendor){
+            res.render("view-product");
+        }
+        else{
+            res.redirect("/")
+        }
     }
-    res.redirect("login")
+    catch{
+        res.redirect("/")
+    }
 })
 
 app.get("/shipper", (req, res) => {
-    res.render("shipper")
+    try{
+        if (req.session.user.check_shipper){
+            res.render("shipper");
+        }
+        else{
+            res.redirect("/")
+        }
+    }
+    catch{
+        res.redirect("/")
+    }
 })
 
 app.post("/add-product", async (req, res) => {
@@ -163,9 +188,7 @@ app.post("/add-product", async (req, res) => {
         await user.insertMany([data]);
 
         res.render("login");
-
     }
-
     catch {
         console.log(error.message)
     }
@@ -301,7 +324,7 @@ app.post("/login", async (req, res) => {
             (await user.findOne({ username: req.body.username })) ||
             (await vendor.findOne({ username: req.body.username })) ||
             (await shipper.findOne({ username: req.body.username }));
-        
+
         const check_shipper = await shipper.findOne({ username: req.body.username });
         const check_vendor = await vendor.findOne({ username: req.body.username });
 
@@ -309,8 +332,8 @@ app.post("/login", async (req, res) => {
             // Store user information in session
             req.session.user = {
                 username: check.username,
-                check_shipper:check_shipper,
-                check_vendor:check_vendor,
+                check_shipper: check_shipper,
+                check_vendor: check_vendor,
             };
 
             // console.log("User object stored in session:", req.session.user); 
@@ -343,7 +366,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/logout", (req, res) => {
     req.session.destroy();
-    res.redirect("/login");
+    res.redirect("/");
 });
 
 app.get('/user', (req, res) => {
