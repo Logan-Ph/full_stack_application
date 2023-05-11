@@ -424,6 +424,19 @@
   max-width: 100% !important;
 }
 
+/*Pop up to confirm user of deleting product*/
+.delete-button .modal-dialog {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 70% !important;
+}
+
+.delete-button .modal-content {
+  height: 50% !important;
+}
+
 .privacy-container {
   margin: 0;
   padding: 20px 20px;
