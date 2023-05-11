@@ -130,10 +130,6 @@ app.get("/signup-shipper", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-    console.log(req.session.user.check_vendor);
-    console.log(req.session.user.check_shipper);
-
-
     if (req.session.user.check_vendor) {
         res.redirect("/view-product");
     }
