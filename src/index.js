@@ -70,28 +70,10 @@ app.get("/home", async (req, res, next) => {
     }
     else {
         if ((!req.session.user.check_shipper) && (!req.session.user.check_vendor)) {
-            // try {
-            //     await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
-            //         let map_user = users.map(User => User.toJSON());
-            //         for (let i = 0; i < map_user.length; i++) {
-            //             map_user[i].img = Buffer.from(map_user[i].img.data.data).toString('base64');
-            //         }
-
-            //         res.render('home', {
-            //             showUser: true,
-            //             loggedInUser: req.session.user,
-            //             users: map_user,
-            //         });
-            //     })
-            // }
-            // catch (error) {
-            //     console.log(error.message);
-            // }
-
             try {
                 await product.find({}, { img: 1, product_name: 1, category: 1, price: 1, _id: 0 }).then(products => {
                     let map_product = products.map(Product => Product.toJSON());
-                    for (let i=0; i < map_product.length; i++){
+                    for (let i = 0; i < map_product.length; i++) {
                         map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
                     }
 
@@ -167,22 +149,36 @@ app.get("/privacy-policy", (req, res) => {
 app.get("/view-product", async (req, res, next) => {
     try {
         if (req.session.user.check_vendor) {
-                try {
-                    await product.find({owner:req.session.user.check_vendor.username}, { img: 1, product_name: 1, category: 1, price: 1, _id: 0 }).then(products => {
+            try {
+                if (! product.find({ owner: req.session.user.check_vendor.username }, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 })){
+                    res.render('view-product', {
+                        loggedInUser: req.session.user,
+                        checkproduct:true
+                    });
+                }
+                await product.find({ owner: req.session.user.check_vendor.username }, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                    if (products.length===0){
+                        res.render('view-product', {
+                            loggedInUser: req.session.user,
+                            checkproduct:true
+                        });
+                    }
+                    else{
                         let map_product = products.map(Product => Product.toJSON());
-                        for (let i=0; i < map_product.length; i++){
+                        for (let i = 0; i < map_product.length; i++) {
                             map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
                         }
-
+    
                         res.render('view-product', {
                             loggedInUser: req.session.user,
                             products: map_product,
                         });
-                    })
-                }
-                catch (error) {
-                    console.log(error.message);
-                }
+                    }
+                })
+            }
+            catch (error) {
+                console.log(error.message);
+            }
         }
         else {
             res.redirect("/")
@@ -193,6 +189,41 @@ app.get("/view-product", async (req, res, next) => {
         res.redirect("/")
     }
 })
+
+// app.get('/view-product/:id', (req, res) => {
+//     product.findById(req.params.id)
+//     .then((product) => {
+//       if (!product) {
+//         return res.send("Cannot found that ID!");
+//       }
+//       res.redirect('/view-product');
+//     })
+//     .catch((error) => res.send(error));
+// });
+
+
+app.get('/view-product/:id/delete', async (req, res) => {
+    try {
+        if (req.session.user.check_vendor) {
+            product.findByIdAndDelete(req.params.id)
+                .then((product) => {
+                    if (!product) {
+                        return res.send("Cannot found that product ID!");
+                    }
+                    res.redirect("/view-product");
+                })
+                .catch((error) => res.send(error));
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+});
+
+
 
 app.get("/shipper", (req, res) => {
     try {

@@ -37,6 +37,7 @@
         <div class="container px-5 py-3 my-4">
             <h1>Manage Products</h1>
             <hr>
+            {{#if checkproduct}}
             <div class="no-product card">
                 <div class="my-5 card-body text-center">
                     <div class="py-5">
@@ -45,6 +46,7 @@
                     <p>You currently have no products.</p>
                 </div>
             </div>
+            {{/if}}
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {{#each products}}
                 <div class="col">
@@ -53,12 +55,16 @@
                         <div class="card-body">
                             <h5 class="card-title">{{this.product_name}}</h5>
                             <p class="card-text">{{this.description}}</p>
+                            <p class="card-text">{{this._id}}</p>
+
                             <p class="card-text">Category: {{this.category}}</p>
                             <p class="card-text">Price: {{this.price}}.000 VND</p>
                             <button class="btn btn-primary edit-button" id="edit-btn">Edit</button>
                             <!-- Button trigger modal -->
+                            <a href="#">
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">Delete</button>
+                            </a>
                             <!-- Modal -->
                             <div class="delete-button modal fade" id="exampleModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -73,7 +79,7 @@
                                         <div class="delete-button modal-footer d-flex justify-content-center">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            <a href="/view-product/{{this._id}}/delete"><button type="button" class="btn btn-danger">Delete</button></a>
                                         </div>
                                     </div>
                                 </div>
@@ -84,9 +90,7 @@
                 {{/each}}
             </div>
         </div>
-
     </main>
-
 
 
 
