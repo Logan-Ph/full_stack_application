@@ -60,24 +60,30 @@ app.use(session({
     })
 }));
 
-app.get("/home", (req, res) => {
-    res.redirect("/");
+app.get("/", (req, res) => {
+    res.redirect("/login");
 });
 
-app.get("/", async (req, res, next) => {
-    try {
-        await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
-            let imageValueConverted = Buffer.from(users.map(User => User.toJSON())[0].img.data.data).toString('base64');
-            res.render('home', {
-                showUser: true,
-                loggedInUser: req.session.user,
-                users: users.map(User => User.toJSON()),
-                imageValueConverted: imageValueConverted
-            });
-        })
+app.get("/home", async (req, res, next) => {
+    if (! req.session.user) {
+        res.redirect("/login");
+        return;
     }
-    catch (error) {
-        console.log(error.message);
+    else{
+        try {
+            await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
+                let imageValueConverted = Buffer.from(users.map(User => User.toJSON())[0].img.data.data).toString('base64');
+                res.render('home', {
+                    showUser: true,
+                    loggedInUser: req.session.user,
+                    users: users.map(User => User.toJSON()),
+                    imageValueConverted: imageValueConverted
+                });
+            })
+        }
+        catch (error) {
+            console.log(error.message);
+        }
     }
 })
 
@@ -91,7 +97,9 @@ app.get("/signup-user", (req, res) => {
 });
 
 app.get("/add-product", (req, res) => {
-    res.render("add-product");
+    if ((req.session.user) && (req.session.user.check_vendor)) {
+        res.render("add-product");
+    }
 });
 
 app.get("/signup-vendor", (req, res) => {
@@ -123,7 +131,9 @@ app.get("/privacy-policy", (req, res) => {
 });
 
 app.get("/view-product", (req, res) => {
-    res.render("view-product")
+    if ((req.session.user) && (req.session.user.check_vendor)) {
+        res.render("view-product");
+    }
 })
 
 app.get("/shipper", (req, res) => {
@@ -279,11 +289,16 @@ app.post("/login", async (req, res) => {
             (await user.findOne({ username: req.body.username })) ||
             (await vendor.findOne({ username: req.body.username })) ||
             (await shipper.findOne({ username: req.body.username }));
+        
+        const check_shipper = await shipper.findOne({ username: req.body.username });
+        const check_vendor = await vendor.findOne({ username: req.body.username });
 
         if (check && await bcrypt.compare(req.body.password, check.password)) {
             // Store user information in session
             req.session.user = {
                 username: check.username,
+                check_shipper:check_shipper,
+                check_vendor:check_vendor,
             };
 
             // console.log("User object stored in session:", req.session.user); 
