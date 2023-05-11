@@ -61,28 +61,31 @@ app.use(session({
 }));
 
 app.get("/", (req, res) => {
-    res.redirect("/login");
+    res.render("login");
 });
 
 app.get("/home", async (req, res, next) => {
-    if (! req.session.user) {
-        res.redirect("/login");
+    if ((! req.session.user)) {
+        res.redirect("/");
         return;
     }
     else{
-        try {
-            await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
-                let imageValueConverted = Buffer.from(users.map(User => User.toJSON())[0].img.data.data).toString('base64');
-                res.render('home', {
-                    showUser: true,
-                    loggedInUser: req.session.user,
-                    users: users.map(User => User.toJSON()),
-                    imageValueConverted: imageValueConverted
-                });
-            })
-        }
-        catch (error) {
-            console.log(error.message);
+        if ((!req.session.user.check_vendor)&& (!req.session.user.check_vendor)){
+            try {
+                await user.find({}, { img: 1, name: 1, address: 1, username: 1, _id: 0 }).then(users => {
+                    let imageValueConverted = Buffer.from(users.map(User => User.toJSON())[0].img.data.data).toString('base64');
+                    console.log("\n" +imageValueConverted);
+                    res.render('home', {
+                        showUser: true,
+                        loggedInUser: req.session.user,
+                        users: users.map(User => User.toJSON()),
+                        imageValueConverted: imageValueConverted
+                    });
+                })
+            }
+            catch (error) {
+                console.log(error.message);
+            }
         }
     }
 })
@@ -97,9 +100,10 @@ app.get("/signup-user", (req, res) => {
 });
 
 app.get("/add-product", (req, res) => {
-    if ((req.session.user) && (req.session.user.check_vendor)) {
-        res.render("add-product");
-    }
+    // if ((req.session.user) && (req.session.user.check_vendor)) {
+    res.render("add-product");
+    // }
+    res.render("login")
 });
 
 app.get("/signup-vendor", (req, res) => {
@@ -120,8 +124,15 @@ app.get("/signup-shipper", (req, res) => {
 
 app.get("/login", (req, res) => {
     if (req.session.user) {
-        res.redirect("/home");
-        return;
+        if (req.session.user.vendor) {
+            res.redirect("/view-product");
+        }
+        else if (req.session.user.shipper) {
+            res.redirect("/shipper");
+        }
+        else{
+            res.redirect("/home");
+        }
     }
     res.render("login");
 });
@@ -134,6 +145,7 @@ app.get("/view-product", (req, res) => {
     if ((req.session.user) && (req.session.user.check_vendor)) {
         res.render("view-product");
     }
+    res.redirect("login")
 })
 
 app.get("/shipper", (req, res) => {
@@ -306,7 +318,7 @@ app.post("/login", async (req, res) => {
             // Redirect to home route
             try {
                 await user.find({}, { name: 1, address: 1, username: 1, _id: 0 }).then(users => {
-                    res.redirect('/');
+                    res.redirect('/login');
                 })
             }
             catch (error) {
@@ -318,7 +330,7 @@ app.post("/login", async (req, res) => {
                 showUser: true,
                 message: "Wrong username or password", // Add a message for wrong username or password
             });
-        }login
+        }
     }
     catch (error) {
         // console.log("Error:", error); // Log the error for debugging purposes
@@ -331,7 +343,7 @@ app.post("/login", async (req, res) => {
 
 app.get("/logout", (req, res) => {
     req.session.destroy();
-    res.redirect("/home");
+    res.redirect("/login");
 });
 
 app.get('/user', (req, res) => {
