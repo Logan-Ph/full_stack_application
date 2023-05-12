@@ -10,9 +10,10 @@
     width: 200px;
 }
 
-.container-fluid {
-    margin: 0;
+.container {
     width: fit-content; 
+    justify-content: flex-start !important;
+    margin-left: 0px;
 }
 
 body {
@@ -26,6 +27,11 @@ body {
 form input {
     margin-left: 25px;
     width: 60vw !important;
+}
+
+.nav-bar {
+    justify-content: flex-start;
+    padding-right: 0px !important;
 }
 
 .navbar-nav .nav-link.active {
