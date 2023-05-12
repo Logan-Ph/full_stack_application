@@ -424,17 +424,21 @@
   max-width: 100% !important;
 }
 
-/*Pop up to confirm user of deleting product*/
-.delete-button .modal-dialog {
+/*Pop up to edit product or confirm user of deleting product*/
+.delete-button .modal-dialog, .edit-button .modal-dialog {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: 70% !important;
+  width: 95% !important;
 }
 
 .delete-button .modal-content {
   height: 50% !important;
+}
+
+.edit-button .modal-content {
+  height: 100% !important;
 }
 
 .privacy-container {
