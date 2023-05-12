@@ -114,6 +114,20 @@ app.get("/add-product", (req, res) => {
     }
 });
 
+app.get("/delivered-orders", (req, res) => {
+    try {
+        if (req.session.user.check_shipper) {
+            res.render("delivered-orders");
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+});
+
 app.get("/signup-vendor", (req, res) => {
     if (req.session.user) {
         res.redirect("/home");
