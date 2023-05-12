@@ -7,9 +7,10 @@
 .offcanvas.offcanvas-start {
   width: 200px; }
 
-.container-fluid {
-  margin: 0;
-  width: fit-content; }
+.container {
+  width: fit-content;
+  justify-content: flex-start !important;
+  margin-left: 0px; }
 
 body {
   background-color: #EFF0F5; }
@@ -20,6 +21,10 @@ body {
 form input {
   margin-left: 25px;
   width: 60vw !important; }
+
+.nav-bar {
+  justify-content: flex-start;
+  padding-right: 0px !important; }
 
 .navbar-nav .nav-link.active {
   color: #0d6efd; }
