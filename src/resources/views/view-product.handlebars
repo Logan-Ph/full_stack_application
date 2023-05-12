@@ -55,17 +55,70 @@
                         <div class="card-body">
                             <h5 class="card-title">{{this.product_name}}</h5>
                             <p class="card-text">{{this.description}}</p>
-                            <p class="card-text">{{this._id}}</p>
-
                             <p class="card-text">Category: {{this.category}}</p>
                             <p class="card-text">Price: {{this.price}}.000 VND</p>
-                            <button class="btn btn-primary edit-button" id="edit-btn">Edit</button>
-                            <!-- Button trigger modal -->
+                            <!-- Edit Button trigger modal -->
+                            <button type="button" class="btn btn-primary edit-button" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
+                            <!-- Edit Modal -->
+                            <div class="edit-button modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                                <div class="edit-button modal-dialog modal-dialog-scrollable">
+                                    <div class="edit-button modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="editModalLabel">Edit Product</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row justify-content-center row-gap-3">
+                                                <form id="add-product-form" action="" method="post" class="col-md-8 col-10 bg-light p-3 my-3 rounded">
+                                                    <div class="form-group mb-2">
+                                                      <label for="product-image" class="form-label">Product Images</label>
+                                                      <div class="input-group mb-3">
+                                                        <input type="file" class="form-control" id="product-image" name="image" required>
+                                                        <label class="input-group-text" for="product-image">Upload</label>
+                                                        <div id="imageHelp" class="form-text">This is the main image of your product page. Size between 330x330 and 5000x5000 px. Max file size: 3 MB. Obscene image is strictly prohibited.
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <label for="product-name" class="form-label">Product Name:</label>
+                                                        <input type="text" name="product-name" id="product-name" name="name"  placeholder="Ex. Nikon Coolpix A300 Digital Camera" class="form-control" minlength="10" maxlength="20" required>
+                                                        <div id="productNameHelp" class="form-text">Product name has a length from 10 to 20
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <label for="category" class="form-label">Category:</label>
+                                                        <select name="category" id="category" class="form-select" required>
+                                                            <option selected>Select Category</option>
+                                                            <option value="cosmetics">Cosmetic</option>
+                                                            <option value="electronic-devices">Electronic Devices</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <label for="price" class="form-label">Product Price:</label>
+                                                        <input type="number" name="price" id="price" class="form-control" min="0" step="0.01" required>
+                                                      </div>
+                                                      <div>
+                                                        <label for="description" class="form-label">Product Description:</label>
+                                                        <textarea name="description" id="description" class="form-control" maxlength="500" required></textarea>
+                                                        <div id="descriptionHelp" class="form-text">The description must not exceed 500 characters
+                                                        </div>
+                                                    </div>
+                                                  </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Delete Button trigger modal -->
                             <a href="#">
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal">Delete</button>
                             </a>
-                            <!-- Modal -->
+                            <!-- Delete Modal -->
                             <div class="delete-button modal fade" id="exampleModal" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="delete-button modal-dialog modal-dialog-centered">

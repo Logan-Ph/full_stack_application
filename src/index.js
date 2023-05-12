@@ -261,6 +261,7 @@ app.post("/add-product", upload.single("image"), async (req, res) => {
         price: req.body.price,
         description: req.body.description,
         img: {
+
             data: fs.readFileSync("uploads/" + req.file.filename),
             contentType: "image/png",
         },
