@@ -1,0 +1,98 @@
+/*View Product Vendor Page*/
+@media (min-width: 768px) {
+  /*View Product Vendor Page*/
+  .log-out {
+    order: 3;
+    /* change the order of the element */
+    margin-left: auto;
+    /* push the element to the right */ }
+  /*My Account Page*/
+  .profile-avatar {
+    width: 25% !important; }
+  .profile-sidebar {
+    width: 16% !important; }
+  .profile-info {
+    width: 84% !important; }
+  .profile-sidebar-text {
+    display: inline-block !important; }
+  .order-info-product, .order-product-price {
+    font-size: 17px !important; }
+  .order-info-product h4 {
+    padding-bottom: 10px !important;
+    font-size: 25px !important; } }
+
+/*View Product Vendor Page*/
+.navb-logo img {
+  width: 150px;
+  height: auto; }
+
+/*My Account Page*/
+.order-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px;
+  box-shadow: 0px 0px 5px #BFBFBF; }
+
+.order-shop, .order-total {
+  display: flex;
+  flex: 1;
+  font-weight: bolder; }
+
+.order-total {
+  justify-content: end; }
+
+.order-content {
+  display: flex;
+  flex: 1; }
+
+.order-columns {
+  align-items: flex-start;
+  display: flex;
+  flex: 1; }
+
+.order-info-product {
+  flex: 1;
+  order: 2; }
+
+.order-info-product, .order-product-price {
+  font-size: 10px; }
+
+.order-info-product h4 {
+  font-size: 15px; }
+
+.order-product-img {
+  width: 30%;
+  order: 1; }
+
+.order-product-price {
+  width: 14%;
+  order: 3; }
+
+.order-product-img img {
+  width: 100%; }
+
+.profile-sidebar-text {
+  display: none; }
+
+.profile-sidebar {
+  width: 20% !important; }
+
+.profile-info {
+  width: 80% !important; }
+
+.no-product {
+  max-width: 100% !important; }
+
+/*Pop up to edit product or confirm user of deleting product*/
+.delete-button .modal-dialog, .edit-button .modal-dialog {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 95% !important; }
+
+.delete-button .modal-content {
+  height: 50% !important; }
+
+.edit-button .modal-content {
+  height: 100% !important; }

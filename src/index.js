@@ -100,6 +100,14 @@ app.get("/signup-user", (req, res) => {
     res.render("signup-user");
 });
 
+app.get("/customer-account", (req, res) => {
+    if (req.session.user) {
+        res.render("customer-account");
+        return;
+    }
+    res.redirect("/");
+});
+
 app.get("/add-product", (req, res) => {
     try {
         if (req.session.user.check_vendor) {
