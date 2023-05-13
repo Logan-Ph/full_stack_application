@@ -1,12 +1,13 @@
 {
   "name": "full_stack_application",
   "version": "1.0.0",
-  "description": "",
+  "description": "When start running the file, please be aware that your current directory should be at 'full_stack_application'",
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/app.scss src/public/css/app.css",
     "listen": "node-sass --watch src/resources/scss/shipper.scss src/public/css/shipper.css",
+    "speak": "node-sass --watch src/resources/scss/homepage.scss src/public/css/homepage.css",
     "doan": "node-sass --watch src/resources/scss/kdoan.scss src/public/css/kdoan.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,9 +36,9 @@
     "mongoose": "^7.1.0",
     "multer": "^1.4.5-lts.1",
     "node-sass": "^8.0.0"
-
   },
   "devDependencies": {
     "nodemon": "^2.0.22"
-  }
+  },
+  "keywords": []
 }
