@@ -7,6 +7,7 @@
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/app.scss src/public/css/app.css",
     "listen": "node-sass --watch src/resources/scss/shipper.scss src/public/css/shipper.css",
+    "doan": "node-sass --watch src/resources/scss/kdoan.scss src/public/css/kdoan.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
