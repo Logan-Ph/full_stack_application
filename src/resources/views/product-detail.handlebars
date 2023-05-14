@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0cff7c90e6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/shipper.css">
+    <title>Product's Name</title>
+</head>
+<body>
+    <div class="container my-5" id="product-detail">
+        <nav class="ms-5" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Category</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Product's Name</li>
+            </ol>
+        </nav>
+        <div class="container px-5 justify-content-center">
+            <div class="row bg-light">
+                <div class="col-md-5 p-3">
+                    <img class="img-fluid border border-secondary-subtle" src="https://cf.shopee.vn/file/3a3d3b7b8d2bdbd80fc7c6338c2b2e7d" alt="">
+                    <div class="row text-center mt-3">
+                        <div class="col">Share: <a href=""><i class="fa-brands fa-facebook fa-lg"></i></a> <a href=""><i class="fa-brands fa-facebook-messenger fa-lg"></i></a> <a href=""><i class="fa-brands fa-instagram fa-lg"></i></a> <a href=""><i class="fa-brands fa-twitter fa-lg"></i></a></div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <h4 class="mt-4 ms-3">Product's Name</h4>
+                    <div class="row text-center my-3 ms-md-0 ms-sm-1">
+                        <div class="col-lg-3 col-4 border-end" id="rating">
+                            5.0 <i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i>
+                        </div>   
+                        <div class="col-lg-3 col-4 border-end">
+                            <span class="fw-bold">200 </span> Ratings
+                        </div>   
+                        <div class="col-lg-3 col-4">
+                            <span class="fw-bold">1K </span> Sold
+                        </div>
+                    </div>
+                    <h1 class="price mt-4 ms-3">$10</h1>
+                    <form class="quantity mt-3" action="" method="post">
+                        <label class="ms-3 " for="quantity">Quantity: </label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="100" value="1"> 
+                        <div class="row mt-4 ms-3 ">
+                            <input class="btn add-to-cart me-3" type="submit" value="Add To Cart">
+                            <input class="btn buy-now" type="submit" value="Buy Now">    
+                        </div>  
+                    </form>
+                    <div class="mt-5 ms-3 description">
+                        <h5>Product Description:</h5>
+                        <p>Fried chicken hairclip</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 bg-light">
+                <div class="col-2">
+                    <img class="shop-pic my-4 ms-3" src="https://static.vecteezy.com/system/resources/previews/000/583/708/original/online-shop-icon-vector.jpg" alt="shop profile pic">
+                </div>
+                <div class="col" id="shop-section">
+                    <h4 class="mt-4">Business Name</h4>
+                    <p class="text-secondary">Active 1 Hour Ago</p>
+                    <a href="" class="btn btn-outline-secondary mb-4" type="button">Visit Shop</a>
+                </div>
+            </div>
+            <div class="row mt-5 bg-light">
+                <div class="p-3">
+                    <h4 class="ms-3 mt-2">Product Ratings:</h4>
+                    <div class="row mt-3 mx-3 border-bottom">
+                        <div class="col-1 mt-2"><i class="fa-solid fa-circle-user fa-2xl"></i></div>
+                        <div class="col">
+                            <div class="row">user1</div>
+                            <div class="row"><p class="ps-0"><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i></p></div>
+                            <div class="row mb-3">Great product!</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mx-3 border-bottom">
+                        <div class="col-1 mt-2"><i class="fa-solid fa-circle-user fa-2xl"></i></div>
+                        <div class="col">
+                            <div class="row">user2</div>
+                            <div class="row"><p class="ps-0"><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i></p></div>
+                            <div class="row mb-3">You have to buy this!</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mx-3 border-bottom">
+                        <div class="col-1 mt-2"><i class="fa-solid fa-circle-user fa-2xl"></i></div>
+                        <div class="col">
+                            <div class="row">user3</div>
+                            <div class="row"><p class="ps-0"><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i></p></div>
+                            <div class="row mb-3">Must-have!</div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 mx-3 border-bottom">
+                        <div class="col-1 mt-2"><i class="fa-solid fa-circle-user fa-2xl"></i></div>
+                        <div class="col">
+                            <div class="row">user4</div>
+                            <div class="row"><p class="ps-0"><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i><i class="fa-solid fa-star fa-xs"></i></p></div>
+                            <div class="row mb-3">Bought this for my friend and she loves it!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 bg-light">
+                <div class="row">
+                    <h4 class="ms-3 mt-4">You may also like:</h4>
+                </div>
+                <div class="row ms-0" id="product-suggest-container">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center" id="product-suggest">
+                        <a class="text-decoration-none text-black" href="">
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/pro-display-og-image?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1573689238241" alt="product picture">
+                            <p>Pro Display XDR</p>
+                            <p class="price">$5999</p>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center" id="product-suggest">
+                        <a class="text-decoration-none text-black" href="">
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/pro-display-og-image?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1573689238241" alt="product picture">
+                            <p>Pro Display XDR</p>
+                            <p class="price">$5999</p>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center" id="product-suggest">
+                        <a class="text-decoration-none text-black" href="">
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/pro-display-og-image?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1573689238241" alt="product picture">
+                            <p>Pro Display XDR</p>
+                            <p class="price">$5999</p>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center" id="product-suggest">
+                        <a class="text-decoration-none text-black" href="">
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/pro-display-og-image?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1573689238241" alt="product picture">
+                            <p>Pro Display XDR</p>
+                            <p class="price">$5999</p>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center" id="product-suggest">
+                        <a class="text-decoration-none text-black" href="">
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/pro-display-og-image?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1573689238241" alt="product picture">
+                            <p>Pro Display XDR</p>
+                            <p class="price">$5999</p>
+                        </a>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center" id="product-suggest">
+                        <a class="text-decoration-none text-black" href="">
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/pro-display-og-image?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1573689238241" alt="product picture">
+                            <p>Pro Display XDR</p>
+                            <p class="price">$5999</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
