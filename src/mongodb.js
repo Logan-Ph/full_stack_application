@@ -35,6 +35,10 @@ const LogInShipper = new mongoose.Schema({
         require:true,
     },
 
+    phone_number:{
+        type:String,
+    },
+
     img:{
         data: Buffer,
         contentType: String
@@ -62,10 +66,15 @@ const LogInUser = new mongoose.Schema({
         require:true,
     },
 
+    phone_number:{
+        type:String,
+    },
+
     img:{
         data: Buffer,
         contentType: String
     }
+    
 })
 
 const LogInVendor = new mongoose.Schema({
@@ -87,6 +96,10 @@ const LogInVendor = new mongoose.Schema({
     bussiness_address:{
         type:String,
         require:true,
+    },
+
+    phone_number:{
+        type:String,
     },
 
     img:{
@@ -129,9 +142,55 @@ const Product = new mongoose.Schema({
 
 })
 
+const Ordered_Product = new mongoose.Schema({
+    customer_id:{
+        type:String,
+        require:true
+    },
+
+    owner:{
+        type:String,
+        require:true,
+    },
+
+    product_name:{
+        type:String,
+        require:true,
+    },
+
+    category:{
+        type:String,
+        enum: ["cosmetics","electronic-devices"],
+        require:true,
+    },
+
+    distribution_hub:{
+        type:String,
+        enum: ["HCM","HN","DN"],
+        require:true,
+    },
+
+    price:{
+        type:Number,
+        require:true,
+    },
+
+    description:{
+        type:String,
+        require:true,
+    },
+
+    img:{
+        data: Buffer,
+        contentType: String
+    }
+
+})
+
 const shipper = new mongoose.model("LogInShipper",LogInShipper)
 const user = new mongoose.model("LogInUser",LogInUser)
 const vendor = new mongoose.model("LogInVendor",LogInVendor)
 const product = new mongoose.model("Product",Product)
+const ordered_product = new mongoose.model("Ordered_Product",Ordered_Product)
 
-module.exports = {shipper,user,vendor,product}
+module.exports = {shipper,user,vendor,product,ordered_product}

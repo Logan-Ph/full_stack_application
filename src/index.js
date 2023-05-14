@@ -8,7 +8,7 @@ const handlebars = require("express-handlebars");
 const async = require("hbs/lib/async");
 const { connectionUrl } = require("./config"); // Import the connectionUrl from config.js
 const templatePath = path.join(__dirname, 'resources/views')
-const { shipper, user, vendor, product } = require("./mongodb");
+const { shipper, user, vendor, product, ordered_product } = require("./mongodb");
 const { error } = require("console");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
@@ -102,10 +102,20 @@ app.get("/signup-user", (req, res) => {
 
 app.get("/customer-account", (req, res) => {
     if (req.session.user) {
-        res.render("customer-account");
-        return;
+        if (req.session.user.check_vendor) {
+            res.render("customer-account", { check_vendor: true });
+            return;
+        } else if (req.session.user.check_shipper) {
+            res.render("customer-account", { check_shipper: true });
+            return;
+        }
+        else {
+            res.render("customer-account", { check_customer: true })
+        }
     }
-    res.redirect("/");
+    else {
+        res.redirect("/");
+    }
 });
 
 app.get("/add-product", (req, res) => {
@@ -170,27 +180,27 @@ app.get("/privacy-policy", (req, res) => {
 
 app.get("/view-product", async (req, res, next) => {
     try {
-        if (req.session.user.check_vendor) {
+        if (await req.session.user.check_vendor) {
             try {
-                if (! product.find({ owner: req.session.user.check_vendor.username }, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 })){
+                if (!product.find({ owner: req.session.user.check_vendor.username }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 })) {
                     res.render('view-product', {
                         loggedInUser: req.session.user,
-                        checkproduct:true
+                        checkproduct: true
                     });
                 }
-                await product.find({ owner: req.session.user.check_vendor.username }, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
-                    if (products.length===0){
+                await product.find({ owner: req.session.user.check_vendor.username }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                    if (products.length === 0) {
                         res.render('view-product', {
                             loggedInUser: req.session.user,
-                            checkproduct:true
+                            checkproduct: true
                         });
                     }
-                    else{
+                    else {
                         let map_product = products.map(Product => Product.toJSON());
                         for (let i = 0; i < map_product.length; i++) {
                             map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
                         }
-    
+
                         res.render('view-product', {
                             loggedInUser: req.session.user,
                             products: map_product,
@@ -211,18 +221,6 @@ app.get("/view-product", async (req, res, next) => {
         res.redirect("/")
     }
 })
-
-// app.get('/view-product/:id', (req, res) => {
-//     product.findById(req.params.id)
-//     .then((product) => {
-//       if (!product) {
-//         return res.send("Cannot found that ID!");
-//       }
-//       res.redirect('/view-product');
-//     })
-//     .catch((error) => res.send(error));
-// });
-
 
 app.get('/view-product/:id/delete', async (req, res) => {
     try {
@@ -246,7 +244,6 @@ app.get('/view-product/:id/delete', async (req, res) => {
 });
 
 
-
 app.get("/shipper", (req, res) => {
     try {
         if (req.session.user.check_shipper) {
@@ -255,6 +252,30 @@ app.get("/shipper", (req, res) => {
         else {
             res.redirect("/")
         }
+    }
+    catch {
+        res.redirect("/")
+    }
+});
+
+app.get("/parcel-info", (req, res) => {
+    try {
+        if (req.session.user.check_shipper) {
+            res.render("parcel-info");
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+})
+
+app.get("/view-product/:id/update", (req, res) => {
+    try {
+        consol.log(req.params.id);
+        res.redirect("/view-product");
     }
     catch {
         res.redirect("/")
@@ -285,6 +306,43 @@ app.post("/add-product", upload.single("image"), async (req, res) => {
     res.render("add-product");
 })
 
+app.post('/view-product/:id/update', upload.single("image"), async (req, res) => {
+    try {
+        if (req.session.user.check_vendor) {
+            await product.findByIdAndUpdate(req.params.id,
+                {
+                    $set: {
+                        product_name: req.body.product_name,
+                        category: req.body.category,
+                        price: req.body.price,
+                        description: req.body.description,
+                        img: {
+
+                            data: fs.readFileSync("uploads/" + req.file.filename),
+                            contentType: "image/png",
+                        },
+                    }
+                }
+            )
+                .then((product) => {
+                    if (!product) {
+                        return res.send("Cannot found that product ID!");
+                    }
+                    res.redirect("/view-product");
+                })
+                .catch((error) => res.send(error));
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+});
+
+
+
 app.post("/signup-user", upload.single("image"), async (req, res) => {
     const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
     if (check) {
@@ -300,6 +358,7 @@ app.post("/signup-user", upload.single("image"), async (req, res) => {
             password: hashedPassword,
             name: req.body.name,
             address: req.body.address,
+            phone_number: req.body.phone_number,
             img: {
                 data: fs.readFileSync("uploads/" + req.file.filename),
                 contentType: "image/png",
@@ -318,8 +377,7 @@ app.post("/signup-user", upload.single("image"), async (req, res) => {
 });
 
 
-
-app.post("/signup-vendor", async (req, res) => {
+app.post("/signup-vendor", upload.single("image"), async (req, res) => {
     try {
         const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
         const check_business = await vendor.findOne({ bussiness_name: req.body.bussiness_name })
@@ -344,32 +402,39 @@ app.post("/signup-vendor", async (req, res) => {
             try {
                 const salt = await bcrypt.genSalt();
                 const hashedPassword = await bcrypt.hash(req.body.password, salt);
-                const data = {
+                const vendor_info = vendor({
                     username: req.body.username,
                     password: hashedPassword,
                     name: req.body.name,
                     bussiness_name: req.body.bussiness_name,
                     bussiness_address: req.body.bussiness_address,
-                }
-                await vendor.insertMany([data]);
-
-                res.render("login");
-
+                    phone_number: req.body.phone_number,
+                    img: {
+                        data: fs.readFileSync("uploads/" + req.file.filename),
+                        contentType: "image/png",
+                    },
+                });
+                vendor_info
+                    .save()
+                    .then((res) => {
+                        console.log("vendor information is saved");
+                    })
+                    .catch((err) => {
+                        console.log(err, "error has occur");
+                    });
+                res.render("login")
             }
-
             catch {
                 console.log(error.message)
             }
-
         }
-
     }
     catch {
         console.log(error.message)
     }
 });
 
-app.post("/signup-shipper", async (req, res) => {
+app.post("/signup-shipper", upload.single("image"), async (req, res) => {
     try {
         const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
 
@@ -383,24 +448,31 @@ app.post("/signup-shipper", async (req, res) => {
             try {
                 const salt = await bcrypt.genSalt();
                 const hashedPassword = await bcrypt.hash(req.body.password, salt);
-                const data = {
+                const shipper_info = shipper({
                     username: req.body.username,
                     password: hashedPassword,
                     name: req.body.name,
+                    phone_number: req.body.phone_number,
                     distribution_hub: req.body.distribution_hub,
-                }
-                await shipper.insertMany([data]);
-
-                res.render("login");
-
+                    img: {
+                        data: fs.readFileSync("uploads/" + req.file.filename),
+                        contentType: "image/png",
+                    },
+                });
+                shipper_info
+                    .save()
+                    .then((res) => {
+                        console.log("vendor information is saved");
+                    })
+                    .catch((err) => {
+                        console.log(err, "error has occur");
+                    });
+                res.render("login")
             }
-
             catch {
                 console.log(error.message)
             }
-
         }
-
     }
     catch {
         console.log(error.message)
@@ -419,10 +491,13 @@ app.post("/login", async (req, res) => {
         const check_shipper = await shipper.findOne({ username: req.body.username });
         const check_vendor = await vendor.findOne({ username: req.body.username });
 
+        console.log(check_vendor);
+
         if (check && await bcrypt.compare(req.body.password, check.password)) {
             // Store user information in session
             req.session.user = {
                 username: check.username,
+                user_id: check._id,
                 check_shipper: check_shipper,
                 check_vendor: check_vendor,
             };
@@ -463,7 +538,6 @@ app.get("/logout", (req, res) => {
 app.get('/user', (req, res) => {
     if (!req.session.user) {
         res.redirect('/login');
-        return;
     }
     res.render('account', {
         username: req.session.user.username,
