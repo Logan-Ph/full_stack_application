@@ -8,12 +8,618 @@
     <title>Home Page</title>
 
     {{!-- Css --}}
-    <link href="public/homepage.css" rel="stylesheet">
+    <link href="css/homepage.css" rel="stylesheet">
+    {{!-- fontawsome embedded  --}}
+    <script src="https:/kit.fontawesome.com/3b3da2da02.js" crossorigin="anonymous"></script>
+
+    {{!-- Bootstrap --}}
+    <link href="https:/cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
-    {{> header}}
-    {{!-- <h1>Home</h1>
+    {{!-- {{> header}} --}}
+    {{!-- <div class="home-top-header">
+        <div class="left-side">
+            <ul>
+
+                <li><a href="#" class="mobile-hiden">Blog</a></li>
+                <li><a href="" class="mobile-hiden">Product Feature</a></li>
+            </ul>
+        </div>
+
+        <div class="right-side">
+            <ul>
+                <li><a href="#">Order Tracking</a></li>
+                <li><a href="#">
+                    <i class="fa-solid fa-circle-user"></i>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+
+     <!-- Department menu, search bar, shipping and wishlist -->
+    <div class="header-main mobile-hide">
+        <div class="container">
+            <div class="wrapper flexitem">
+                <div class="left">
+                    <div class="dpt-cat">
+                        <div class="dpt-head">
+                            <div class="main-text">ALL CATEGORIES</div>
+                            <div class="mini-text mobile-hide">Total 1000 Products</div>
+                            <a href="" class="dpt-trigger mobile-hide">
+                                <i class="fa-solid fa-bars-staggered"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                 {{!-- <div class="navb-logo" style="background-color: white;">
+                    <img src="/image/lzd-logo.png" alt="logo">
+                </div> --}}
+                <div class="right">
+                    <div class="search-box">
+                        <form action="" class="search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="search" placeholder="search for products">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <div class="shopping">
+            <div class="iscart">
+                <a href="#">
+                   <img src="image/shopping-cart (1).png">
+                </a>
+                <span class="quantity">0</span>
+            </div>
+            <div class="iscart heart">
+                <a href="#">
+                   <img src="image/heart.png">
+                </a>
+                <span class="quantity">0</span>
+            </div> 
+         </div>     
+    </div> --}}
+
+    {{!--first-carouselIndicators --}}
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img src="image/lzd-beauty.jpg" class="d-block w-100" alt="lzd-beauty">
+            </div>
+            <div class="carousel-item">
+            <img src="image/lzd-deevices.jpg" class="d-block w-100" alt="lzd-devices">
+            </div>
+            <div class="carousel-item">
+            <img src="image/lzd-random.jpg" class="d-block w-100" alt="lzd-random-stuffs">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    {{!-- feature nav --}}
+    <div class="feature-nav">
+        <div class="container feature">
+            <div class="row row-cols-2 row-cols-md-4 g-4 p-2 m-10">
+                <div class="col mt-10">
+                    <div class="feature-card">
+                        <a class="feature-navigation" href="#Electonic_Products">
+                            <div class="img-wrapper">
+                                <img src="image/responsive.png" alt="electronic-devices" width="30px">
+                            </div>
+                            <div class="text-wrapper">
+                                <p>Devices</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col">
+                    <div class="feature-card">
+                        <a class="feature-navigation" href="#Cosmetics_Products">
+                            <div class="img-wrapper">
+                                <img src="image/lipstick.png" alt="lipstick" width="30px">
+                            </div>
+                            <div class="text-wrapper">
+                                <p>Cosmetics</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col"> 
+                    <div class="feature-card">
+                        <a class="feature-navigation" href="#promotion_product">
+                            <div class="img-wrapper">
+                                <img src="image/discount.png" alt="discount" width="30px">
+                            </div>
+                            <div class="text-wrapper">
+                                <p>Flash Sale</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="feature-card">
+                        <a class="feature-navigation" href="#Payment_Voucher">
+                            <div class="img-wrapper">
+                                <img src="image/voucher.png" alt="lipstick" width="30px">
+                            </div>
+                            <div class="text-wrapper">
+                                <p>Vouchers</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    {{!-- Product --}}
+    <div id="about" class="about section-padding mt-5 mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-12 col-12">
+                    <div class="about-img">
+                        <img class="img-fluid" src="image/lzd-mall.jpg">
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-12 col-sm-12 ">
+                    <div class="about-text">
+                        <h2>Lazada Mall</h2>
+                        <h4>We provide the best quality and services</h4>
+                        
+                        <div class="statements">
+        
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/authenticity.png" alt="authenticity-logo" width="40px">
+                                <span class="statement-title">100% Authentic</span>
+                            </div>
+                            
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/free-shipping (1).png" alt="free-shipping logo" width="40px">
+                                <span class="statement-title">Free Shipping</span>
+                            </div>
+                            
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/promotions.png" alt="promotions logo" width="40px">
+                                <span class="statement-title">Unbeatable Price</span>
+                            </div>
+                        </div>
+
+                        <div class="brand">
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/samsung.png" alt="samsung-logo" width="80px">
+                            </div>
+                        
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/sony.png" alt="sony-logo"  width="80px">
+                            </div>
+                            
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/apple.png" alt="apple-logo"  width="80px">
+                            </div>
+
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/oppo.png" alt="oppo-logo"  width="80px">
+                            </div>
+
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/panasonic.png" alt="panasonic-logo"  width="80px">
+                            </div>
+                        </div>
+
+                        <div class="brand">
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/shiseido.png" alt="shiseido-logo" width="100px">
+                            </div>
+                        
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/loreal.png" alt="loreal-logo"  width="80px">
+                            </div>
+                            
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/mac.png" alt="mac-logo"  width="80px">
+                            </div>
+
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/dior.png" alt="promotions logo"  width="80px">
+                            </div>
+
+                            <div class="statement-item">
+                                <img class="statement-icon" src="image/nars.png" alt="promotions logo"  width="80px">
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-warning mt-2">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="trending">
+            <div class="announcement" id="promotion_product">
+                <img src="image/discount.png" alt="promotional-icon" width="30px">
+                <h1>On Sale Products</h1>
+            </div>
+            <hr class="line">
+            <div class="row row-cols-2 row-cols-lg-4 g-4 p-2 m-10">
+                <div class="col">
+                    <div class="card" style="width: 100%; height:max-content">
+                        <span class="hot">
+                            <img src="image/promotional.png" alt="promotional-icon" width="35px">
+                        </span>
+                        <div class="product-img">
+                            <img src="image/son.jpg" class="card-img-top" alt="mac-lipstick">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Powder Kiss Liquid Lipcolour <br> Moiseture Matte Liquid Lipstick</h5>
+                            <p class="new-price">789,000 VND</p>
+                            <p><span class="old-price">830,000</span><span class="promotion">-5%</span></p>
+                            <a href="#" class="btn btn-warning">More Details</a>
+                        </div>
+                    </div>
+                </div>  
+
+                 <div class="col">
+                    <div class="card" style="width: 100%; height:max-content">
+                        <span class="hot">
+                            <img src="image/promotional.png" alt="promotional-icon" width="35px">
+                        </span>
+                        <div class="product-img">
+                            <img src="image/son.jpg" class="card-img-top" alt="mac-lipstick">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Powder Kiss Liquid Lipcolour <br> Moiseture Matte Liquid Lipstick</h5>
+                            <p class="new-price">789,000 VND</p>
+                            <p><span class="old-price">830,000</span><span class="promotion">-5%</span></p>
+                            <a href="#" class="btn btn-warning">More Details</a>
+                        </div>
+                    </div>
+                </div>  
+
+                 <div class="col">
+                    <div class="card" style="width: 100%; height:max-content">
+                        <span class="hot">
+                            <img src="image/promotional.png" alt="promotional-icon" width="35px">
+                        </span>
+                        <div class="product-img">
+                            <img src="image/son.jpg" class="card-img-top" alt="mac-lipstick">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Powder Kiss Liquid Lipcolour <br> Moiseture Matte Liquid Lipstick</h5>
+                            <p class="new-price">789,000 VND</p>
+                            <p><span class="old-price">830,000</span><span class="promotion">-5%</span></p>
+                            <a href="#" class="btn btn-warning">More Details</a>
+                        </div>
+                    </div>
+                </div>    
+
+                 <div class="col">
+                    <div class="card" style="width: 100%; height:max-content">
+                        <span class="hot">
+                            <img src="image/promotional.png" alt="promotional-icon" width="35px">
+                        </span>
+                        <div class="product-img">
+                            <img src="image/son.jpg" class="card-img-top" alt="mac-lipstick">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Powder Kiss Liquid Lipcolour <br> Moiseture Matte Liquid Lipstick</h5>
+                            <p class="new-price">789,000 VND</p>
+                            <p><span class="old-price">830,000</span><span class="promotion">-5%</span></p>
+                            <a href="#" class="btn btn-warning">More Details</a>
+                        </div>
+                    </div>
+                </div>                       
+            </div>
+        </div>        
+    </div>
+
+    {{!--first-carouselIndicators --}}
+    <div class="container">
+        <div class="announcement" id="Payment_Voucher">
+                <img src="image/voucher.png" alt="promotional-icon" width="35px">
+                <h1>Payment Vouchers</h1>
+        </div>
+        <hr class="line">
+        <div id="carouselExampleIndicators" class="carousel slide mb-10" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="image/banner2.jpg" class="d-block w-100" alt="lzd-beauty">
+                </div>
+                <div class="carousel-item">
+                <img src="image/banner1.jpg" class="d-block w-100" alt="lzd-devices">
+                </div>
+                <div class="carousel-item">
+                <img src="image/banner3.jpg" class="d-block w-100" alt="lzd-random-stuffs">
+                </div>
+                <div class="carousel-item">
+                <img src="image/banner4.jpg" class="d-block w-100" alt="lzd-random-stuffs">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+   
+   {{!-- category --}}
+   {{!-- cosmetics --}}
+   <div class="mai container">
+        <div class="announcement detail" id="Cosmetics_Products">
+            <img src="image/lipstick.png" alt="lipstick-icon" width="35px">
+            <h1>Beauty Products</h1>
+        </div>
+        <hr class="line">
+        <div class="row row-cols-2 row-cols-lg-5 g-4">
+            <div class="col">
+                <div class="card">
+                    <a href="#" class="product_detail">
+                        <img src="image/son.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title sub">Retro Matte Lipstick</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>  
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <a href="#">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <a href="#">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <a href="#">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <a href="#">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+   </div>
+   
+    {{!-- electronic devices --}}
+   <div class="mai container">
+        <div class="announcement detail" id="Electonic_Products">
+            <img src="image/responsive.png" alt="responsive-icon" width="35px">
+            <h1>Electronic Devices</h1>
+        </div>
+        <hr class="line">
+        <div class="row row-cols-2 row-cols-lg-5 g-4">
+            <div class="col">
+                <div class="card">
+                    <a href="#" class="product_detail">
+                        <img src="image/son.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title sub">Retro Matte Lipstick</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>  
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <a href="#" class="product_detail">
+                        <img src="image/son.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title sub">Retro Matte Lipstick</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>  
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <a href="#" class="product_detail">
+                        <img src="image/son.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title sub">Retro Matte Lipstick</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>  
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <a href="#" class="product_detail">
+                        <img src="image/son.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title sub">Retro Matte Lipstick</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>  
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card">
+                    <a href="#" class="product_detail">
+                        <img src="image/son.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title sub">Retro Matte Lipstick</h5>
+                            <p class="price">650,000 VND</p>
+                            <div class="stars">
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                                <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
+                            </div>
+                        </div>
+                    </a>  
+                </div>
+            </div>       
+   </div>
+
+
+
+    
+
+
+
+
+
+
+
+
+    {{!-- <div id="page" class="site">
+
+           
+                    <div class="shopping">
+                        <img src="image/shopping-cart (1).png">
+                        <span class="quantity">0</span>
+                    </div>
+
+                    <div class="list"></div>
+                </div>
+        </header>
+
+        <div class="card">
+            <h1>Card</h1>
+            <ul class="listCard"></ul>
+            <div class="checkOut">
+                <div class="total">0</div>
+                <div class="closeShopping">Close</div>
+            </div>
+        </div> --}}
+
+
+
+
+
+
+
+
+    <h1>Home</h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {{#each products}}
                 <div class="col">
@@ -27,11 +633,28 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col">
+                    <div class="card bg-light">
+                        <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.product_name}}</h5>
+                            <p class="card-text">{{this.description}}</p>
+                            <p class="card-text">Category: {{this.category}}</p>
+                            <p class="card-text">Price: {{this.price}}.000 VND</p>
+                        </div>
+                    </div>
+                </div>
+                
                 {{/each}}
-    </div> --}}
+                
+    </div>
+    
     {{> footer}}
 
     <script src="script.js"></script>
+
+    <script src="https:/cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 
