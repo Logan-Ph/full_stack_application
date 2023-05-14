@@ -16,15 +16,23 @@
 
 <body>
     <header>
-        <nav class=" container-fuild navbar">
+        <nav class=" container-fuild navbar bg-body-secondary">
             <div class=" m-4 navb-logo">
                 <img src="/image/lazseller-logo.png" alt="Lazada Seller logo">
             </div>
-            <div class="log-out nav-item mx-4">
-                <a class="text-decoration-none text-reset" href="/logout">
-                    <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            <!--Add my account-->
+            <div class="log-out nav-item dropdown mx-4">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="image/avatar-placeholder.png" style="width: 30px;" alt="Avatar" class="me-2 rounded-circle">
+                  jendecee
                 </a>
+                <ul class="profile dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/logout" id="logout-btn">Log Out</a></li>
+                </ul>
             </div>
+            <!---->
             <div class="m-4 btn-group ms-auto">
                 <a href="/view-product" class="btn btn-primary active view-button" aria-current="page">View My
                     Products</a>
