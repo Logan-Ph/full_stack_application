@@ -170,7 +170,7 @@ app.get("/privacy-policy", (req, res) => {
 
 app.get("/view-product", async (req, res, next) => {
     try {
-        if (req.session.user.check_vendor) {
+        if (await req.session.user.check_vendor) {
             try {
                 if (!product.find({ owner: req.session.user.check_vendor.username }, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 })) {
                     res.render('view-product', {
@@ -234,7 +234,6 @@ app.get('/view-product/:id/delete', async (req, res) => {
 });
 
 
-
 app.get("/shipper", (req, res) => {
     try {
         if (req.session.user.check_shipper) {
@@ -257,6 +256,16 @@ app.get("/parcel-info", (req, res) => {
         else {
             res.redirect("/")
         }
+    }
+    catch {
+        res.redirect("/")
+    }
+})
+
+app.get("/view-product/:id/update", (req, res) => {
+    try {
+        consol.log(req.params.id);
+        res.redirect("/view-product");
     }
     catch {
         res.redirect("/")
@@ -286,6 +295,43 @@ app.post("/add-product", upload.single("image"), async (req, res) => {
         });
     res.render("add-product");
 })
+
+app.post('/view-product/:id/update', upload.single("image"), async (req, res) => {
+    try {
+        if (req.session.user.check_vendor) {
+            await product.findByIdAndUpdate(req.params.id,
+                {
+                    $set: {
+                        product_name: req.body.product_name,
+                        category: req.body.category,
+                        price: req.body.price,
+                        description: req.body.description,
+                        img: {
+
+                            data: fs.readFileSync("uploads/" + req.file.filename),
+                            contentType: "image/png",
+                        },
+                    }
+                }
+            )
+                .then((product) => {
+                    if (!product) {
+                        return res.send("Cannot found that product ID!");
+                    }
+                    res.redirect("/view-product");
+                })
+                .catch((error) => res.send(error));
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+});
+
+
 
 app.post("/signup-user", upload.single("image"), async (req, res) => {
     const check = await user.findOne({ username: req.body.username }) || await vendor.findOne({ username: req.body.username }) || await shipper.findOne({ username: req.body.username })
@@ -431,7 +477,6 @@ app.post("/login", async (req, res) => {
             (await user.findOne({ username: req.body.username })) ||
             (await vendor.findOne({ username: req.body.username })) ||
             (await shipper.findOne({ username: req.body.username }));
-        console.log(check)
 
         const check_shipper = await shipper.findOne({ username: req.body.username });
         const check_vendor = await vendor.findOne({ username: req.body.username });
@@ -481,7 +526,6 @@ app.get("/logout", (req, res) => {
 app.get('/user', (req, res) => {
     if (!req.session.user) {
         res.redirect('/login');
-        return;
     }
     res.render('account', {
         username: req.session.user.username,
