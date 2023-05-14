@@ -102,10 +102,20 @@ app.get("/signup-user", (req, res) => {
 
 app.get("/customer-account", (req, res) => {
     if (req.session.user) {
-        res.render("customer-account");
-        return;
+        if (req.session.user.check_vendor) {
+            res.render("customer-account", { check_vendor: true });
+            return;
+        } else if (req.session.user.check_shipper) {
+            res.render("customer-account", { check_shipper: true });
+            return;
+        }
+        else {
+            res.render("customer-account", { check_customer: true })
+        }
     }
-    res.redirect("/");
+    else {
+        res.redirect("/");
+    }
 });
 
 app.get("/add-product", (req, res) => {
@@ -172,13 +182,13 @@ app.get("/view-product", async (req, res, next) => {
     try {
         if (await req.session.user.check_vendor) {
             try {
-                if (!product.find({ owner: req.session.user.check_vendor.username }, { img: 1,description:1, product_name: 1, category: 1, price: 1, _id: 1 })) {
+                if (!product.find({ owner: req.session.user.check_vendor.username }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 })) {
                     res.render('view-product', {
                         loggedInUser: req.session.user,
                         checkproduct: true
                     });
                 }
-                await product.find({ owner: req.session.user.check_vendor.username }, { img: 1,description:1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                await product.find({ owner: req.session.user.check_vendor.username }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
                     if (products.length === 0) {
                         res.render('view-product', {
                             loggedInUser: req.session.user,
@@ -480,6 +490,8 @@ app.post("/login", async (req, res) => {
 
         const check_shipper = await shipper.findOne({ username: req.body.username });
         const check_vendor = await vendor.findOne({ username: req.body.username });
+
+        console.log(check_vendor);
 
         if (check && await bcrypt.compare(req.body.password, check.password)) {
             // Store user information in session
