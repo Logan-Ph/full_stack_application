@@ -76,7 +76,7 @@ app.get("/home", async (req, res, next) => {
     else {
         if ((!req.session.user.check_shipper) && (!req.session.user.check_vendor)) {
             try {
-                await product.find({}, { img: 1, product_name: 1, category: 1, price: 1, _id: 0 }).then(products => {
+                await product.find({}, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
                     let map_product = products.map(Product => Product.toJSON());
                     for (let i = 0; i < map_product.length; i++) {
                         map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
@@ -123,6 +123,7 @@ app.get("/customer-account", (req, res) => {
     }
 });
 
+
 app.get("/add-product", (req, res) => {
     try {
         if (req.session.user.check_vendor) {
@@ -136,6 +137,21 @@ app.get("/add-product", (req, res) => {
         res.redirect("/")
     }
 });
+
+app.get("/home/:id/product-detail", (req, res) => {
+    try {
+        if (req.session.user) {
+            res.render("product-detail");
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+});
+
 
 app.get("/delivered-orders", (req, res) => {
     try {

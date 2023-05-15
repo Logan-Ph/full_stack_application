@@ -403,7 +403,7 @@
             {{#if (ifeq this.category 'cosmetics')}}
             <div class="col">
                 <div class="card">
-                    <a href="#" class="product_detail">
+                    <a href="/home/{{this._id}}/product-detail" class="product_detail">
                         <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title sub">{{this.product_name}}</h5>
@@ -436,7 +436,7 @@
                 {{#if (ifeq this.category 'electronic-devices')}}
                     <div class="col">
                         <div class="card">
-                            <a href="#" class="product_detail">
+                            <a href="/home/{{this._id}}/product-detail" class="product_detail">
                                 <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title sub">{{this.product_name}}</h5>
