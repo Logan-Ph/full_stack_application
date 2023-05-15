@@ -15,28 +15,32 @@
 
 <body>
     <header>
-            <nav class=" container-fuild navbar bg-body-secondary">
-                <div class=" m-4 navb-logo">
-                    <img src="/image/lazseller-logo.png" alt="logo">
-                </div>
-                <!--Add my account-->
-                <div class="log-out nav-item dropdown mx-4">
-                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="image/avatar-placeholder.png" style="width: 30px;" alt="Avatar" class="me-2 rounded-circle">
-                  jendecee
-                    </a>
-                    <ul class="profile dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#" id="logout-btn">Log Out</a></li>
-                    </ul>
-                </div>
-                <!---->
-                <div class="m-4 btn-group ms-auto">
-                    <a href="/view-product" class="btn btn-primary  view-button" aria-current="page">View My Products</a>
-                    <a href="/add-product" class="btn btn-primary active add-button">Add New Products</a>
-                </div>
-            </nav>
+        <nav class=" container-fuild navbar bg-body-secondary">
+            <div class=" m-4 navb-logo">
+                <img src="/image/lazseller-logo.png" alt="logo">
+            </div>
+            <!--Add my account-->
+            <div class="log-out nav-item dropdown mx-4">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="image/avatar-placeholder.png" style="width: 30px;" alt="Avatar"
+                        class="me-2 rounded-circle">
+                    jendecee
+                </a>
+                <ul class="profile dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#" id="logout-btn">Log Out</a></li>
+                </ul>
+            </div>
+            <!---->
+            <div class="m-4 btn-group ms-auto">
+                <a href="/view-product" class="btn btn-primary  view-button" aria-current="page">View My Products</a>
+                <a href="/add-product" class="btn btn-primary active add-button">Add New Products</a>
+            </div>
+        </nav>
     </header>
 
     <main>
@@ -45,14 +49,16 @@
                 <h2>ADD NEW PRODUCT</h2>
             </div>
             <div class="row justify-content-center row-gap-3">
-                <form id="add-product-form" action="/add-product" enctype="multipart/form-data" method="post" class="col-md-8 col-10 bg-light p-3 my-3 rounded">
+                <form id="add-product-form" action="/add-product" enctype="multipart/form-data" method="post"
+                    class="col-md-8 col-10 bg-light p-3 my-3 rounded">
                     <div class="form-group mb-2">
                         <label for="product-image" class="form-label">Product Images</label>
                         <div class="input-group mb-3">
-                           <input type="file" class="form-control" id="product-image" name="image" required>
-                           <label class="input-group-text" for="product-image">Upload</label>
-                            <div id="imageHelp" class="form-text">This is the main image of your product page. Size between 330x330 and 5000x5000 px. Max
-                            file size: 3 MB. Obscene image is strictly prohibited.
+                            <input type="file" class="form-control" id="product-image" name="image" required>
+                            <label class="input-group-text" for="product-image">Upload</label>
+                            <div id="imageHelp" class="form-text">This is the main image of your product page. Size
+                                between 330x330 and 5000x5000 px. Max
+                                file size: 3 MB. Obscene image is strictly prohibited.
                             </div>
                         </div>
                     </div>
@@ -85,20 +91,26 @@
                     </div>
                     <div class="text-center">
                         <button type="reset" class="btn btn-primary fs-6">Reset</button>
-                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addsuccessModal">Submit</button>
+                        <button type="submit" class="btn btn-primary" id="submit_btn" data-bs-toggle="modal"
+                            onclick="addsuccesfull()" data-bs-target="#addsuccessModal">Submit</button>
                         <!--Add Product Successfully Modal -->
-                        <div class="modal fade" id="addsuccessModal" tabindex="-1" aria-labelledby="addsuccessModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                        <div class="modal fade" id="addsuccessModal" tabindex="-1"
+                            aria-labelledby="addsuccessModalLabel" aria-hidden="true">
+                            {{!-- <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="addsuccessModalLabel"><i class="fa-sharp fa-regular fa-circle-check" style="color: #5ec918;"></i> Product added successfully!</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h1 class="modal-title fs-5" id="addsuccessModalLabel"><i
+                                                class="fa-sharp fa-regular fa-circle-check" style="color: #5ec918;"></i>
+                                            Product added successfully!</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
 
@@ -109,6 +121,80 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
+
+    <script>
+        function addsuccesfull() {
+            let submit_btn = document.querySelector("#submit_btn");
+            submit_btn.setAttribute("data-bs-toggle", "modal")
+
+            let product_image = document.querySelector("#product-image");
+            let product_name = document.querySelector("#product_name");
+            let category = document.querySelector("#category");
+            let price = document.querySelector("#price");
+            let description = document.querySelector("#description");
+
+            let modal = document.querySelector("#addsuccessModal");
+            modal.setAttribute("class", "modal fade show")
+
+            let modal_dialog = document.createElement("div");
+            modal_dialog.setAttribute("class", "modal-dialog");
+            modal_dialog.removeAttribute("aria-hidden");
+            modal_dialog.setAttribute("aria-modal", "true");
+            modal_dialog.setAttribute("role", "dialog");
+            modal_dialog.style.display = "block";
+            modal_dialog.style.paddingLeft = "0px";
+
+            let modal_content = document.createElement("div");
+            modal_content.setAttribute("class", "modal-content");
+
+            let modal_header = document.createElement("div");
+            modal_header.setAttribute("class", "modal-header");
+            let modal_title = document.createElement("div");
+            modal_title.setAttribute("class", "modal-title fs-5");
+            modal_title.setAttribute("id", "addsuccessModalLabe");
+            modal_title.innerHTML = "<i class='fa-sharp fa-regular fa-circle-check' style='color: #5ec918;'></i> Product added successfully!"
+
+            let close_btn = document.createElement("button");
+            close_btn.setAttribute("type", "button");
+            close_btn.setAttribute("class", "btn-close");
+            close_btn.setAttribute("data-bs-dismiss", "modal");
+            close_btn.setAttribute("aria-label", "Close");
+
+            modal_header.appendChild(modal_title);
+            modal_header.appendChild(close_btn);
+
+            let modal_footer = document.createElement("div");
+            modal_footer.setAttribute("class", "modal-footer");
+            modal_footer.innerHTML = "<button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>"
+
+            modal_content.appendChild(modal_header);
+            modal_content.appendChild(modal_footer);
+
+            modal_dialog.appendChild(modal_content);
+            modal.appendChild(modal_dialog);
+
+
+            console.log(modal);
+
+            close_btn.addEventListener("click", () => {
+                console.log("xxxxxxxxxx")
+                let back_drop = document.getElementsByClassName("modal-backdrop fade show");
+                for (let i = back_drop.length - 1; i >= 0; --i) {
+                    back_drop[i].remove();
+                }
+
+                let modal = document.querySelector("#addsuccessModal");
+                modal.innerHTML = "";
+                modal.removeAttribute("class","show");
+                modal.removeAttribute("arial-modal");
+                modal.removeAttribute("role");
+
+                modal.setAttribute("aria-hidden", "true");
+                modal.style.display = "block";
+
+            })
+        } 
+    </script>
 </body>
 
 </html>
