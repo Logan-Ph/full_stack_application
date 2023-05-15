@@ -7,7 +7,7 @@
 .offcanvas.offcanvas-start {
   width: 200px; }
 
-.container {
+.container #shipper {
   width: fit-content;
   justify-content: flex-start !important;
   margin-left: 0px; }
@@ -18,7 +18,7 @@ body {
 #content h2 {
   margin-left: 40px; }
 
-form input {
+form.d-flex input {
   margin-left: 25px;
   width: 60vw !important; }
 
@@ -34,3 +34,76 @@ form input {
 
 .nav-link:hover {
   text-decoration: underline; }
+
+img.d-block {
+  height: 400px;
+  width: 400px;
+  object-fit: cover; }
+
+.price {
+  color: #d20303; }
+
+.fa-solid.fa-star {
+  color: #d20303; }
+
+.col-lg-3#rating {
+  color: #d20303; }
+
+.col a {
+  color: black; }
+
+@media (max-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm {
+    max-width: none; } }
+
+form.quantity input {
+  width: 60px;
+  height: 40px;
+  text-align: center;
+  border-radius: 0%;
+  border: solid 1px #EFF0F5; }
+
+form.quantity input.add-to-cart, form.quantity input.buy-now {
+  width: 160px;
+  height: 50px;
+  font-size: larger; }
+
+form.quantity input.add-to-cart {
+  border: solid 1px #d20303;
+  color: #d20303; }
+
+form.quantity input.buy-now {
+  background-color: #d20303;
+  color: white; }
+
+.col-1.mt-2 {
+  max-width: fit-content; }
+
+.col-1.mt-2 .fa-solid.fa-circle-user {
+  color: gainsboro; }
+
+.col-2 img.shop-pic {
+  width: 70%;
+  height: auto;
+  border-radius: 50%;
+  border: solid 1px gainsboro;
+  min-width: 40px; }
+
+@media (max-width: 767px) {
+  .col-1.mt-2 {
+    min-width: fit-content; }
+  #shop-section h4 {
+    font-size: large; }
+  #shop-section p {
+    font-size: small; }
+  #shop-section a {
+    font-size: small; } }
+
+#product-suggest img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  overflow: hidden; }
+
+.row#product-suggest-container {
+  padding: 0px; }
