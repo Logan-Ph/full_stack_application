@@ -25,9 +25,6 @@
 .navbar {
   padding: 0px !important; }
 
-.profile {
-  --bs-dropdown-min-width: 10px !important; }
-
 .navb-logo img {
   width: 150px;
   height: auto; }
@@ -90,14 +87,14 @@
   max-width: 100% !important; }
 
 /*Pop up to edit product or confirm user of deleting product*/
-.delete-button .modal-dialog, .edit-button .modal-dialog {
+.delete-button .modal-dialog, .edit-button .modal-dialog, .product-added .modal-dialog {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
   width: 95% !important; }
 
-.delete-button .modal-content {
+.delete-button .modal-content, .product-added .modal-content {
   height: 50% !important; }
 
 .edit-button .modal-content {
