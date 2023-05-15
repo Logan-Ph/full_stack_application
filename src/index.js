@@ -38,8 +38,8 @@ app.engine('handlebars', handlebars.engine({
     partialsDir: [
         path.join(__dirname, 'resources/views/partials'),
     ],
-    helpers:{
-        ifeq: function(a, b) {
+    helpers: {
+        ifeq: function (a, b) {
             if (a === b) { return true }
         }
     }
@@ -308,6 +308,7 @@ app.post("/add-product", upload.single("image"), async (req, res) => {
         .catch((err) => {
             console.log(err, "error has occur");
         });
+
     res.render("add-product");
 })
 
@@ -498,7 +499,7 @@ app.post("/login", async (req, res) => {
 
         console.log(check_vendor);
         console.log(check_shipper);
-        
+
 
         if (check && await bcrypt.compare(req.body.password, check.password)) {
             // Store user information in session

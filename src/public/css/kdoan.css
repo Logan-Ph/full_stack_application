@@ -36,6 +36,12 @@
   border: 1px;
   box-shadow: 0px 0px 5px #BFBFBF; }
 
+.display {
+  display: block; }
+
+.not-display {
+  display: none; }
+
 .order-shop, .order-total {
   display: flex;
   flex: 1;

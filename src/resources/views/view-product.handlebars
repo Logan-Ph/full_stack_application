@@ -22,11 +22,11 @@
             </div>
             <!--Add my account-->
             <div class="log-out nav-item dropdown mx-4">
-                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle d-flex align-items-center account_list_item" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="image/avatar-placeholder.png" style="width: 30px;" alt="Avatar" class="me-2 rounded-circle">
                   jendecee
                 </a>
-                <ul class="profile dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <ul class="profile dropdown-menu dropdown-menu-end not-display list_item" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#">Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/logout" id="logout-btn">Log Out</a></li>
@@ -192,23 +192,25 @@
         crossorigin="anonymous"></script>
 
     <script >
+
+        let mylistitem = document.querySelector(".account_list_item");
+        console.log(mylistitem);
+        let item = document.querySelector(".list_item")
+        mylistitem.addEventListener("click", () => {
+            item.classList.toggle('display');
+            item.classList.toggle('not-display');
+        });
+
         function delete_product(id) {
             let h1 = document.createElement("h1");
             h1.setAttribute("class", "modal-title fs-5");
             h1.setAttribute("id", "exampleModalLabel");
             h1.innerText = "Are you sure?";
 
-            let close_btn = document.createElement("button");
-            close_btn.setAttribute("type", "button");
-            close_btn.setAttribute("class", "btn-close");
-            close_btn.setAttribute("data-bs-dismiss", "modal");
-            close_btn.setAttribute("aria-label", "Close");
-
             let model_header = document.createElement("div");
             model_header.setAttribute("class", "modal-header");
 
             model_header.appendChild(h1);
-            model_header.appendChild(close_btn);
 
             let model_body = document.createElement("div");
             model_body.setAttribute("class", "modal-body text-center ");
