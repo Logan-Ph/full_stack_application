@@ -18,7 +18,6 @@ const fs = require("fs");
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
-
 var multer = require('multer');
 
 var storage = multer.diskStorage({
@@ -30,6 +29,7 @@ var storage = multer.diskStorage({
     }
 });
 
+
 var upload = multer({ storage: storage });
 
 
@@ -37,7 +37,12 @@ app.engine('handlebars', handlebars.engine({
     extname: '.hbs',
     partialsDir: [
         path.join(__dirname, 'resources/views/partials'),
-    ]
+    ],
+    helpers:{
+        ifeq: function(a, b) {
+            if (a === b) { return true }
+        }
+    }
 }));
 
 
@@ -492,6 +497,8 @@ app.post("/login", async (req, res) => {
         const check_vendor = await vendor.findOne({ username: req.body.username });
 
         console.log(check_vendor);
+        console.log(check_shipper);
+        
 
         if (check && await bcrypt.compare(req.body.password, check.password)) {
             // Store user information in session
