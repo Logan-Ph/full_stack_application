@@ -95,6 +95,9 @@ img.shop-pic {
   border: solid 1px gainsboro;
   min-width: 40px; }
 
+.fa-solid {
+  color: #d20303; }
+
 .value {
   color: #d20303; }
 
