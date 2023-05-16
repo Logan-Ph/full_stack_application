@@ -307,6 +307,10 @@ form.search button:hover {
   justify-content: center;
   align-items: center; }
 
+.tmai_container_fuild {
+  background-color: #fff;
+  margin-top: 0px !important; }
+
 .navbar {
   display: flex;
   align-items: center;
