@@ -150,6 +150,37 @@ app.get("/add-product", (req, res) => {
     }
 });
 
+app.get("/home/product-detail/checkout", async (req, res) => {
+    if ((!req.session.user)) {
+        res.redirect("/");
+        return;
+    }
+    else {
+        if ((!req.session.user.check_shipper) && (!req.session.user.check_vendor)) {
+            try {
+                // await product.find({}, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                //     let map_product = products.map(Product => Product.toJSON());
+                //     for (let i = 0; i < map_product.length; i++) {
+                //         map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                //     }
+
+                //     res.render('home', {
+                //         showUser: true,
+                //         loggedInUser: req.session.user,
+                //         products: map_product,
+                //     });
+                // })
+                res.render('checkout', {
+                    loggedInUser: req.session.user,
+                });
+            }
+            catch (error) {
+                console.log(error.message);
+            }
+        }
+    }
+});
+
 app.get("/home/:id/product-detail", async (req, res) => {
     try {
         if (req.session.user) {
