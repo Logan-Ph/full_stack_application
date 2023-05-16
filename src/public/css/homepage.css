@@ -185,9 +185,8 @@ form.search button:hover {
 .btn {
   text-align: center; }
 
-.btn-warning {
+.tmai_btn_warning {
   font-size: 20px;
-  box-shadow: 3px 3px 3px white;
   text-align: center;
   padding: 10px 20px;
   margin-top: 5px;
@@ -307,3 +306,86 @@ form.search button:hover {
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px !important; }
+
+.navb-logo img {
+  width: 150px;
+  height: auto; }
+
+@media screen and (max-width: 1000px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; }
+  .navb-logo img {
+    width: 150px; }
+  .nnthm_form_control {
+    width: 350px !important; } }
+
+@media screen and (max-width: 768px) {
+  .tmai_container_fuild {
+    padding: 0 !important; }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; }
+  .navb-logo img {
+    width: 150px; }
+  .nnthm_form_control {
+    width: 250px !important; } }
+
+@media screen and (max-width: 568px) {
+  .tmai_container_fuild {
+    padding: 0 !important; }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; }
+  .navb-logo img {
+    width: 150px; }
+  .nnthm_form_control {
+    width: 200px !important; }
+  .tmai_col {
+    width: 80%; } }
+
+@media screen and (max-width: 468px) {
+  .tmai_container_fuild {
+    padding: 0 !important; }
+  .tmai_danger_btn {
+    display: none; }
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around; }
+  .navb-logo img {
+    width: 100px; }
+  .nnthm_form_control {
+    width: 150px !important; }
+  .statements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+  .brand {
+    display: none; }
+  .tmai_btn_warning {
+    font-size: 15px;
+    margin-left: 35%;
+    padding: 10px !important;
+    box-shadow: none; }
+  .about-text h2, h4 {
+    text-align: center; }
+    .about-text h2 .tmai_col, h4 .tmai_col {
+      width: 100%; }
+  .tmain_btn_warning {
+    font-size: 15px;
+    box-shadow: none;
+    padding: 5px 10px;
+    box-shadow: 0 0 3px #ffc107; }
+  .announcement h1 {
+    font-size: 35px; } }
