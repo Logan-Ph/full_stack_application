@@ -67,7 +67,7 @@ body::-webkit-scrollbar {
   padding: 0px;
   width: 300px; }
 
-.modal-content {
+.tmai_modal_content {
   border-radius: 0;
   height: 100vh;
   overflow-y: scroll; }
@@ -96,13 +96,13 @@ body::-webkit-scrollbar {
   color: #070A52;
   font-size: 30px; }
 
-.modal-body {
+.tmai_modal_body {
   width: 88%;
   margin: 0 auto;
   padding: 75px 0 0 0;
   flex: unset; }
 
-.modal-body .modal-line {
+.tmai_modal_body .modal-line {
   width: 100%;
   display: flex;
   align-items: center;
@@ -113,7 +113,7 @@ body::-webkit-scrollbar {
   transition: all .5s ease;
   border-bottom: 1px solid navy; }
 
-.modal-body .modal-line:hover {
+.tmai_modal_body .modal-line:hover {
   color: #D21312;
   border-bottom: 1px solid #D21312; }
 
@@ -167,7 +167,7 @@ body::-webkit-scrollbar {
     width: 60% !important;
     margin-left: 0 !important; }
   .bg-image {
-    top: 10% !important;
+    top: 20% !important;
     height: 95% !important; } }
 
 @media screen and (max-width: 450px) {
@@ -184,7 +184,7 @@ body::-webkit-scrollbar {
     width: 300px !important;
     margin: 0;
     padding: 0; }
-  .modal-content {
+  .tmai_modal_content {
     width: 82% !important;
     border-radius: 10px;
     height: 100vh;
@@ -209,12 +209,12 @@ body::-webkit-scrollbar {
   .modal-header i {
     color: #070A52;
     font-size: 30px; }
-  .modal-body {
+  .tmai_modal_body {
     width: 88%;
     margin: 0 auto;
     padding: 75px 0 0 0;
     flex: unset; }
-  .modal-body .modal-line {
+  .tmai_modal_body .modal-line {
     width: 100%;
     display: flex;
     align-items: center;
@@ -224,7 +224,7 @@ body::-webkit-scrollbar {
     cursor: pointer;
     transition: all .5s ease;
     border-bottom: 1px solid navy; }
-  .modal-body .modal-line:hover {
+  .tmai_modal_body .modal-line:hover {
     color: #D21312;
     border-bottom: 1px solid #D21312; }
   .modal-line a {
@@ -240,21 +240,6 @@ body::-webkit-scrollbar {
     width: 35px;
     margin-right: 15px;
     padding: 0 0 3px; }
-  .navb-button {
-    width: 100%;
-    height: 50px;
-    background-color: #070A52;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    transition: all .5s ease;
-    border-radius: 20px; }
-  .navb-button:hover {
-    background-color: #D21312; }
   .mobile-modal-footer {
     width: 88%;
     margin: 0 auto;
@@ -516,7 +501,7 @@ body::-webkit-scrollbar {
 .wrapper:hover h2 {
   color: #E90064; }
 
-.form-control {
+.tmai_form_control {
   margin: 10px 0px;
   height: 50px;
   font-weight: 500;
@@ -527,27 +512,28 @@ body::-webkit-scrollbar {
   font-size: 20px;
   padding: 5px 0px; }
 
-.wrapper .form-control {
+.wrapper .tmai_form_control {
   border: 1px solid navy;
   box-shadow: 0 0 5px navy, inset 0 0 5px navy; }
 
 .wrapper .form-label {
   color: navy; }
 
-.wrapper:hover .form-control {
+.wrapper:hover .tmai_form_control {
   border: 1px solid #E90064;
   box-shadow: 0 0 5px #E90064, inset 0 0 5px #E90064; }
 
 .wrapper:hover .form-label {
   color: #E90064; }
 
-.btn-primary {
-  padding: 10px 40px;
-  margin: 20px 0px;
-  font-size: 20px;
+.tmai_button {
+  padding: 10px 40px !important;
+  margin: 20px 0px !important;
+  font-size: 20px !important;
+
   transition: .5s; }
 
-.wrapper .btn-primary {
+.wrapper .tmai_button {
   color: #fff;
   background-color: navy;
   box-shadow: 0 0 10px navy, inset 0 0 10px navy; }
