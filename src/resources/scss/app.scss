@@ -81,7 +81,7 @@ body::-webkit-scrollbar {
     width: 300px;
 }
 
-.modal-content{
+.tmai_modal_content{
     border-radius: 0;
     height: 100vh;
     overflow-y: scroll;
@@ -115,14 +115,14 @@ body::-webkit-scrollbar {
     font-size: 30px;
 }
 
-.modal-body{
+.tmai_modal_body{
     width: 88%;
     margin: 0 auto;
     padding: 75px 0 0 0;
     flex: unset;
 }
 
-.modal-body .modal-line{
+.tmai_modal_body .modal-line{
     width: 100%;
     display: flex;
     align-items: center;
@@ -134,7 +134,7 @@ body::-webkit-scrollbar {
     border-bottom: 1px solid navy;
 }
 
-.modal-body .modal-line:hover{
+.tmai_modal_body .modal-line:hover{
     color: #D21312;
     border-bottom: 1px solid #D21312;
 }
@@ -226,7 +226,7 @@ body::-webkit-scrollbar {
         margin: 0;
         padding: 0;
     }
-    .modal-content{
+    .tmai_modal_content{
         width: 82% !important;
         border-radius: 10px;
         height: 100vh;
@@ -261,7 +261,7 @@ body::-webkit-scrollbar {
         font-size: 30px;
     }
     
-    .modal-body{
+    .tmai_modal_body{
     
         width: 88%;
         margin: 0 auto;
@@ -269,7 +269,7 @@ body::-webkit-scrollbar {
         flex: unset;
     }
     
-    .modal-body .modal-line{
+    .tmai_modal_body .modal-line{
     
         width: 100%;
         display: flex;
@@ -282,7 +282,7 @@ body::-webkit-scrollbar {
         border-bottom: 1px solid navy;
     }
     
-    .modal-body .modal-line:hover{
+    .tmai_modal_body .modal-line:hover{
         color: #D21312;
         border-bottom: 1px solid #D21312;
     }
@@ -637,7 +637,7 @@ body::-webkit-scrollbar {
     color: #E90064;
 }
 
-.form-control{
+.tmai_form_control{
     margin: 10px 0px;
     height: 50px;
     font-weight: 500;
@@ -650,7 +650,7 @@ body::-webkit-scrollbar {
     padding: 5px 0px;
 }
 
-.wrapper .form-control{
+.wrapper .tmai_form_control{
     border: 1px solid navy;
     box-shadow: 0 0 5px navy, inset 0 0 5px navy;
 }
@@ -658,7 +658,7 @@ body::-webkit-scrollbar {
 .wrapper .form-label{
     color: navy;
 }
-.wrapper:hover .form-control{
+.wrapper:hover .tmai_form_control{
     border: 1px solid #E90064;
     box-shadow: 0 0 5px #E90064, inset 0 0 5px #E90064;
 }
