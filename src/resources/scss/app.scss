@@ -201,7 +201,7 @@ body::-webkit-scrollbar {
         margin-left: 0 !important;
     }
     .bg-image {
-        top: 10% !important;
+        top: 20% !important;
         height: 95% !important;
 }
 }
@@ -666,14 +666,14 @@ body::-webkit-scrollbar {
     color: #E90064;
 }
 
-.btn-primary{
+.tmai_button{
     padding: 10px 40px !important;
     margin: 20px 0px !important;
     font-size: 20px !important; 
     transition: .5s;
 }
 
-.wrapper .btn-primary{
+.wrapper .tmai_button{
     color: #fff;
     background-color: navy;
     box-shadow: 0 0 10px navy, inset 0 0 10px navy;
