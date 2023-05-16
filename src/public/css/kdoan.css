@@ -29,6 +29,12 @@
   width: 150px;
   height: auto; }
 
+.display {
+  display: block; }
+
+.not-display {
+  display: none; }
+
 /*My Account Page*/
 .order-wrapper {
   display: flex;
