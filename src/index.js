@@ -108,14 +108,26 @@ app.get("/signup-user", (req, res) => {
 app.get("/customer-account", (req, res) => {
     if (req.session.user) {
         if (req.session.user.check_vendor) {
-            res.render("customer-account", { check_vendor: true });
+            res.render("customer-account",
+                {
+                    check_vendor: true,
+                    loggedInUser: req.session.user,
+                });
             return;
         } else if (req.session.user.check_shipper) {
-            res.render("customer-account", { check_shipper: true });
+            res.render("customer-account",
+                {
+                    check_shipper: true,
+                    loggedInUser: req.session.user,
+                });
             return;
         }
         else {
-            res.render("customer-account", { check_customer: true })
+            res.render("customer-account",
+                {
+                    check_customer: true,
+                    loggedInUser: req.session.user,
+                })
         }
     }
     else {
@@ -142,8 +154,8 @@ app.get("/home/:id/product-detail", async (req, res) => {
     try {
         if (req.session.user) {
             try {
-                
-                await product.find({_id:req.params.id}, { img: 1,description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+
+                await product.find({ _id: req.params.id }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
                     let map_product = products.map(Product => Product.toJSON());
                     for (let i = 0; i < map_product.length; i++) {
                         map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
@@ -237,7 +249,6 @@ app.get("/view-product", async (req, res, next) => {
                         for (let i = 0; i < map_product.length; i++) {
                             map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
                         }
-
                         res.render('view-product', {
                             loggedInUser: req.session.user,
                             products: map_product,
@@ -529,15 +540,26 @@ app.post("/login", async (req, res) => {
         const check_shipper = await shipper.findOne({ username: req.body.username });
         const check_vendor = await vendor.findOne({ username: req.body.username });
 
+        let map_user = check.toJSON();
+        map_user.img = Buffer.from(map_user.img.data.data).toString('base64');
+        console.log(map_user)
         console.log(check_vendor);
         console.log(check_shipper);
 
 
-        if (check && await bcrypt.compare(req.body.password, check.password)) {
-            // Store user information in session
+
+        if (map_user && await bcrypt.compare(req.body.password, map_user.password)) {
+
             req.session.user = {
-                username: check.username,
-                user_id: check._id,
+                username: map_user.username,
+                user_id: map_user._id,
+                name:map_user.name,
+                bussiness_name:map_user.bussiness_name,
+                bussiness_address:map_user.bussiness_address,
+                address:map_user.address,
+                distribution_hub:map_user.distribution_hub,
+                phone_number:map_user.phone_number,
+                img: map_user.img,
                 check_shipper: check_shipper,
                 check_vendor: check_vendor,
             };
