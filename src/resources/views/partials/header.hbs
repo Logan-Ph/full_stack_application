@@ -8,7 +8,9 @@
 <div class="container-fuild navbar">
 
     <div class="navb-logo">
-        <img src="/image/lzd-logo.png" alt="logo">
+        <a href="/home">
+            <img src="/image/lzd-logo.png" alt="logo">
+        </a>
     </div>
 
     <div class="navb-items">
@@ -33,20 +35,10 @@
         </div>
 
         <div class="item-button">
-            {{#if loggedInUser}}
-            <a class="nav-link dropdown-toggle" href="#"
-                id="navbarDropdownMenuLink" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                {{loggedInUser.username}}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="/user">Account Settings</a></li>
-                <li><a class="dropdown-item" href="/logout">Logout</a></li>
-            </ul>
-            {{else}}
-            <a href="/login" type="button">Login</a>
-            {{/if}}
+            <button type="button" class="btn btn-outline-danger py-2 px-4">Login</button>
+            <button type="button" class="btn btn-warning py-2 px-4">Sign-up</button>
         </div>
+
     </div>
 
     <!-- Button trigger modal -->
@@ -92,21 +84,8 @@
                     </div>
 
                     <div class="navb-button">
-                        {{#if loggedInUser}}
-                        <a class="nav-link dropdown-toggle" href="#"
-                            id="navbarDropdownMenuLink" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            {{loggedInUser.username}}
-                        </a>
-                        <ul class="dropdown-menu"
-                            aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="/user">Account
-                                    Settings</a></li>
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                        </ul>
-                        {{else}}
-                        <a href="/login" type="button">Login</a>
-                        {{/if}}
+                        <button type="button" class="btn btn-outline-danger py-2 px-4">Login</button>
+                        <button type="button" class="btn btn-warning py-2 px-4">Sign-up</button>
                     </div>
 
                 </div>
