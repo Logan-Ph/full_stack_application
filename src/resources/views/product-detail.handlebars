@@ -23,9 +23,6 @@
             <div class="row bg-light">
                 <div class="col-md-5 p-3">
                     <img class="img-fluid border border-secondary-subtle" src="https://cf.shopee.vn/file/3a3d3b7b8d2bdbd80fc7c6338c2b2e7d" alt="">
-                    <div class="row text-center mt-3">
-                        <div class="col">Share: <a href=""><i class="fa-brands fa-facebook fa-lg"></i></a> <a href=""><i class="fa-brands fa-facebook-messenger fa-lg"></i></a> <a href=""><i class="fa-brands fa-instagram fa-lg"></i></a> <a href=""><i class="fa-brands fa-twitter fa-lg"></i></a></div>
-                    </div>
                 </div>
                 <div class="col-md-7">
                     <h4 class="mt-4 ms-3">Product's Name</h4>
@@ -44,14 +41,25 @@
                     <form class="quantity mt-3" action="" method="post">
                         <label class="ms-3 " for="quantity">Quantity: </label>
                         <input type="number" id="quantity" name="quantity" min="1" max="100" value="1"> 
-                        <div class="row mt-4 ms-3 ">
-                            <input class="btn add-to-cart me-3" type="submit" value="Add To Cart">
-                            <input class="btn buy-now" type="submit" value="Buy Now">    
+                        <div class="row mt-4 ms-3" id="button-container">
+                            <button class="btn add-to-cart me-3" type="submit" value="Add To Cart"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button>
+                            <button class="btn buy-now" type="submit" value="Buy Now">Buy Now</button> 
                         </div>  
                     </form>
-                    <div class="mt-5 ms-3 description">
-                        <h5>Product Description:</h5>
-                        <p>Fried chicken hairclip</p>
+                </div>
+            </div>
+            <div class="row bg-light text-center" id="product-detail-bottom">
+                <div class="col-lg-5">
+                    <div class="row mt-2">
+                        <div class="col border-end">Share: <a href=""><i class="fa-brands fa-facebook fa-lg"></i></a> <a href=""><i class="fa-brands fa-facebook-messenger fa-lg"></i></a> <a href=""><i class="fa-brands fa-instagram fa-lg"></i></a> <a href=""><i class="fa-brands fa-twitter fa-lg"></i></a></div>
+                        <div class="col"><i class="fa-regular fa-heart"></i> Add To Favorites</div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row my-2">
+                        <div class="col text-center border-end"><i class="fa-solid fa-rotate-left"></i> 7 Days Return</div>
+                        <div class="col text-center border-end"><i class="fa-solid fa-rotate-left"></i> Authenticity Guarantee</div>
+                        <div class="col text-center"><i class="fa-solid fa-truck-fast"></i> Free Shipping</div>
                     </div>
                 </div>
             </div>
@@ -59,11 +67,31 @@
                 <div class="col-2">
                     <img class="shop-pic my-4 ms-3" src="https://static.vecteezy.com/system/resources/previews/000/583/708/original/online-shop-icon-vector.jpg" alt="shop profile pic">
                 </div>
-                <div class="col" id="shop-section">
-                    <h4 class="mt-4">Business Name</h4>
+                <div class="col-md-3 col-10" id="shop-section">
+                    <p class="mt-4 mb-0">Business Name</p>
                     <p class="text-secondary">Active 1 Hour Ago</p>
                     <a href="" class="btn btn-outline-secondary mb-4" type="button">Visit Shop</a>
                 </div>
+                <div class="col-md-7 col-12">
+                    <div class="row" id="shop-section-right">
+                        <div class="col-3 my-md-5">
+                            <p class="text-secondary">Reviews: <span class="value">30K</span></p>
+                            <p class="text-secondary">Products: <span class="value">30</span></p>
+                        </div>
+                        <div class="col-6 my-md-5">
+                            <p class="text-secondary">Response Rate: <span class="value">100%</span></p>
+                            <p class="text-secondary">Response Time: <span class="value">within hours</span></p>
+                        </div>
+                        <div class="col-3 my-md-5">
+                            <p class="text-secondary">Joined: <span class="value">1y</span></p>
+                            <p class="text-secondary">Followers: <span class="value">300K</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 bg-light">
+                <h4 class="ms-3 mt-4">Product Description:</h4>
+                <p class="ms-3 mt-2">Fried chicken hair clip</p>
             </div>
             <div class="row mt-5 bg-light">
                 <div class="p-3">
@@ -137,15 +165,15 @@
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center" id="product-suggest">
                         <a class="text-decoration-none text-black" href="">
-                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/pro-display-og-image?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1573689238241" alt="product picture">
-                            <p class="mt-2">Pro Display XDR</p>
-                            <p class="price">$5999</p>
+                            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mac-studio-select-202203?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1645739294025">
+                            <p class="mt-2">Mac Studio M1 Ultra 20-Core CPU 48-Core GPU 32-Core Neural Engine</p>
+                            <p class="price">$3999</p>
                         </a>
                     </div>
                     <div class="col-xl-2 col-lg-3 col-md-4 col-6 text-center" id="product-suggest">
                         <a class="text-decoration-none text-black" href="">
                             <img src="https://www.versace.com/dw/image/v2/ABAO_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw59b0cbcf/original/90_1002005-DRA67_1PA4V_20_MedusaAevitasPlatformPumps-PlatformShoes-versace-online-store_4_6.jpg" alt="product picture">
-                            <p class="mt-2">Pro Display XDR</p>
+                            <p class="mt-2">MEDUSA AEVITAS PLATFORM PUMPS</p>
                             <p class="price">$5999</p>
                         </a>
                     </div>
