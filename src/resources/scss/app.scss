@@ -11,8 +11,13 @@ body::-webkit-scrollbar {
     overflow-x: hidden;
 }
 
-.container-fuild{
+.tmainn_container_fuild_navbar{
     background-color: #fff;
+    margin-top: 0px !important;
+}
+
+.top_banner_container{
+    margin-top: 0px;
 }
 
 .top-banner .container-fuild{
@@ -22,7 +27,7 @@ body::-webkit-scrollbar {
     width: 100%;
 }
 
-.navbar{
+.tmainn_container_fuild_navbar{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -332,6 +337,7 @@ body::-webkit-scrollbar {
 
 /* Footer style */
 .container-fuild {
+    margin-top: 10px ;
     background-color: rgb(245, 244, 244);
     padding: 50px 0px;
 }

@@ -8,8 +8,12 @@ body::-webkit-scrollbar {
 .body {
   overflow-x: hidden; }
 
-.container-fuild {
-  background-color: #fff; }
+.tmainn_container_fuild_navbar {
+  background-color: #fff;
+  margin-top: 0px !important; }
+
+.top_banner_container {
+  margin-top: 0px; }
 
 .top-banner .container-fuild {
   padding: 0; }
@@ -17,7 +21,7 @@ body::-webkit-scrollbar {
 .top-banner img {
   width: 100%; }
 
-.navbar {
+.tmainn_container_fuild_navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -258,6 +262,7 @@ body::-webkit-scrollbar {
 
 /* Footer style */
 .container-fuild {
+  margin-top: 10px;
   background-color: #f5f4f4;
   padding: 50px 0px; }
 
