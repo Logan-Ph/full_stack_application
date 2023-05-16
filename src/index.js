@@ -138,10 +138,26 @@ app.get("/add-product", (req, res) => {
     }
 });
 
-app.get("/home/:id/product-detail", (req, res) => {
+app.get("/home/:id/product-detail", async (req, res) => {
     try {
         if (req.session.user) {
-            res.render("product-detail");
+            try {
+                
+                await product.find({_id:req.params.id}, { img: 1,description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                    let map_product = products.map(Product => Product.toJSON());
+                    for (let i = 0; i < map_product.length; i++) {
+                        map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                    }
+
+                    res.render('product-detail', {
+                        loggedInUser: req.session.user,
+                        products: map_product,
+                    });
+                })
+            }
+            catch (error) {
+                console.log(error.message);
+            }
         }
         else {
             res.redirect("/")

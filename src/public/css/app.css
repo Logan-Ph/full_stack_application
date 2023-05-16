@@ -542,9 +542,9 @@ body::-webkit-scrollbar {
   color: #E90064; }
 
 .btn-primary {
-  padding: 10px 40px !important;
-  margin: 20px 0px !important;
-  font-size: 20px !important;
+  padding: 10px 40px;
+  margin: 20px 0px;
+  font-size: 20px;
   transition: .5s; }
 
 .wrapper .btn-primary {

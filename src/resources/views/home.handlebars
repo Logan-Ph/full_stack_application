@@ -343,7 +343,7 @@
                         <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title sub">{{this.product_name}}</h5>
-                            <p class="price">{{this.price}} $</p>
+                            <p class="price">$ {{this.price}}</p>
                             <div class="stars">
                                 <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                 <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
@@ -376,7 +376,7 @@
                                 <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title sub">{{this.product_name}}</h5>
-                                    <p class="price">{{this.price}} $</p>
+                                    <p class="price">${{this.price}}</p>
                                     <div class="stars">
                                         <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                         <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
@@ -411,65 +411,6 @@
             </div>
         </div>
     </div>
-    {{!-- <div id="page" class="site">
-
-
-        <div class="shopping">
-            <img src="image/shopping-cart (1).png">
-            <span class="quantity">0</span>
-        </div>
-
-        <div class="list"></div>
-    </div>
-    </header>
-
-    <div class="card">
-        <h1>Card</h1>
-        <ul class="listCard"></ul>
-        <div class="checkOut">
-            <div class="total">0</div>
-            <div class="closeShopping">Close</div>
-        </div>
-    </div> --}}
-
-
-
-
-
-
-
-
-    {{!-- <h1>Home</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {{#each products}}
-        <div class="col">
-            <div class="card bg-light">
-                <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{this.product_name}}</h5>
-                    <p class="card-text">{{this.description}}</p>
-                    <p class="card-text">Category: {{this.category}}</p>
-                    <p class="card-text">Price: {{this.price}}.000 VND</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card bg-light">
-                <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{this.product_name}}</h5>
-                    <p class="card-text">{{this.description}}</p>
-                    <p class="card-text">Category: {{this.category}}</p>
-                    <p class="card-text">Price: {{this.price}}.000 VND</p>
-                </div>
-            </div>
-        </div>
-
-        {{/each}}
-
-    </div> --}}
-
     {{> footer}}
 
 
