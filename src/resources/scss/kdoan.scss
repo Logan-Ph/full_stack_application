@@ -40,9 +40,9 @@
 }
 
 
-.profile {
- --bs-dropdown-min-width: 10px !important;
-}
+// .profile {
+//  --bs-dropdown-min-width: 10px !important;
+// }
 
 
 .navb-logo img {
@@ -56,6 +56,14 @@
   flex-direction: column;
   border: 1px ;
   box-shadow: 0px 0px 5px #BFBFBF;
+}
+
+.display {
+  display: block;
+}
+
+.not-display {
+  display: none;
 }
 
 .order-shop, .order-total{
@@ -125,7 +133,7 @@
 }
 
 /*Pop up to edit product or confirm user of deleting product*/
-.delete-button .modal-dialog, .edit-button .modal-dialog {
+.delete-button .modal-dialog, .edit-button .modal-dialog, .product-added .modal-dialog {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
@@ -133,7 +141,7 @@
   width: 95% !important;
 }
 
-.delete-button .modal-content {
+.delete-button .modal-content, .product-added .modal-content {
   height: 50% !important;
 }
 
