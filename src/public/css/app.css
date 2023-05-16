@@ -619,8 +619,8 @@ body::-webkit-scrollbar {
   font-size: 20px; }
 
 
-/* Account Page */
-.playground {
+ /* Account Page */
+ .playground {
   width: 100%;
   min-width: 1188px;
   min-height: 474px;
@@ -643,6 +643,7 @@ body::-webkit-scrollbar {
   height: 438px;
   padding-top: 16px;
 }
+
 .playground-nav .nav-container {
   list-style: none;
   margin: 16px 0 0;
@@ -652,6 +653,14 @@ body::-webkit-scrollbar {
   letter-spacing: 0;
   line-height: 24px;
 }
+
+.playground-nav .nav-container .item .item-container {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 16px;
+  text-align: left;
+}
+
 .playground-nav .nav-container .item .item-container .sub a {
   cursor: pointer;
   font-size: 14px;
@@ -659,6 +668,9 @@ body::-webkit-scrollbar {
   letter-spacing: 0;
   line-height: 22px;
   text-decoration: none;
+}
+.playground-nav .nav-container .item .active {
+  color: #0088c7;
 }
 .playground-right {
   position: relative;
@@ -684,12 +696,12 @@ body::-webkit-scrollbar {
 }
 
 .dashboard-profile {
-	width: calc(50% - 12px);
-	height: 182px;
-	background-color: #fff;
-	padding: 16px;
-	margin-right: 12px;
-	float: left;
+  width: calc(50% - 12px);
+  height: 182px;
+  background-color: #fff;
+  padding: 16px;
+  margin-right: 12px;
+  float: left;
 }
 .dashboard-mod-title {
   color: #212121;
@@ -762,56 +774,115 @@ body::-webkit-scrollbar {
   line-height: 50px;
 }
 .next-table.only-bottom-border {
-	border-width: 0;
+  border-width: 0;
 }
-.next-table, .next-table *, .next-table ::after, .next-table ::before {
-	box-sizing: border-box;
+.next-table,
+.next-table *,
+.next-table ::after,
+.next-table ::before {
+  box-sizing: border-box;
 }
 
-.next-table-body, .next-table-header {
-	overflow: auto;
-	font-size: 14px;
+.next-table-body,
+.next-table-header {
+  overflow: auto;
+  font-size: 14px;
 }
 .next-table table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	width: 100%;
-	table-layout: fixed;
-	background: #fff;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  table-layout: fixed;
+  background: #fff;
 }
 .next-table th {
   padding: 0;
-	background: #fafafa;
-	color: #757575;
-	text-align: left;
-	font-weight: 400;
-	border: 1px solid #eff0f5;
+  background: #fafafa;
+  color: #757575;
+  text-align: left;
+  font-weight: 400;
+  border: 1px solid #eff0f5;
 }
-.next-table.only-bottom-border .next-table-expanded-row td, .next-table.only-bottom-border .next-table-expanded-row th, .next-table.only-bottom-border td, .next-table.only-bottom-border th {
+.next-table.only-bottom-border .next-table-expanded-row td,
+.next-table.only-bottom-border .next-table-expanded-row th,
+.next-table.only-bottom-border td,
+.next-table.only-bottom-border th {
   border-width: 0 0 1px;
 }
 .next-table th .next-table-cell-wrapper {
-	padding: 16px 20px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-break: break-all;
+  padding: 16px 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
 }
 .next-table-row {
-	transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .next-table-row.hovered {
-	background: #fafafa;
+  background: #fafafa;
 }
 .next-table table tr:first-child td {
-	border-top-width: 0;
+  border-top-width: 0;
 }
 .next-table td .next-table-cell-wrapper {
-	padding: 16px 20px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-break: break-all;
+  padding: 16px 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
 }
 .recent-orders .recent-item img {
-	width: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+/* Change Personal Info */
+.edit-profile {
+  margin: 5px;
+	padding: 40px;
+	background-color: #fff;
+}
+
+.edit-profile-item {
+	width: 300px;
+	display: inline-block;
+	vertical-align: top;
+	min-height: 110px;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	-webkit-hyphens: auto;
+	-ms-hyphens: auto;
+	hyphens: auto;
+}
+
+.edit-profile-item-title {
+	color: #424242;
+	font-size: 12px;
+	font-weight: 400;
+	margin-bottom: 10px;
+}
+
+.edit-profile-item-info {
+	width: 236px;
+}
+
+.mod-input input {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	font-size: 14px;
 	height: 40px;
+	line-height: 38px �;
+	padding: 0 35px 0 10px;
+	margin-bottom: 2px;
+	outline: none;
+}
+
+.mod-input span {
+	min-height: 16px;
+	line-height: 16px;
+	font-size: 12px;
+	color: #f44336;
+	visibility: hidden;
+	display: block;
+	margin-bottom: 10px;
 }

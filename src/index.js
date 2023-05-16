@@ -6,9 +6,9 @@ const path = require("path");
 const port = 3000;
 const handlebars = require("express-handlebars");
 const async = require("hbs/lib/async");
-const { connectionUrl } = require("./config"); // Import the connectionUrl from config.js
 const templatePath = path.join(__dirname, 'resources/views')
-const { shipper, user, vendor, product, ordered_product } = require("./mongodb");
+const { shipper, user, vendor, product, ordered_product } = require("./config/mongodb");
+const { connectionUrl } = require("./config/mongodb"); // Import the connectionUrl
 const { error } = require("console");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
@@ -33,18 +33,17 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 
-app.engine('handlebars', handlebars.engine({
-    extname: '.hbs',
+app.engine(
+  "handlebars",
+  handlebars.engine({
+    extname: ".hbs",
+    helpers: require("./config/handlebars-helpers"),
     partialsDir: [
-        path.join(__dirname, 'resources/views/partials'),
+      path.join(__dirname, "resources/views/partials"),
+      path.join(__dirname, "resources/views/account"),
     ],
-    helpers: {
-        ifeq: function (a, b) {
-            if (a === b) { return true }
-        }
-    }
-}));
-
+  })
+);
 
 app.use(express.static(publicPath));
 app.use(express.json());
@@ -184,15 +183,17 @@ app.get("/signup-shipper", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+  if (req.session.user) {
     if (req.session.user.check_vendor) {
-        res.redirect("/view-product");
+      res.redirect("/view-product");
+    } else if (req.session.user.check_shipper) {
+      res.redirect("/shipper");
+    } else {
+      res.redirect("/home");
     }
-    else if (req.session.user.check_shipper) {
-        res.redirect("/shipper");
-    }
-    else {
-        res.redirect("/home");
-    }
+  } else {
+    res.render("login");
+  }
 });
 
 app.get("/privacy-policy", (req, res) => {
@@ -559,13 +560,122 @@ app.get("/logout", (req, res) => {
     res.redirect("/");
 });
 
-app.get('/user', (req, res) => {
-    if (!req.session.user) {
-        res.redirect('/login');
+// View user's personal information
+app.get("/user", async (req, res) => {
+  if (!req.session.user) {
+    res.redirect("/login");
+    return;
+  }
+  try {
+    if (!req.session.user.check_shipper && !req.session.user.check_vendor) {
+      try {
+        await user
+          .find(
+            { username: req.session.user.username },
+            { username: 1, name: 1, address: 1, _id: 0 }
+          )
+          .then((user) => {
+            res.render("account", {
+              state: "view_personal_info",
+              user: user[0].toObject(),
+            });
+          });
+      } catch (error) {
+        console.log(error.message);
+      }
     }
-    res.render('account', {
-        username: req.session.user.username,
-    });
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+// Change personal info
+app.get("/user/editprofile", async (req, res) => {
+  if (!req.session.user) {
+    res.redirect("/login");
+    return;
+  }
+  try {
+    if (!req.session.user.check_shipper && !req.session.user.check_vendor) {
+      try {
+        await user
+          .find(
+            { username: req.session.user.username },
+            { name: 1, address: 1, email: 1, phone_number: 1, _id: 0 }
+          )
+          .then((user) => {
+            // Debug
+            console.log(user[0].toObject().phone_number)
+            res.render("account", {
+              state: "change_personal_info",
+              user: user[0].toObject(),
+            });
+          });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+// Update user's personal information
+app.post("/user/update", async (req, res) => {
+  // Debug
+  // console.log(
+  //   "/user/update POST route called at " + new Date().toLocaleString()
+  // );
+  if (!req.session.user) {
+    res.status(401).send("You are not logged in");
+    return;
+  }
+
+  try {
+    userToUpdate = req.session.user.username;
+    const { name, email, phone_number, address } = req.body;
+    // Debug
+    console.log(req.body)
+
+    // Check if any of the fields are empty, and only update non-empty fields
+    const updatedFields = {};
+    if (name) updatedFields.name = name;
+    if (email) updatedFields.email = email;
+    if (phone_number) updatedFields.phone_number = phone_number;
+    if (address) updatedFields.address = address;
+
+    // Validate phone number using regex
+    const phoneRegex = /^(0|1)\d{9,10}$/;
+    if (phone_number && !phoneRegex.test(phone_number)) {
+      return res.status(400).send("Invalid phone number");
+    }
+    // Validate email using regex
+    const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    if (email && !emailRegex.test(email)) {
+      return res.status(400).send("Invalid email address");
+    }
+    await user
+      .findOneAndUpdate(
+        { username: userToUpdate },
+        { $set: updatedFields },
+        { new: true }
+      )
+      .then((updatedUser) => {
+        if (!updatedUser) {
+          // Debug
+          // console.log("Got 404, User not found");
+          return res.status(404).send("Error occured when trying to update user's information");
+        }
+        // Debug
+        console.log(updatedFields);
+        // console.log("User updated successfully");
+        res.sendStatus(200);
+      })
+      .catch((error) => res.send(error));
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send("Internal server error");
+  }
 });
 
 
