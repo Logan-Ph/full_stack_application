@@ -7,6 +7,7 @@
   } 
 
   /*My Account Page*/
+
   .profile-avatar  {
     width: 25% !important;
   }
@@ -35,14 +36,10 @@
 }
 
 /*View Product Vendor Page*/
-.navbar {
- padding: 0px !important;
+
+.profile {
+ --bs-dropdown-min-width: 10px !important;
 }
-
-
-// .profile {
-//  --bs-dropdown-min-width: 10px !important;
-// }
 
 
 .navb-logo img {
@@ -56,14 +53,6 @@
   flex-direction: column;
   border: 1px ;
   box-shadow: 0px 0px 5px #BFBFBF;
-}
-
-.display {
-  display: block;
-}
-
-.not-display {
-  display: none;
 }
 
 .order-shop, .order-total{
@@ -121,11 +110,11 @@
 } 
 
 .profile-sidebar{
-  width: 20% !important;
+  width: 20%;
 }
 
 .profile-info {
-  width: 80% !important;
+  width: 80%;
 }
 
 .no-product {
@@ -133,20 +122,20 @@
 }
 
 /*Pop up to edit product or confirm user of deleting product*/
-.delete-button .modal-dialog, .edit-button .modal-dialog, .product-added .modal-dialog {
+.delete-button .modal-dialog, .edit-button .modal-dialog, .order-success-button .modal-dialog {
   position: absolute !important;
   top: 50% !important;
-  left: 50% !important;
+  left: 48% !important;
   transform: translate(-50%, -50%) !important;
-  width: 95% !important;
+  width: 90% !important;
 }
 
-.delete-button .modal-content, .product-added .modal-content {
+.delete-button .modal-content {
   height: 50% !important;
 }
 
-.edit-button .modal-content {
-  height: 100% !important;
+.edit-button .modal-content, .order-success-button .modal-content {
+  height: 95% !important;
 }
 
 /*My Profile*/
@@ -185,4 +174,24 @@
 
 input[type=file]::-webkit-file-upload-button{
   cursor: pointer;
+}
+
+/*Checkout Page */
+.checkout p{
+  font-size: 15px;
+}
+
+.total p {
+  font-size: larger;
+  font-weight: bold;
+  color: #060047;
+}
+
+.remove {
+  padding: 5px;
+  font-size: 14px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #060047;
+  background-color: #060047;
 }

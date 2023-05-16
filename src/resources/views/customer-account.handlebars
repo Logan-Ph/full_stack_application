@@ -52,22 +52,22 @@
               </div>
               <div class="card-body">
                 <div class="upload my-3">
-                  <img src="image/avatar-placeholder.png" alt="">
+                  <img src="data:image/png;base64,{{loggedInUser.img}}" alt="user_image">
                   <div class="round">
                     <input type="file">
                     <i class="fa fa-camera" style="color: #fff;"></i>
                   </div>
                 </div>
-                <h5 class="card-title text-center pb-2">jendecee</h5>
+                <h5 class="card-title text-center pb-2">{{loggedInUser.username}}</h5>
                 <dl class="row">
                   <dt class="col-sm-3">Name:</dt>
-                  <dd class="col-sm-9">Khanh Doan</dd>
+                  <dd class="col-sm-9">{{loggedInUser.name}}</dd>
 
                   <dt class="col-sm-3">Phone Number:</dt>
-                  <dd class="col-sm-9">(+84) 886182400</dd>
+                  <dd class="col-sm-9">(+84) {{loggedInUser.phone_number}}</dd>
 
                   <dt class="col-sm-3">Address:</dt>
-                  <dd class="col-sm-9">158 Nguyen Son, Tan Phu District, Ho Chi Minh city</dd>
+                  <dd class="col-sm-9">{{loggedInUser.address}}</dd>
                 </dl>
               </div>
             </div>
@@ -80,25 +80,22 @@
               </div>
               <div class="card-body">
                 <div class="upload my-3">
-                  <img src="image/avatar-placeholder.png" alt="">
+                  <img src="data:image/png;base64,{{loggedInUser.img}}" alt="">
                   <div class="round">
                     <input type="file">
                     <i class="fa fa-camera" style="color: #fff;"></i>
                   </div>
                 </div>
-                <h5 class="card-title text-center pb-2">jendecee</h5>
+                <h5 class="card-title text-center pb-2">{{loggedInUser.username}}</h5>
                 <dl class="row">
-                  <dt class="col-sm-3">Name:</dt>
-                  <dd class="col-sm-9">Khanh Doan</dd>
-
                   <dt class="col-sm-3">Business Name:</dt>
-                  <dd class="col-sm-9">Radiant Beauty</dd>
+                  <dd class="col-sm-9">{{loggedInUser.bussiness_name}}</dd>
 
                   <dt class="col-sm-3">Business Phone Number:</dt>
-                  <dd class="col-sm-9">(+84) 886182400</dd>
+                  <dd class="col-sm-9">(+84) {{loggedInUser.phone_number}}</dd>
 
                   <dt class="col-sm-3">Business Address:</dt>
-                  <dd class="col-sm-9">158 Nguyen Son, Tan Phu District, Ho Chi Minh city</dd>
+                  <dd class="col-sm-9">{{loggedInUser.bussiness_address}}</dd>
                 </dl>
               </div>
             </div>
@@ -111,22 +108,22 @@
               </div>
               <div class="card-body">
                 <div class="upload my-3">
-                  <img src="image/avatar-placeholder.png" alt="">
+                  <img src="data:image/png;base64,{{loggedInUser.img}}" alt="">
                   <div class="round">
                     <input type="file">
                     <i class="fa fa-camera" style="color: #fff;"></i>
                   </div>
                 </div>
-                <h5 class="card-title text-center pb-2">jendecee</h5>
+                <h5 class="card-title text-center pb-2">{{loggedInUser.username}}</h5>
                 <dl class="row">
                   <dt class="col-sm-3">Name:</dt>
-                  <dd class="col-sm-9">Khanh Doan</dd>
+                  <dd class="col-sm-9">{{loggedInUser.name}}</dd>
 
                   <dt class="col-sm-3">Phone Number:</dt>
-                  <dd class="col-sm-9">(+84) 886182400</dd>
+                  <dd class="col-sm-9">(+84) {{loggedInUser.phone_number}}</dd>
 
                   <dt class="col-sm-3">Distribution Hub:</dt>
-                  <dd class="col-sm-9">Ho Chi Minh</dd>
+                  <dd class="col-sm-9">{{loggedInUser.distribution_hub}}</dd>
                 </dl>
               </div>
             </div>
@@ -187,7 +184,7 @@
                 Total: 1.494.000
               </div>
             </div>
-
+            
             <div class="order-wrapper container mb-3">
               <div class="order-shop pt-3">Cellphone S</div>
               <hr>

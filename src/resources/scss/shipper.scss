@@ -46,6 +46,10 @@ form.d-flex input {
     text-decoration: underline;
 }
 
+img.img-fluid.border.border-secondary-subtle {
+    min-width: 270.5px;
+    min-height: 270.5px;
+}
 img.d-block {
     height: 400px;
     width: 400px;
@@ -71,7 +75,11 @@ img.d-block {
 @media (max-width: 1200px) {
     .container, .container-lg, .container-md, .container-sm {
         max-width: none;
-}}
+    }
+    #product-detail-bottom {
+        font-size: small;
+    }
+}
 
 form.quantity input {
     width: 60px;
@@ -81,18 +89,18 @@ form.quantity input {
     border: solid 1px #EFF0F5;
 }
 
-form.quantity input.add-to-cart, form.quantity input.buy-now {
+form.quantity button.add-to-cart, form.quantity button.buy-now {
     width: 160px;
     height: 50px;
     font-size: larger;
 }
 
-form.quantity input.add-to-cart {
+form.quantity button.add-to-cart {
     border: solid 1px rgb(210, 3, 3);
     color: rgb(210, 3, 3);
 }
 
-form.quantity input.buy-now {
+form.quantity button.buy-now {
     background-color: rgb(210, 3, 3);
     color: white;
 }
@@ -104,12 +112,27 @@ form.quantity input.buy-now {
     color: gainsboro
 }
 
-.col-2 img.shop-pic {
-    width: 70%;
+img.shop-pic {
+    max-width: 80%;
     height: auto;
     border-radius: 50%;
     border: solid 1px gainsboro;
     min-width: 40px;
+}
+
+.fa-solid {
+    color: rgb(210, 3, 3);
+}
+.value {
+    color: rgb(210, 3, 3);
+}
+#shop-section-right p {
+    font-size: small;
+}
+
+#shop-section a {
+    color: rgb(210, 3, 3);
+    border-color: rgb(210, 3, 3);
 }
 @media (max-width: 767px) {
     .col-1.mt-2 {
@@ -124,8 +147,30 @@ form.quantity input.buy-now {
         font-size: small;
     }
 
+    #shop-section p.text-secondary {
+        font-size: x-small;
+        margin-bottom: 5px ;
+    }
+
+    .row#shop-section-right {
+        margin-bottom: 10px;
+        margin-left: 2vw;
+    }
+    
+    .row#shop-section-right p{
+        margin: 0px;
+    }
+
+
     #shop-section a {
-        font-size: small;
+        padding: 5px;
+        font-size: x-small;
+        color: rgb(210, 3, 3);
+        border-color: rgb(210, 3, 3);
+    }
+    #button-container {
+        justify-content: center;
+        margin-bottom: 10px;
     }
 }
 
@@ -138,4 +183,20 @@ form.quantity input.buy-now {
 
 .row#product-suggest-container {
     padding: 0px;
+}
+
+.fa-regular {
+    color:rgb(210, 3, 3);
+}
+.fa-solid.fa-rotate-left {
+    color:rgb(210, 3, 3)
+}
+
+p.mt-2 {
+    height: 48px;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
