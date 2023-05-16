@@ -46,10 +46,6 @@ form.d-flex input {
     text-decoration: underline;
 }
 
-img.img-fluid.border.border-secondary-subtle {
-    min-width: 270.5px;
-    min-height: 270.5px;
-}
 img.d-block {
     height: 400px;
     width: 400px;
@@ -199,4 +195,39 @@ p.mt-2 {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+@media (max-width: 576px) {
+    #button-container button {
+        font-size: small;
+        padding: 3px 6px;
+        height: 40px;
+    }
+
+}
+
+@media (max-width: 489px) {
+    #button-container button.add-to-cart {
+        width: 120px
+    }
+
+    #button-container button.buy-now {
+        width: 100px
+    }
+
+    #rating, .fa-solid.fa-star {
+        font-size: xx-small;
+    }
+
+    .col-lg-3.col-4 {
+        font-size: xx-small;
+    }
+
+    #product-detail-bottom {
+        font-size: xx-small;
+    }
+
+    #shop-section-right p{
+        font-size: xx-small;
+    }
 }
