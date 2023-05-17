@@ -411,7 +411,6 @@ app.post("/add-product", upload.single("image"), async (req, res) => {
     res.render("add-product");
 })
 
-
 app.post('/view-product/:id/update', upload.single("image"), async (req, res) => {
     try {
         if (req.session.user.check_vendor) {
