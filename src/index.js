@@ -105,7 +105,7 @@ app.get("/signup-user", (req, res) => {
     res.render("signup-user");
 });
 
-app.get("/customer-account", (req, res) => {
+app.get("/customer-account", async (req, res) => {
     if (req.session.user) {
         if (req.session.user.check_vendor) {
             res.render("customer-account",
@@ -123,11 +123,17 @@ app.get("/customer-account", (req, res) => {
             return;
         }
         else {
-            res.render("customer-account",
-                {
+            await ordered_product.find({ customer_id: req.session.user.user_id }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                let map_product = products.map(Product => Product.toJSON());
+                for (let i = 0; i < map_product.length; i++) {
+                    map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                }
+                res.render('customer-account', {
                     check_customer: true,
                     loggedInUser: req.session.user,
-                })
+                    products: map_product,
+                });
+            })
         }
     }
     else {
@@ -139,7 +145,7 @@ app.get("/customer-account", (req, res) => {
 app.get("/add-product", (req, res) => {
     try {
         if (req.session.user.check_vendor) {
-            res.render("add-product",{loggedInUser: req.session.user});
+            res.render("add-product", { loggedInUser: req.session.user });
         }
         else {
             res.redirect("/")
@@ -323,10 +329,24 @@ app.get('/view-product/:id/delete', async (req, res) => {
 });
 
 
-app.get("/shipper", (req, res) => {
+app.get("/shipper", async (req, res) => {
     try {
         if (req.session.user.check_shipper) {
-            res.render("shipper");
+            try {
+                await ordered_product.find({ distribution_hub: req.session.user.distribution_hub }, {}).then(products => {
+                    let map_product = products.map(Product => Product.toJSON());
+                    for (let i = 0; i < map_product.length; i++) {
+                        map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                    }
+                    res.render('shipper', {
+                        loggedInUser: req.session.user,
+                        products: map_product,
+                    });
+                })
+            }
+            catch (error) {
+                console.log(error.message);
+            }
         }
         else {
             res.redirect("/")
@@ -385,6 +405,7 @@ app.post("/add-product", upload.single("image"), async (req, res) => {
 
     res.render("add-product");
 })
+
 
 app.post('/view-product/:id/update', upload.single("image"), async (req, res) => {
     try {
@@ -573,9 +594,9 @@ app.post("/login", async (req, res) => {
 
         let map_user = check.toJSON();
         map_user.img = Buffer.from(map_user.img.data.data).toString('base64');
-        console.log(map_user)
-        console.log(check_vendor);
-        console.log(check_shipper);
+        // console.log(map_user)
+        // console.log(check_vendor);
+        // console.log(check_shipper);
 
 
 
@@ -584,12 +605,12 @@ app.post("/login", async (req, res) => {
             req.session.user = {
                 username: map_user.username,
                 user_id: map_user._id,
-                name:map_user.name,
-                bussiness_name:map_user.bussiness_name,
-                bussiness_address:map_user.bussiness_address,
-                address:map_user.address,
-                distribution_hub:map_user.distribution_hub,
-                phone_number:map_user.phone_number,
+                name: map_user.name,
+                bussiness_name: map_user.bussiness_name,
+                bussiness_address: map_user.bussiness_address,
+                address: map_user.address,
+                distribution_hub: map_user.distribution_hub,
+                phone_number: map_user.phone_number,
                 img: map_user.img,
                 check_shipper: check_shipper,
                 check_vendor: check_vendor,

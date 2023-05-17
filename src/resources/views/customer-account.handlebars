@@ -15,6 +15,20 @@
 </head>
 
 <body>
+  {{#if check_customer}}
+    {{> homepage_header}}
+  {{/if}}
+
+
+
+  {{#if check_vendor}}
+
+  {{/if}}
+
+
+  {{#if check_shipper}}
+
+  {{/if}}
   <main>
     <div class="row">
       <div class="profile-sidebar col-4">
@@ -184,7 +198,7 @@
                 Total: 1.494.000
               </div>
             </div>
-            
+
             <div class="order-wrapper container mb-3">
               <div class="order-shop pt-3">Cellphone S</div>
               <hr>
@@ -226,6 +240,10 @@
     </div>
   </main>
 
+  
+  {{#if check_customer}}
+    {{> footer}}
+  {{/if}}
 
 
 

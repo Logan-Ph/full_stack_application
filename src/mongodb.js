@@ -189,7 +189,6 @@ const Ordered_Product = new mongoose.Schema({
         data: Buffer,
         contentType: String
     }
-
 })
 
 const shipper = new mongoose.model("LogInShipper",LogInShipper)
