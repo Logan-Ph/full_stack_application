@@ -42,8 +42,23 @@
             </div>
         </nav>
     </div>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31355.765283069453!2d106.67776292477018!3d10.77521852909101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f38f9ed887b%3A0x14aded5703768989!2sDistrict%201%2C%20Ho%20Chi%20Minh%20City%2C%20Vietnam!5e0!3m2!1sen!2s!4v1684313234794!5m2!1sen!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
     <div class="py-5" id="content">
-        <h1>Parcel Information</h1>
+        <div class="row">
+            <div class="col-md-6 col-12 align-items-center">
+                <h1 class="ms-5">Parcel Information</h1>
+            </div>
+            <div class="col-md-6 col-12">
+                {{!-- Static button --}}
+                <div class="d-grid gap-2 me-5 d-flex justify-content-md-end justify-content-around ms-5 ms-md-0 mt-1">
+                    <button class="btn btn-outline-dark me-md-2" id="confirm-delivered" type="button"> <i class="fa-solid fa-camera"></i> Take Parcel Photo</button>
+                    <button class="btn btn-outline-dark" id="cancel-order" type="button"><i class="fa-solid fa-file-import"></i> Upload Parcel Photo</button>
+                </div>
+                {{!-- Static button --}}
+            </div>
+        </div>
         <div class="table-responsive mx-4 my-3">
             <table class="table">
                 <thead>
@@ -53,18 +68,6 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    <tr>
-                        <th class="text-primary" scope="row">Sender:</th>
-                        <td>Vendor</td>
-                    </tr>
-                    <tr>
-                        <th class="text-primary" scope="row">Product:</th>
-                        <td>Macbook Pro</td>
-                    </tr>
-                    <tr>
-                        <th class="text-primary" scope="row">Price:</th>
-                        <td>$1</td>
-                    </tr>
                     <tr>
                         <th class="text-primary" scope="row">Receiver's Name</th>
                         <td>Name</td>
@@ -80,9 +83,55 @@
                 </tbody>   
             </table>
         </div>
-        <div class="d-grid gap-2 me-5 d-flex justify-content-end">
-            <button class="btn btn-primary me-md-2" type="button">Confirm Delivered</button>
-            <button class="btn btn-secondary" type="button">Cancel Order</button>
+        <h2 class="ms-5">Product List:</h2>
+        <div class="row bg-light mx-4 mb-3 align-items-center">
+            <div class="col-md-2 col-3 p-1">
+                <img class="img-fluid border border-secondary-subtle" id="parcel-product" src="https://cf.shopee.vn/file/3a3d3b7b8d2bdbd80fc7c6338c2b2e7d" alt="">
+            </div>
+            <div class="col-md-10 col-9">
+                <table class="table product">
+                    <tr>
+                        <th class="text-primary col-5 col-sm-4" scope="row">Sender:</th>
+                        <td>Vendor name</td>
+                    </tr>
+                    <tr>
+                        <th class="text-primary col-4" scope="row">Product Name:</th>
+                        <td>Product name</td>
+                    </tr>
+                    <tr>
+                        <th class="text-primary" scope="row">Price:</th>
+                        <td>$1</td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
+        <div class="row bg-light mx-4 mb-3 align-items-center">
+            <div class="col-md-2 col-3 p-1">
+                <img class="img-fluid border border-secondary-subtle" id="parcel-product" src="https://cf.shopee.vn/file/3a3d3b7b8d2bdbd80fc7c6338c2b2e7d" alt="">
+            </div>
+            <div class="col-md-10 col-9">
+                <table class="table product">
+                    <tr>
+                        <th class="text-primary col-5 col-sm-4" scope="row">Sender:</th>
+                        <td>Vendor name</td>
+                    </tr>
+                    <tr>
+                        <th class="text-primary col-4" scope="row">Product Name:</th>
+                        <td>Product name</td>
+                    </tr>
+                    <tr>
+                        <th class="text-primary" scope="row">Price:</th>
+                        <td>$1</td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
+        <div class="d-grid gap-2 me-5 d-flex justify-content-md-end justify-content-around ms-5 ms-md-0">
+            <button class="btn btn-success me-md-2" id="confirm-delivered" type="button">Confirm Delivered</button>
+            <button class="btn btn-warning" id="cancel-order" type="button">Cancel Order</button>
+        </div>
+        <div>
+
         </div>
     </div>
 </body>
