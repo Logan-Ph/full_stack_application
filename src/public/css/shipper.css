@@ -129,7 +129,9 @@ img.shop-pic {
     border-color: #d20303; }
   #button-container {
     justify-content: center;
-    margin-bottom: 10px; } }
+    margin-bottom: 10px; }
+  .table.product th, .table.product td {
+    font-size: small; } }
 
 #product-suggest img {
   width: 180px;
@@ -172,4 +174,6 @@ p.mt-2 {
   #product-detail-bottom {
     font-size: xx-small; }
   #shop-section-right p {
-    font-size: xx-small; } }
+    font-size: xx-small; }
+  .table.product th, .table.product td {
+    font-size: x-small; } }

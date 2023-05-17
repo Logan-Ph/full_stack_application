@@ -70,10 +70,6 @@ img.d-block {
     color: black
 }
 
-button#parcel-info-bottom {
-    
-}
-
 @media (max-width: 1200px) {
     .container, .container-lg, .container-md, .container-sm {
         max-width: none;
@@ -163,7 +159,6 @@ img.shop-pic {
         margin: 0px;
     }
 
-
     #shop-section a {
         padding: 5px;
         font-size: x-small;
@@ -173,6 +168,10 @@ img.shop-pic {
     #button-container {
         justify-content: center;
         margin-bottom: 10px;
+    }
+
+    .table.product th, .table.product td {
+        font-size: small;
     }
 }
 
@@ -210,6 +209,7 @@ p.mt-2 {
         height: 40px;
     }
 
+
 }
 
 @media (max-width: 489px) {
@@ -235,5 +235,9 @@ p.mt-2 {
 
     #shop-section-right p{
         font-size: xx-small;
+    }
+
+    .table.product th, .table.product td {
+        font-size: x-small;
     }
 }

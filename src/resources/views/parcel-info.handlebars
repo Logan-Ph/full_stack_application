@@ -53,8 +53,8 @@
             <div class="col-md-6 col-12">
                 {{!-- Static button --}}
                 <div class="d-grid gap-2 me-5 d-flex justify-content-md-end justify-content-around ms-5 ms-md-0 mt-1">
-                    <button class="btn btn-outline-secondary me-md-2" id="confirm-delivered" type="button"> <i class="fa-solid fa-camera"></i> Take Parcel Photo</button>
-                    <button class="btn btn-outline-secondary" id="cancel-order" type="button"><i class="fa-solid fa-file-import"></i> Upload Parcel Photo</button>
+                    <button class="btn btn-outline-dark me-md-2" id="confirm-delivered" type="button"> <i class="fa-solid fa-camera"></i> Take Parcel Photo</button>
+                    <button class="btn btn-outline-dark" id="cancel-order" type="button"><i class="fa-solid fa-file-import"></i> Upload Parcel Photo</button>
                 </div>
                 {{!-- Static button --}}
             </div>
@@ -69,18 +69,6 @@
                 </thead>
                 <tbody class="table-group-divider">
                     <tr>
-                        <th class="text-primary" scope="row">Sender:</th>
-                        <td>Vendor</td>
-                    </tr>
-                    <tr>
-                        <th class="text-primary" scope="row">Product:</th>
-                        <td>Macbook Pro</td>
-                    </tr>
-                    <tr>
-                        <th class="text-primary" scope="row">Price:</th>
-                        <td>$1</td>
-                    </tr>
-                    <tr>
                         <th class="text-primary" scope="row">Receiver's Name</th>
                         <td>Name</td>
                     </tr>
@@ -94,6 +82,49 @@
                     </tr>
                 </tbody>   
             </table>
+        </div>
+        <h2 class="ms-5">Product List:</h2>
+        <div class="row bg-light mx-4 mb-3 align-items-center">
+            <div class="col-md-2 col-3 p-1">
+                <img class="img-fluid border border-secondary-subtle" id="parcel-product" src="https://cf.shopee.vn/file/3a3d3b7b8d2bdbd80fc7c6338c2b2e7d" alt="">
+            </div>
+            <div class="col-md-10 col-9">
+                <table class="table product">
+                    <tr>
+                        <th class="text-primary col-5 col-sm-4" scope="row">Sender:</th>
+                        <td>Vendor name</td>
+                    </tr>
+                    <tr>
+                        <th class="text-primary col-4" scope="row">Product Name:</th>
+                        <td>Product name</td>
+                    </tr>
+                    <tr>
+                        <th class="text-primary" scope="row">Price:</th>
+                        <td>$1</td>
+                    </tr> 
+                </table>
+            </div>
+        </div>
+        <div class="row bg-light mx-4 mb-3 align-items-center">
+            <div class="col-md-2 col-3 p-1">
+                <img class="img-fluid border border-secondary-subtle" id="parcel-product" src="https://cf.shopee.vn/file/3a3d3b7b8d2bdbd80fc7c6338c2b2e7d" alt="">
+            </div>
+            <div class="col-md-10 col-9">
+                <table class="table product">
+                    <tr>
+                        <th class="text-primary col-5 col-sm-4" scope="row">Sender:</th>
+                        <td>Vendor name</td>
+                    </tr>
+                    <tr>
+                        <th class="text-primary col-4" scope="row">Product Name:</th>
+                        <td>Product name</td>
+                    </tr>
+                    <tr>
+                        <th class="text-primary" scope="row">Price:</th>
+                        <td>$1</td>
+                    </tr> 
+                </table>
+            </div>
         </div>
         <div class="d-grid gap-2 me-5 d-flex justify-content-md-end justify-content-around ms-5 ms-md-0">
             <button class="btn btn-success me-md-2" id="confirm-delivered" type="button">Confirm Delivered</button>
