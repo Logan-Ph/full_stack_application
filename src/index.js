@@ -139,7 +139,7 @@ app.get("/customer-account", (req, res) => {
 app.get("/add-product", (req, res) => {
     try {
         if (req.session.user.check_vendor) {
-            res.render("add-product");
+            res.render("add-product",{loggedInUser: req.session.user});
         }
         else {
             res.redirect("/")

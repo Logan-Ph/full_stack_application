@@ -22,17 +22,17 @@
             <div class="log-out nav-item dropdown mx-4">
                 <a class="nav-link dropdown-toggle d-flex align-items-center account_list_item" href="#"
                     id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="data:image/png;base64,{{loggedInUser.img}}" style="width: 30px;" alt="Avatar"
+                    <img src="data:image/png;base64,{{loggedInUser.img}}" style="width: 30px; height: 30px;" alt="Avatar"
                         class="me-2 rounded-circle">
                     {{loggedInUser.username}}
                 </a>
                 <ul class="profile dropdown-menu dropdown-menu-end not-display list_item"
                     aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/customer-account">Profile</a></li>
+                    <li><a class="dropdown-item" href="/customer-account"><i class="fa-solid fa-user-pen"></i> Profile</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="/logout" id="logout-btn">Log Out</a></li>
+                    <li><a class="dropdown-item" href="/logout" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
                 </ul>
             </div>
             <!---->
