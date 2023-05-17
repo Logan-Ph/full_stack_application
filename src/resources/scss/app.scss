@@ -592,6 +592,21 @@ body::-webkit-scrollbar {
     margin-right: 10px;
 }
 
+.fa-phone:before {
+    content: "\f095";
+    margin-right: 10px;
+}
+
+.fa-key:before {
+    content: "\f084";
+    margin-right: 10px ;
+}
+
+.fa-briefcase:before {
+    content: "\f0b1";
+    margin-right: 10px;
+}
+
 .wrapper{
     margin: 30px 0px;
     padding: 20px 10px;
@@ -716,5 +731,77 @@ body::-webkit-scrollbar {
     z-index: -1;
 }
 
+// Signup Page
+.signup-text-center{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url(/image/lzd1.jpg);
+    opacity: 0.95;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+.vendor-signup-text-center{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url(/image/vendor-bg-Lazada.png);
+    background-position: 0%;
+    opacity: 0.85;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+.shipper-signup-text-center{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url(/image/shipper.png);
+    background-position: 20%;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.signup-form-signup{
+    max-width: 550px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 2px solid #010583ce;
+    box-shadow: 5px 5px 5px #fefefe inset 3px 3px 3px #010683;
+}
+
+.signup_form_bg{
+    background-color: #fff;
+}
+
+.signup_breadcrumb{
+    width: 100%;
+}
+
+.signup_breadcrumb_item a:hover{
+    color: #D21312;
+}
+
+.signup_form_h1{
+    text-align: center;
+    color: navy;
+    font-size: bold;
+    font-size: 30px;
+    text-shadow: 0 0 2px navy;
+}
+
+.signup_form_label{
+    font-size: 18px;
+    color: navy;
+    font-weight: 500;
+}
+
+.signup_form_control{
+    border: 2px solid navy !important;
+}
