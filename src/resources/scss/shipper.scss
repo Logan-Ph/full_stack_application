@@ -15,7 +15,9 @@
     justify-content: flex-start !important;
     margin-left: 0px;
 }
-
+.fa-circle-user:before {
+    margin-right: 0px;
+}
 body {
     background-color: #EFF0F5;
 }
@@ -68,6 +70,10 @@ img.d-block {
     color: black
 }
 
+button#parcel-info-bottom {
+    
+}
+
 @media (max-width: 1200px) {
     .container, .container-lg, .container-md, .container-sm {
         max-width: none;
@@ -116,7 +122,7 @@ img.shop-pic {
     min-width: 40px;
 }
 
-.fa-solid {
+.fa-star, .fa-cart-plus, .fa-rotate-left, .fa-truck-fast {
     color: rgb(210, 3, 3);
 }
 .value {
@@ -181,7 +187,7 @@ img.shop-pic {
     padding: 0px;
 }
 
-.fa-regular {
+.fa-regular.fa-heart {
     color:rgb(210, 3, 3);
 }
 .fa-solid.fa-rotate-left {

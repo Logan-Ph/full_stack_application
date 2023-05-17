@@ -12,6 +12,9 @@
   justify-content: flex-start !important;
   margin-left: 0px; }
 
+.fa-circle-user:before {
+  margin-right: 0px; }
+
 body {
   background-color: #EFF0F5; }
 
@@ -91,7 +94,7 @@ img.shop-pic {
   border: solid 1px gainsboro;
   min-width: 40px; }
 
-.fa-solid {
+.fa-star, .fa-cart-plus, .fa-rotate-left, .fa-truck-fast {
   color: #d20303; }
 
 .value {
@@ -137,7 +140,7 @@ img.shop-pic {
 .row#product-suggest-container {
   padding: 0px; }
 
-.fa-regular {
+.fa-regular.fa-heart {
   color: #d20303; }
 
 .fa-solid.fa-rotate-left {
