@@ -37,7 +37,11 @@ app.engine(
   "handlebars",
   handlebars.engine({
     extname: ".hbs",
-    helpers: require("./config/handlebars-helpers"),
+    helpers: {
+        ifeq: function (a, b) {
+            if (a === b) { return true }
+        }
+    },
     partialsDir: [
       path.join(__dirname, "resources/views/partials"),
       path.join(__dirname, "resources/views/account"),
@@ -678,5 +682,45 @@ app.post("/user/update", async (req, res) => {
   }
 });
 
+// View user's personal information
+
+
+
+
+// add to cart 
+app.get("/user/cart", async (req, res) => {
+
+    console.log("user cart is called ")
+    if (!req.session.user) {
+      res.redirect("/login");
+      return;
+    }
+
+    user.find({  name : req.session.user.username}).then((users,errors) => {
+            var id = users[0].toObject()._id.toString()
+            console.log(id)
+            ordered_product.find({user_id: id}).then((ordered_product,errors) => {
+                // have'nt changed format ordered_product
+
+                console.log(ordered_product)
+
+                // response ordered product 
+                res.send(ordered_product);
+            });
+        
+        });
+
+           
+                // loop over ordered_product and return response
+
+              console.log("test_products is called hello ")
+
+
+
+    });
+
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
+
+
+
