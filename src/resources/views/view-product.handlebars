@@ -27,9 +27,13 @@
                   jendecee
                 </a>
                 <ul class="profile dropdown-menu dropdown-menu-end not-display list_item" aria-labelledby="navbarDropdown">
+<<<<<<< Updated upstream
                     <li><a class="dropdown-item" href="#">Profile</a></li>
+=======
+                    <li><a class="dropdown-item" href="/customer-account"><i class="fa-solid fa-user-pen"></i> Profile</a></li>
+>>>>>>> Stashed changes
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="/logout" id="logout-btn">Log Out</a></li>
+                    <li><a class="dropdown-item" href="/logout" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a></li>
                 </ul>
             </div>
             <!---->
@@ -66,7 +70,6 @@
                             <p class="card-text">Category: {{this.category}}</p>
                             <p class="card-text">Price: {{this.price}}.000 VND</p>
                             <!-- Edit Button trigger modal -->
-
                             <a onclick="edit_product('{{this._id}}');"><button  type="button"
                                 class="btn btn-primary edit-button" data-bs-toggle="modal"
                                 data-bs-target="#editModal">Edit</button></a>
