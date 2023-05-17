@@ -249,14 +249,19 @@ app.get("/signup-shipper", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-    if (req.session.user.check_vendor) {
-        res.redirect("/view-product");
+    try{
+        if (req.session.user.check_vendor) {
+            res.redirect("/view-product");
+        }
+        else if (req.session.user.check_shipper) {
+            res.redirect("/shipper");
+        }
+        else {
+            res.redirect("/home");
+        }
     }
-    else if (req.session.user.check_shipper) {
-        res.redirect("/shipper");
-    }
-    else {
-        res.redirect("/home");
+    catch{
+        res.redirect("/login");  //this is for sometime the req.session.user does not recognize the 'check_vendor' and 'check_shipper' properties
     }
 });
 
@@ -594,15 +599,14 @@ app.post("/login", async (req, res) => {
 
         let map_user = check.toJSON();
         map_user.img = Buffer.from(map_user.img.data.data).toString('base64');
-        // console.log(map_user)
+        // console.log(map_user.check_vendor)
         // console.log(check_vendor);
         // console.log(check_shipper);
 
-
-
         if (map_user && await bcrypt.compare(req.body.password, map_user.password)) {
-
             req.session.user = {
+                check_shipper: check_shipper,
+                check_vendor: check_vendor,
                 username: map_user.username,
                 user_id: map_user._id,
                 name: map_user.name,
@@ -612,8 +616,6 @@ app.post("/login", async (req, res) => {
                 distribution_hub: map_user.distribution_hub,
                 phone_number: map_user.phone_number,
                 img: map_user.img,
-                check_shipper: check_shipper,
-                check_vendor: check_vendor,
             };
 
             // console.log("User object stored in session:", req.session.user); 
