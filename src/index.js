@@ -383,7 +383,7 @@ app.post("/add-product", upload.single("image"), async (req, res) => {
             console.log(err, "error has occur");
         });
 
-    res.render("add-product");
+    res.redirect("/add-product");
 })
 
 app.post('/view-product/:id/update', upload.single("image"), async (req, res) => {
