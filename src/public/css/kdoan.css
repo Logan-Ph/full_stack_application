@@ -93,14 +93,14 @@
   max-width: 100% !important; }
 
 /*Pop up to edit product or confirm user of deleting product*/
-.delete-button .modal-dialog, .edit-button .modal-dialog, .order-success-button .modal-dialog {
+.delete-button .modal-dialog, .edit-button .modal-dialog, .order-success-button .modal-dialog, .product-added .modal-dialog {
   position: absolute !important;
   top: 50% !important;
   left: 48% !important;
   transform: translate(-50%, -50%) !important;
   width: 90% !important; }
 
-.delete-button .modal-content {
+.delete-button .modal-content, .product-added .modal-content {
   height: 50% !important; }
 
 .edit-button .modal-content, .order-success-button .modal-content {
