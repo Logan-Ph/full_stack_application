@@ -1,11 +1,11 @@
 module.exports = {
-    ifeq: function(a, b, options){
+    ifeq: function(a, b){
       if (a === b) {
-        return options.fn(this);
+        return true;
         }
-      return options.inverse(this);
+      return false;
     },
-    bar: function(){
-      return "BAR!";
-    }
+    // bar: function(){
+    //   return "BAR!";
+    // }
   }

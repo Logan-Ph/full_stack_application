@@ -4,7 +4,8 @@ const path = require('path');
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
 const mongoose = require("mongoose");
-const connectionUrl = process.env.MONGODB_URL;
+// const connectionUrl = process.env.MONGODB_URL;
+const connectionUrl = "mongodb+srv://s3975979:Sang5850@cluster0.uuhro1a.mongodb.net/login?retryWrites=true&w=majority"
 
 mongoose
   .connect(connectionUrl)
