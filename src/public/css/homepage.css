@@ -397,3 +397,26 @@ form.search button:hover {
     box-shadow: 0 0 3px #ffc107; }
   .announcement h1 {
     font-size: 35px; } }
+
+.product-total {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  background-color: red;
+  font-size: 14px;
+  padding: 2px;
+  color: #fff;
+  right: -10px;
+  top: -8px;
+  text-align: center;
+  display: grid;
+  place-items: center;
+  border-radius: 50%; }
+
+.cart-img {
+  position: relative; }
+
+.navb-right {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
