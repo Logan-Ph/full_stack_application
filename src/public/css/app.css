@@ -261,7 +261,7 @@ body::-webkit-scrollbar {
     display: none; } }
 
 /* Footer style */
-.container-fuild {
+.footer_container_fuild {
   margin-top: 10px;
   background-color: #f5f4f4;
   padding: 50px 0px; }
