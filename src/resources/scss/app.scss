@@ -11,8 +11,13 @@ body::-webkit-scrollbar {
     overflow-x: hidden;
 }
 
-.container-fuild{
+.tmainn_container_fuild_navbar{
     background-color: #fff;
+    margin-top: 0px !important;
+}
+
+.top_banner_container{
+    margin-top: 0px;
 }
 
 .top-banner .container-fuild{
@@ -22,7 +27,7 @@ body::-webkit-scrollbar {
     width: 100%;
 }
 
-.navbar{
+.tmainn_container_fuild_navbar{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,32 +73,6 @@ body::-webkit-scrollbar {
     color: #D21312;
 }
 
-.item-button{
-    background-color: #D21312;
-    width: 120px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s;
-    padding: 15px 25px;
-    border-radius: 10px;
-}
-
-.item-button:hover{
-    background-color: #070A52 ;
-    transform: scale(1.0);
-}
-
-.item-button a{
-    font-size: 20px;
-    font-weight: 500;
-    color: #fff;
-    text-decoration: none;
-    letter-spacing: 2px;
-    padding: 15px 25px;
-}
-
 /* Modal */
 .fa-bars::before {
     content: "\f0c9";
@@ -107,7 +86,7 @@ body::-webkit-scrollbar {
     width: 300px;
 }
 
-.modal-content{
+.tmai_modal_content{
     border-radius: 0;
     height: 100vh;
     overflow-y: scroll;
@@ -141,14 +120,14 @@ body::-webkit-scrollbar {
     font-size: 30px;
 }
 
-.modal-body{
+.tmai_modal_body{
     width: 88%;
     margin: 0 auto;
     padding: 75px 0 0 0;
     flex: unset;
 }
 
-.modal-body .modal-line{
+.tmai_modal_body .modal-line{
     width: 100%;
     display: flex;
     align-items: center;
@@ -160,7 +139,7 @@ body::-webkit-scrollbar {
     border-bottom: 1px solid navy;
 }
 
-.modal-body .modal-line:hover{
+.tmai_modal_body .modal-line:hover{
     color: #D21312;
     border-bottom: 1px solid #D21312;
 }
@@ -188,28 +167,9 @@ body::-webkit-scrollbar {
 
 
 .navb-button{
-    width: 100%;
-    height: 50px;
-    background-color: #070A52;
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: all .5s ease;
-    border-radius: 20px;
-
-}
-.navb-button a{
-    text-decoration: none;
-    color: #fff;
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    
-
-}
-
-.navb-button:hover{
-    background-color: #D21312;
+    justify-content: space-around;
 }
 
 .mobile-modal-footer{
@@ -246,7 +206,7 @@ body::-webkit-scrollbar {
         margin-left: 0 !important;
     }
     .bg-image {
-        top: 10% !important;
+        top: 20% !important;
         height: 95% !important;
 }
 }
@@ -271,7 +231,7 @@ body::-webkit-scrollbar {
         margin: 0;
         padding: 0;
     }
-    .modal-content{
+    .tmai_modal_content{
         width: 82% !important;
         border-radius: 10px;
         height: 100vh;
@@ -306,7 +266,7 @@ body::-webkit-scrollbar {
         font-size: 30px;
     }
     
-    .modal-body{
+    .tmai_modal_body{
     
         width: 88%;
         margin: 0 auto;
@@ -314,7 +274,7 @@ body::-webkit-scrollbar {
         flex: unset;
     }
     
-    .modal-body .modal-line{
+    .tmai_modal_body .modal-line{
     
         width: 100%;
         display: flex;
@@ -327,7 +287,7 @@ body::-webkit-scrollbar {
         border-bottom: 1px solid navy;
     }
     
-    .modal-body .modal-line:hover{
+    .tmai_modal_body .modal-line:hover{
         color: #D21312;
         border-bottom: 1px solid #D21312;
     }
@@ -351,26 +311,6 @@ body::-webkit-scrollbar {
         width: 35px;
         margin-right: 15px;
         padding: 0 0 3px;
-    }
-    .navb-button{
-        width: 100%;
-        height: 50px;
-        background-color: #070A52;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        font-size: 22px;
-        font-weight: 900;
-        letter-spacing: 2px;
-        transition: all .5s ease;
-        border-radius: 20px;
-    
-    }
-    
-    .navb-button:hover{
-        background-color: #D21312;
-    
     }
     
     .mobile-modal-footer{
@@ -397,6 +337,7 @@ body::-webkit-scrollbar {
 
 /* Footer style */
 .container-fuild {
+    margin-top: 10px ;
     background-color: rgb(245, 244, 244);
     padding: 50px 0px;
 }
@@ -483,9 +424,6 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.form-control{
-    width: 80px;
 }
 
 .single-item{
@@ -654,6 +592,21 @@ body::-webkit-scrollbar {
     margin-right: 10px;
 }
 
+.fa-phone:before {
+    content: "\f095";
+    margin-right: 10px;
+}
+
+.fa-key:before {
+    content: "\f084";
+    margin-right: 10px ;
+}
+
+.fa-briefcase:before {
+    content: "\f0b1";
+    margin-right: 10px;
+}
+
 .wrapper{
     margin: 30px 0px;
     padding: 20px 10px;
@@ -685,7 +638,7 @@ body::-webkit-scrollbar {
     color: #E90064;
 }
 
-.form-control{
+.tmai_form_control{
     margin: 10px 0px;
     height: 50px;
     font-weight: 500;
@@ -698,7 +651,7 @@ body::-webkit-scrollbar {
     padding: 5px 0px;
 }
 
-.wrapper .form-control{
+.wrapper .tmai_form_control{
     border: 1px solid navy;
     box-shadow: 0 0 5px navy, inset 0 0 5px navy;
 }
@@ -706,7 +659,7 @@ body::-webkit-scrollbar {
 .wrapper .form-label{
     color: navy;
 }
-.wrapper:hover .form-control{
+.wrapper:hover .tmai_form_control{
     border: 1px solid #E90064;
     box-shadow: 0 0 5px #E90064, inset 0 0 5px #E90064;
 }
@@ -714,14 +667,15 @@ body::-webkit-scrollbar {
     color: #E90064;
 }
 
-.btn-primary{
+.tmai_button{
     padding: 10px 40px !important;
     margin: 20px 0px !important;
     font-size: 20px !important; 
+
     transition: .5s;
 }
 
-.wrapper .btn-primary{
+.wrapper .tmai_button{
     color: #fff;
     background-color: navy;
     box-shadow: 0 0 10px navy, inset 0 0 10px navy;
@@ -777,5 +731,77 @@ body::-webkit-scrollbar {
     z-index: -1;
 }
 
+// Signup Page
+.signup-text-center{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url(/image/lzd1.jpg);
+    opacity: 0.95;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+.vendor-signup-text-center{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url(/image/vendor-bg-Lazada.png);
+    background-position: 0%;
+    opacity: 0.85;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+.shipper-signup-text-center{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-image: url(/image/shipper.png);
+    background-position: 20%;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.signup-form-signup{
+    max-width: 550px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 2px solid #010583ce;
+    box-shadow: 5px 5px 5px #fefefe inset 3px 3px 3px #010683;
+}
+
+.signup_form_bg{
+    background-color: #fff;
+}
+
+.signup_breadcrumb{
+    width: 100%;
+}
+
+.signup_breadcrumb_item a:hover{
+    color: #D21312;
+}
+
+.signup_form_h1{
+    text-align: center;
+    color: navy;
+    font-size: bold;
+    font-size: 30px;
+    text-shadow: 0 0 2px navy;
+}
+
+.signup_form_label{
+    font-size: 18px;
+    color: navy;
+    font-weight: 500;
+}
+
+.signup_form_control{
+    border: 2px solid navy !important;
+}

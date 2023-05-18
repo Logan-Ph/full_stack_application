@@ -18,13 +18,13 @@
         <div class="playground-main">
             {{> navigationtab}}
             <div class="playground-right">
-                {{#ifeq state "view_personal_info"}}
+                {{#if (ifeq state 'view_personal_info')}}
                 {{> view_personal_info_partial}}
-                {{/ifeq}}
+                {{/if}}
 
-                {{#ifeq state "change_personal_info"}}
+                {{#if (ifeq state 'change_personal_info')}}
                 {{> change_personal_info_partial}}
-                {{/ifeq}}
+                {{/if}}
             </div>
         </div>
     </div>

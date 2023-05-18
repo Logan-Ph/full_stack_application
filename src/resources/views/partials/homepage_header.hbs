@@ -1,0 +1,61 @@
+<div class="tmai_container_fuild container-fuild navbar">
+
+    <div class="navb-logo">
+        <a href="/home">
+            <img src="/image/lzd-logo.png" alt="logo">
+        </a>
+    </div>
+
+    <form id="searchForm" class="homepage_navb d-flex" role="search">
+        <input id="searchInput" class="nnthm_form_control form-control me-2" type="search" placeholder="Search"
+            aria-label="Search" style="width:500px; height:40px">
+        <button id="searchButton" type="button" class="tmai_danger_btn btn btn-outline-danger">Search</button>
+    </form>
+
+
+    <div class="dropdown text-end" style="margin-left:20px">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle " data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <img src="data:image/png;base64,{{loggedInUser.img}}" alt="user_image" width="32" height="32"
+                class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu text-small" style="top:108%; left:-40px">
+            <li><a class="dropdown-item" href="/customer-account">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Order Tracking</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="/logout">Log out</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+
+        // Add event listener for form submission
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            performSearch();
+        });
+
+        // Add event listener for search button click
+        searchButton.addEventListener('click', function () {
+            performSearch();
+        });
+
+        // Function to perform search
+        function performSearch() {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm !== '') {
+                // Redirect to /search with the appropriate query
+                window.location.href = '/search?q=' + encodeURIComponent(searchTerm);
+            }
+        }
+    });
+</script>

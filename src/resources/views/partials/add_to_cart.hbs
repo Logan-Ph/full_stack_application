@@ -1,5 +1,17 @@
-<div class="cart" onmouseover="showProductList()" onmouseout="hideProductList()">
-  <div class="cart_image">
+<style>
+  
+
+</style>
+
+<div class= "cart" >
+    <div class="product-table" style="display: none;">
+
+      <button class="checkout">
+        <a href="/home/product_detail/check_out/">check_out</a>
+      </button>
+    </div>
+
+  <div class="cart_image" onmouseover="showProductList()" onmouseout="hideProductList()">
     <img src="image/cart.png">
   </div>
 </div>
@@ -44,85 +56,108 @@ function hideProductList() {
 
 </script>
 
+<
+<div class="cart">
+  <div class="product-table" style="display: none;"></div>
+
+  <div class="cart_image" onmouseover="showProductList()" onmouseout="hideProductList()">
+    <img src="image/cart.png">
+  </div>
+</div>
+
 <script>
+  var xhr = new XMLHttpRequest();
+  var url = "http://localhost:3000/user/cart";
+  var products;
+  var productList;
 
+  xhr.open("GET", url, true);
 
-  
-var xhr = new XMLHttpRequest();
-var url = "http://localhost:3000/user/cart";
-var products;
-var productList;
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var response = xhr.response;
+        // Process the response data
+        console.log(response);
+        products = JSON.parse(response);
 
-xhr.open("GET", url, true);
-
-xhr.onreadystatechange = function() {
-  if (xhr.readyState === XMLHttpRequest.DONE) {
-    if (xhr.status === 200) {
-      var response = xhr.response;
-      // Process the response data
-      console.log(response);
-      products = response
-      is_getting_product = true;
-    } else {
-      // Handle the error
-      console.error('Error:', xhr.status);
+        is_getting_product = true;
+      } else {
+        // Handle the error
+        console.error('Error:', xhr.status);
+      }
     }
+  };
+
+  xhr.send();
+
+  function createProductList() {
+    const table = document.createElement('table');
+    const tableHead = document.createElement('thead');
+    const tableBody = document.createElement('tbody');
+
+    // Create table header row
+    const headerRow = document.createElement('tr');
+    const headers = ['Product Name', 'Category', 'Price'];
+
+    headers.forEach((header) => {
+      const th = document.createElement('th');
+      th.textContent = header;
+      headerRow.appendChild(th);
+    });
+
+    tableHead.appendChild(headerRow);
+    table.appendChild(tableHead);
+
+    // Create table body rows
+    products.forEach((product) => {
+      const row = document.createElement('tr');
+
+      const productNameCell = document.createElement('td');
+      productNameCell.textContent = product.product_name;
+      row.appendChild(productNameCell);
+
+      const categoryCell = document.createElement('td');
+      categoryCell.textContent = product.category;
+      row.appendChild(categoryCell);
+
+      const priceCell = document.createElement('td');
+      priceCell.textContent = product.price.toFixed(3); // Format price to 3 decimal places
+      row.appendChild(priceCell);
+
+      tableBody.appendChild(row);
+    });
+
+    table.appendChild(tableBody);
+
+    const productTableDiv = document.createElement('div');
+    productTableDiv.classList.add('product-table');
+    productTableDiv.appendChild(table);
+
+    // Create checkout button
+    const checkoutButton = document.createElement('button');
+    checkoutButton.textContent = 'Checkout';
+    checkoutButton.addEventListener('click', () => {
+      window.location.href = '/home/product_detail/check_out/';
+    });
+    productTableDiv.appendChild(checkoutButton);
+
+    return productTableDiv;
   }
-};
 
-xhr.send();
+  function showProductList() {
+    if (!productList) {
+      productList = createProductList();
+      const cart = document.querySelector('.cart');
+      cart.insertBefore(productList, cart.firstChild);
+    }
 
-function createProductList() {
-  const ul = document.createElement('ul');
-  console.log()
-  products.forEach((product) => {
-    const li = document.createElement('li');
-    li.textContent = JSON.stringify(product);
-
-    ul.appendChild(li);
-  });
-
-  return ul;
-}
-
- 
-
-function showProductList() {
-
-for (var i = 0; i <= products.length; i++) {
-// loop over a json object
-console.log(products.length);
-
-
-}
-
-
-
-  if (!productList ) {
-    productList = createProductList();
-    const cart = document.querySelector('.cart');
-    cart.appendChild(productList);
-  }
-}
-
-function hideProductList() {
-  if (productList) {
-    const cart = document.querySelector('.cart');
-    cart.removeChild(productList);
-    productList = null;
+    const productTable = document.querySelector('.product-table');
+    productTable.style.display = 'block';
   }
 
-
-  
-}
-
-
-
-
-
-  
-
-
-
-
-</script>
+  function hideProductList() {
+    const productTable = document.querySelector('.product-table');
+    productTable.style.display = 'none';
+  }
+</script

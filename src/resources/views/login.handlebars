@@ -5,49 +5,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {{!-- BootStrap5 link --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    {{!--CSS link --}}
+    <link href="css/app.css" rel="stylesheet">
+
+    {{!-- fontawsome embedded  --}}
+    <script src="https://kit.fontawesome.com/3b3da2da02.js" crossorigin="anonymous"></script>
     <title>Login page</title>
 </head>
 
 <body>
-    {{> header}}
-    <div class="container my-5">
-        <div class="text-center">
-            <h1>LOG IN</h1>
-            <p class="lead">New member? <span><a class="link-opacity-50-hover" href="/signup-user">Sign up as
-                        Customer</a></span> <span> / <a class="link-opacity-50-hover" href="/signup-vendor">Sign up as
-                        Vendor</a></span> / <span><a class="link-opacity-50-hover" href="/signup-shipper">Sign up as
-                        Shipper</a></span>
-            </p>
-        </div>
-        <div class="row justify-content-center row-gap-3">
-            <form action="/login" method="post" class="col-md-8 col-10 bg-light p-3 my-3">
+{{> header}}
+     <div class="container-background">
+        <div class="bg-image"></div>
+        <div class="wrapper">
+            <h2>Login</h2>
+            <div class="row justify-content-center row-gap-3">
+            <form action="/login" method="post" class="col-md-8 col-10 p-3 my-3">
+
                 {{#if showUser}}
                 <div class="alert alert-warning">Wrong username or password</div>
                 {{/if}}
                 <div class="form-group mb-2">
-                    <label for="username" class="form-label">Username:</label>
+                    <label for="username" class="form-label"><i class="fa-solid fa-user"></i>Username:</label>
                     <input type="text" id="username" name="username" pattern="[a-zA-Z0-9]+{8, 15}"
-                        placeholder="Enter your username" class="form-control" aria-describedby="usernameHelp"
+                        placeholder="Enter your username" class="tmai_form_control form-control" aria-describedby="usernameHelp"
                         title="Please enter again">
                 </div>
                 <div class="form-group mb-2">
-                    <label for="password" class="form-label">Password:</label>
+                    <label for="password" class="form-label"><i class="fa-solid fa-lock"></i>Password:</label>
                     <input type="password" name="password" id="password" pattern="(!@#$%^&*+ {8, 20}"
-                        placeholder="Enter your password" class="form-control" title="Please enter again" required>
+                        placeholder="Enter your password" class="tmai_form_control form-control" title="Please enter again" required>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Log In</button>
+                    <button type="submit" class="tmai_button btn btn-primary">Log In</button>
+                </div>
+                <div class="register-link">
+                    <p>Don't have any account ?</p>
+                    <p class="lead"><span><a class="link-opacity-50-hover" href="/signup-user">Sign up as
+                        Customer</a></span> <span> / <a class="link-opacity-50-hover" href="/signup-vendor">Sign up as
+                        Vendor</a></span> / <span><a class="link-opacity-50-hover" href="/signup-shipper">Sign up as
+                        Shipper</a></span>
+                    </p>
                 </div>
             </form>
+            </div>
         </div>
     </div>
     {{> footer}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-     <!--Bootstrap header/footer JavaScript -->
+    <!--Bootstrap header/footer JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </body>
