@@ -453,7 +453,7 @@ app.get("/view-product/:id/update", (req, res) => {
 
 app.post("/add-product", upload.single("image"), async (req, res) => {
     const product_info = product({
-        owner: req.session.user.check_vendor.username,
+        owner: req.session.user.check_vendor.bussiness_name,
         product_name: req.body.product_name,
         category: req.body.category,
         price: req.body.price,
@@ -473,7 +473,7 @@ app.post("/add-product", upload.single("image"), async (req, res) => {
             console.log(err, "error has occur");
         });
 
-    res.render("add-product");
+    res.redirect("/add-product");
 })
 
 app.post('/view-product/:id/update', upload.single("image"), async (req, res) => {
