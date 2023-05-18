@@ -53,51 +53,44 @@
                     <i class="fa-solid fa-boxes-stacked fs-1 primary-text rounded-full secondary-bg p-3"></i>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 col-10">
-                <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
-                    <div>
-                        <h3 class="fs-2">3</h3>
-                        <p class="fs-5">Delivered Orders</p>
-                    </div>
-                    <i class="fa-solid fa-square-check fs-1 primary-text rounded-full secondary-bg p-3"></i>
-                </div>
-            </div>
         </div>
         <h2 class="my-3">Active Orders</h2>
         <div class="container-fluid">
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search Orders" aria-label="Search">
-              <button class="btn btn-primary" type="submit">Search</button>
+              <button class="btn #shipper-search-button" type="submit"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
             </form>
         </div>
-        <div class="table-responsive mx-4 my-3">
-            <table class="table table-striped">
+        <div class="table-responsive mx-4 mt-3 shadow-sm">
+            <table class="table table-striped mb-0">
                 <thead>
                     <tr>
                         <th class="col-5"scope="col">Tracking Number</th>
                         <th scope="col">Address</th>
-                        <th class="col-1" scope="col">Status</th>
+                        <th class="col-2" scope="col">Status</th>
                         <th class="col-1" scope="col">Edit</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
+                    {{#each customer_list}}
                     <tr>
-                        <th scope="row">1</th>
-                        <td>District 1</td>
+                        <th scope="row">{{this.customer_id}}</th>
+                        <td>{{this.address}}</td>
                         <td class="text-success"><i class="fa-solid fa-circle fa-beat-fade fa-xs"></i> Active</td>
-                        <td><a href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <td><a href="/{{this.customer_id}}/parcel-info"><i class="fa-solid fa-pen-to-square"></i></a></td>
                     </tr>
+                    {{/each}}
                     <tr>
                         <th scope="row">2</th>
                         <td>District 2</td>
                         <td class="text-success"><i class="fa-solid fa-circle fa-beat-fade fa-xs"></i> Active</td>
-                        <td><a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <td><a href="/parcel-info"><i class="fa-solid fa-pen-to-square"></i></a></td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
                         <td>District 3</td>
                         <td class="text-success"><i class="fa-solid fa-circle fa-beat-fade fa-xs"></i> Active</td>
-                        <td><a href="#"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                        <td><a href="/parcel-info"><i class="fa-solid fa-pen-to-square"></i></a></td>
                     </tr>
                 </tbody>   
             </table>

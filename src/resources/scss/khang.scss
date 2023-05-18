@@ -1,0 +1,38 @@
+// Search page
+div.search.container {
+	width: 1200px;
+	margin: 10px auto 20px;
+	clear: both;
+}
+
+// The cart button
+.cart {
+    position: fixed;
+    top: 200px;
+    right: 10px;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+    .cart_image img {
+    width: 15%;
+    height: 15%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    object-fit: cover;
+  } 
+  .product-table {
+    position: absolute;
+    top: 0px; /* Adjust the value as needed to create space between cart image and product table */
+    right: 75px; /* Change left value to 0 to align with the cart image */
+    width: 100%; /* Adjust the value as needed */
+    padding: 10px;
+    background-color: red;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }

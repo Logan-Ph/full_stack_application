@@ -6,16 +6,15 @@ const path = require("path");
 const port = 3000;
 const handlebars = require("express-handlebars");
 const async = require("hbs/lib/async");
-const { connectionUrl } = require("./mongodb"); // Import the connectionUrl from config.js
 const templatePath = path.join(__dirname, "resources/views");
 const {
-  checkout,
   shipper,
   user,
   vendor,
   product,
   ordered_product,
-} = require("./mongodb");
+} = require("./config/mongodb");
+const { connectionUrl } = require("./config/mongodb"); // Import the connectionUrl
 const { error } = require("console");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
@@ -26,7 +25,6 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 var multer = require("multer");
-const { default: mongoose } = require("mongoose");
 
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -43,7 +41,6 @@ app.engine(
   "handlebars",
   handlebars.engine({
     extname: ".hbs",
-    partialsDir: [path.join(__dirname, "resources/views/partials")],
     helpers: {
       ifeq: function (a, b) {
         if (a === b) {
@@ -51,6 +48,10 @@ app.engine(
         }
       },
     },
+    partialsDir: [
+      path.join(__dirname, "resources/views/partials"),
+      path.join(__dirname, "resources/views/account"),
+    ],
   })
 );
 
@@ -694,18 +695,7 @@ app.post("/login", async (req, res) => {
     // console.log(map_user.check_vendor)
     // console.log(check_vendor);
     // console.log(check_shipper);
-    // let token = jwt.sign({
-    //     check_shipper: check_shipper,
-    //     check_vendor: check_vendor,
-    //     username: map_user.username,
-    //     user_id: map_user._id,
-    //     name: map_user.name,
-    //     bussiness_name: map_user.bussiness_name,
-    //     bussiness_address: map_user.bussiness_address,
-    //     address: map_user.address,
-    //     distribution_hub: map_user.distribution_hub,
-    //     phone_number: map_user.phone_number,
-    //     img: map_user.img,})
+
     if (
       map_user &&
       (await bcrypt.compare(req.body.password, map_user.password))
@@ -723,7 +713,7 @@ app.post("/login", async (req, res) => {
         phone_number: map_user.phone_number,
         img: map_user.img,
       };
-      
+
       // console.log("User object stored in session:", req.session.user);
 
       // Redirect to home route
@@ -876,121 +866,32 @@ app.post("/user/update", async (req, res) => {
   }
 });
 
+// View user's personal information
+
+// add to cart
 app.get("/user/cart", async (req, res) => {
-  // prototype, only temporary, will be changed later
-  user
-    .find({ _id: new mongoose.Types.ObjectId("645ceb07867182fdcdcfcacc") })
-    .then((users, errors) => {
-      let id = users[0].toObject()._id;
-      // console.log(id);
-      ordered_product
-        .find({ customer_id: id })
-        .then((ordered_product, errors) => {
-          // console.log(ordered_product);
-          const simplifiedProducts = ordered_product.map((product) => {
-            return {
-              product_name: product.product_name,
-              category: product.category,
-              price: product.price,
-            };
-          });
+  console.log("user cart is called ");
+  if (!req.session.user) {
+    res.redirect("/login");
+    return;
+  }
 
-          res.json(simplifiedProducts);
-        });
+  user.find({ name: req.session.user.username }).then((users, errors) => {
+    var id = users[0].toObject()._id.toString();
+    console.log(id);
+    ordered_product.find({ user_id: id }).then((ordered_product, errors) => {
+      // have'nt changed format ordered_product
+
+      console.log(ordered_product);
+
+      // response ordered product
+      res.send(ordered_product);
     });
-});
+  });
 
-// Search products
-app.get("/search", async (req, res) => {
-  const searchTerm = req.query.q;
-  const sortOption = req.query.sort;
+  // loop over ordered_product and return response
 
-  try {
-    let query = {}; // Empty query object
-
-    if (searchTerm) {
-      const regex = new RegExp(searchTerm, "i");
-      query = {
-        $or: [
-          { product_name: { $regex: regex } },
-        ],
-      };
-    }
-
-    let sort = {};
-
-    if (sortOption === "price_low") {
-      // Sort by price ascending (low to high)
-      sort = { price: 1 };
-    } else if (sortOption === "price_high") {
-      // Sort by price descending (high to low)
-      sort = { price: -1 };
-    }
-
-    await product
-      .find(query, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 })
-      .sort(sort)
-      .then((products) => {
-        let map_product = products.map((Product) => Product.toJSON());
-        for (let i = 0; i < map_product.length; i++) {
-          map_product[i].img = Buffer.from(
-            map_product[i].img.data.data
-          ).toString("base64");
-        }
-
-        res.render("search", {
-          showUser: true,
-          loggedInUser: req.session.user,
-          products: map_product,
-          searchTerm: searchTerm,
-        });
-      });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-});
-
-app.post("/add-to-cart/:id", async (req, res) => {
-  // Debug
-  console.log("add-to-cart POST route called at " + new Date().toLocaleString());
-  try {
-    if (req.session.user) {
-      const userId = req.session.user._id;
-      const productId = req.params.id;
-
-      // Find the product by its ID
-      const product = await product.findById(productId);
-
-      if (!product) {
-        // Product not found
-        return res.status(404).json({ message: "Product not found" });
-      }
-
-      // Create a new ordered_product entry
-      const newOrderedProduct = new ordered_product({
-        customer_id: userId,
-        owner: product.owner,
-        product_name: product.product_name,
-        category: product.category,
-        distribution_hub: product.distribution_hub,
-        price: product.price,
-        description: product.description,
-        img: product.img,
-      });
-
-      // Save the new ordered_product entry to the database
-      await newOrderedProduct.save();
-
-      res.status(200).json({ message: "Product added to cart successfully" });
-    } else {
-      // User not logged in
-      res.status(401).json({ message: "Invalid session" });
-    }
-  } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: "Internal server error" });
-  }
+  console.log("test_products is called hello ");
 });
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
