@@ -11,56 +11,7 @@
       </button>
     </div>
 
-  <div class="cart_image" onmouseover="showProductList()" onmouseout="hideProductList()">
-    <img src="image/cart.png">
-  </div>
-</div>
-
-<script>
-
-  
-/*
-function createProductList() {
-  const ul = document.createElement('ul');
-
-  products.forEach((product) => {
-    const li = document.createElement('li');
-    li.textContent = JSON.stringify(product);
-
-    ul.appendChild(li);
-  });
-
-  return ul;
-}
-
-function showProductList() {
-  if (!productList && is_getting_product) {
-    productList = createProductList();
-    const cart = document.querySelector('.cart');
-    cart.appendChild(productList);
-  }
-}
-
-function hideProductList() {
-  if (productList && is_getting_product) {
-    const cart = document.querySelector('.cart');
-    cart.removeChild(productList);
-    productList = null;
-  }
-}
-};
- --}}
-*/
-
-
-
-</script>
-
-<
-<div class="cart">
-  <div class="product-table" style="display: none;"></div>
-
-  <div class="cart_image" onmouseover="showProductList()" onmouseout="hideProductList()">
+  <div class="cart_image" onclick="toggleProductList()">
     <img src="image/cart.png">
   </div>
 </div>
@@ -160,4 +111,16 @@ function hideProductList() {
     const productTable = document.querySelector('.product-table');
     productTable.style.display = 'none';
   }
-</script
+
+  function toggleProductList() {
+  var productList = document.querySelector('.cart_image');
+  
+  if (productList.classList.contains('show')) {
+    hideProductList();
+    productList.classList.remove('show');
+  } else {
+    showProductList();
+    productList.classList.add('show');
+  }
+}
+</script>
