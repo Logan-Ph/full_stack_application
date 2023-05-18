@@ -336,10 +336,10 @@
             <h1>Beauty Products</h1>
         </div>
         <hr class="line">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 my-4 pb-5 g-4">
             {{#each products}}
             {{#if (ifeq this.category 'cosmetics')}}
-            <div class="col">
+            <div class="col-4 my-4">
                 <div class="card">
                     <a href="/home/{{this._id}}/product-detail" class="product_detail">
                         <div class="product-img">

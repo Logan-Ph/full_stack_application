@@ -505,3 +505,37 @@ form.search button:hover{
         font-size: 30px;
     }
 }
+
+// Search-bar-style
+.search-result{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.detailed-result{
+    font-size: 18px;
+}
+
+.filter{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.filter span{
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    // padding: 10px 10px;
+}
+
+// .sort-by{
+//     border: 2px solid black;
+// }
+
+.sort-by a{
+    padding: 5px 10px;
+    font-weight: 500;
+    border: 2px solid black;
+}

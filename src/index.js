@@ -249,19 +249,18 @@ app.get("/signup-shipper", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-    try {
-        if (req.session.user.check_vendor) {
-            res.redirect("/view-product");
-        }
-        else if (req.session.user.check_shipper) {
-            res.redirect("/shipper");
-        }
-        else {
-            res.redirect("/home");
-        }
+    let check_vendor = req.session.user.check_vendor;
+    console.log(check_vendor)
+    let check_shipper = req.session.user.check_shipper;
+
+    if (check_vendor) {
+        res.redirect("/view-product");
     }
-    catch {
-        res.redirect("/login");  //this is for sometime the req.session.user does not recognize the 'check_vendor' and 'check_shipper' properties
+    else if (check_shipper) {
+        res.redirect("/shipper");
+    }
+    else {
+        res.redirect("/home");
     }
 });
 
@@ -384,21 +383,21 @@ app.get("/shipper", async (req, res) => {
 app.get("/:id/parcel-info", async (req, res) => {
     try {
         if (req.session.user.check_shipper) {
-            await ordered_product.find({customer_id:req.params.id},{}).then(ordered_products => {
+            await ordered_product.find({ customer_id: req.params.id }, {}).then(ordered_products => {
                 let map_product = ordered_products.map(Product => Product.toJSON());
                 for (let i = 0; i < map_product.length; i++) {
                     map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
                 }
             })
 
-            
-            res.render("parcel-info",{
+
+            res.render("parcel-info", {
                 loggedInUser: req.session.user,
                 map_product: map_product,
-                cusotmer_name:map_product.receiver,
-                cusotmer_address:map_product.address,
-                cusotmer_phone_number:map_product.cusotmer_phone_number,
-                customer_id:req.params.id
+                cusotmer_name: map_product.receiver,
+                cusotmer_address: map_product.address,
+                cusotmer_phone_number: map_product.cusotmer_phone_number,
+                customer_id: req.params.id
             });
         }
         else {
@@ -413,7 +412,7 @@ app.get("/:id/parcel-info", async (req, res) => {
 app.get('/:id/parcel-info/delete', async (req, res) => {
     try {
         if (req.session.user.check_shipper) {
-            await ordered_product.deleteMany({customer_id:req.params.id})
+            await ordered_product.deleteMany({ customer_id: req.params.id })
             res.redirect("/shipper")
         }
         else {
@@ -713,6 +712,59 @@ app.post("/login", async (req, res) => {
 app.get("/logout", (req, res) => {
     req.session.destroy();
     res.redirect("/");
+});
+
+
+// Search products
+app.get("/search", async (req, res) => {
+    const searchTerm = req.query.q;
+    const sortOption = req.query.sort;
+
+    try {
+        let query = {}; // Empty query object
+
+        if (searchTerm) {
+            const regex = new RegExp(searchTerm, "i");
+
+            query = {
+                $or: [
+                    { product_name: { $regex: regex } },
+                ],
+            };
+        }
+
+        let sort = {};
+
+        if (sortOption === "price_low") {
+            // Sort by price ascending (low to high)
+            sort = { price: 1 };
+        } else if (sortOption === "price_high") {
+            // Sort by price descending (high to low)
+            sort = { price: -1 };
+        }
+
+        await product
+            .find(query, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 })
+            .sort(sort)
+            .then((products) => {
+                let map_product = products.map((Product) => Product.toJSON());
+                for (let i = 0; i < map_product.length; i++) {
+                    map_product[i].img = Buffer.from(
+                        map_product[i].img.data.data
+                    ).toString("base64");
+                }
+
+                res.render("search", {
+                    showUser: true,
+                    loggedInUser: req.session.user,
+                    products: map_product,
+                    searchTerm: searchTerm,
+                });
+            });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
 });
 
 app.get('/user', (req, res) => {
