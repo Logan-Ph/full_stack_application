@@ -192,7 +192,7 @@ app.get("/home/:id/product-detail", async (req, res) => {
         if (req.session.user) {
             try {
 
-                await product.find({ _id: req.params.id }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                await product.find({ _id: req.params.id }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1, owner: 1 }).then(products => {
                     let map_product = products.map(Product => Product.toJSON());
                     for (let i = 0; i < map_product.length; i++) {
                         map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
@@ -249,7 +249,7 @@ app.get("/signup-shipper", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-    try{
+    try {
         if (req.session.user.check_vendor) {
             res.redirect("/view-product");
         }
@@ -260,7 +260,7 @@ app.get("/login", (req, res) => {
             res.redirect("/home");
         }
     }
-    catch{
+    catch {
         res.redirect("/login");  //this is for sometime the req.session.user does not recognize the 'check_vendor' and 'check_shipper' properties
     }
 });
@@ -334,20 +334,38 @@ app.get('/view-product/:id/delete', async (req, res) => {
 });
 
 
+
 app.get("/shipper", async (req, res) => {
     try {
         if (req.session.user.check_shipper) {
+            let customer_list = []
+            let check_list = []
             try {
                 await ordered_product.find({ distribution_hub: req.session.user.distribution_hub }, {}).then(products => {
                     let map_product = products.map(Product => Product.toJSON());
-                    for (let i = 0; i < map_product.length; i++) {
-                        map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                    if (!check_list.includes(map_product.customer_id)) {
+                        customer_list.push({
+                            customer_id: map_product.customer_id,
+                            address: map_product.address,
+
+                        })
+                        check_list.push(map_product.customer_id)
                     }
-                    res.render('shipper', {
-                        loggedInUser: req.session.user,
-                        products: map_product,
-                    });
+
+                    customer_list.push({
+                        customer_id: products.customer_id,
+
+                    })
+
+                    // for (let i = 0; i < map_product.length; i++) {
+                    //     map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                    // }
                 })
+
+                res.render('shipper', {
+                    loggedInUser: req.session.user,
+                    customer_list: customer_list,
+                });
             }
             catch (error) {
                 console.log(error.message);
@@ -362,6 +380,53 @@ app.get("/shipper", async (req, res) => {
     }
 });
 
+
+app.get("/:id/parcel-info", async (req, res) => {
+    try {
+        if (req.session.user.check_shipper) {
+            await ordered_product.find({customer_id:req.params.id},{}).then(ordered_products => {
+                let map_product = ordered_products.map(Product => Product.toJSON());
+                for (let i = 0; i < map_product.length; i++) {
+                    map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
+                }
+            })
+
+            
+            res.render("parcel-info",{
+                loggedInUser: req.session.user,
+                map_product: map_product,
+                cusotmer_name:map_product.receiver,
+                cusotmer_address:map_product.address,
+                cusotmer_phone_number:map_product.cusotmer_phone_number,
+                customer_id:req.params.id
+            });
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+})
+
+app.get('/:id/parcel-info/delete', async (req, res) => {
+    try {
+        if (req.session.user.check_shipper) {
+            await ordered_product.deleteMany({customer_id:req.params.id})
+            res.redirect("/shipper")
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+});
+
+
+// để tạm thời
 app.get("/parcel-info", (req, res) => {
     try {
         if (req.session.user.check_shipper) {
