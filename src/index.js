@@ -76,11 +76,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-	if (!req.session.user) {
-		res.redirect("login");
-	} else {
-		res.redirect("home");
-	}
+	res.render("login");
 });
 
 app.get("/home", async (req, res, next) => {
@@ -330,7 +326,7 @@ app.get("/view-product", async (req, res, next) => {
 				}
 				await product
 					.find(
-						{ owner: req.session.user.check_vendor.username },
+						{ owner: req.session.user.check_vendor.bussiness_name },
 						{
 							img: 1,
 							description: 1,
@@ -484,12 +480,12 @@ app.get("/:id/parcel-info", async (req, res) => {
 							// console.log(map_img);
 							map_cartEntries[i].img = Buffer.from(map_img).toString("base64");
 						}
-							
+
 						// console.log(customer_list);
 						res.render("parcel-info", {
 							products: map_cartEntries,
 							customer_list: customer_list,
-							id:customer_list[0].id
+							id: customer_list[0].id
 						});
 					});
 			} catch (error) {
