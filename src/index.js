@@ -1,3 +1,11 @@
+// RMIT University Vietnam
+// Course: COSC2430 Web Programming
+// Semester: 2023A
+// Assessment: Assignment 2
+// Author and ID: Sang(s3975979), Khang(s3979229)
+// Acknowledgement:
+
+
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
@@ -384,21 +392,21 @@ app.get("/shipper", async (req, res) => {
 app.get("/:id/parcel-info", async (req, res) => {
     try {
         if (req.session.user.check_shipper) {
-            await ordered_product.find({ customer_id: req.params.id }, {}).then(ordered_products => {
+            await ordered_product.find({customer_id:req.params.id},{}).then(ordered_products => {
                 let map_product = ordered_products.map(Product => Product.toJSON());
                 for (let i = 0; i < map_product.length; i++) {
                     map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
                 }
             })
 
-
-            res.render("parcel-info", {
+            
+            res.render("parcel-info",{
                 loggedInUser: req.session.user,
                 map_product: map_product,
-                cusotmer_name: map_product.receiver,
-                cusotmer_address: map_product.address,
-                cusotmer_phone_number: map_product.cusotmer_phone_number,
-                customer_id: req.params.id
+                cusotmer_name:map_product.receiver,
+                cusotmer_address:map_product.address,
+                cusotmer_phone_number:map_product.cusotmer_phone_number,
+                customer_id:req.params.id
             });
         }
         else {
@@ -413,7 +421,7 @@ app.get("/:id/parcel-info", async (req, res) => {
 app.get('/:id/parcel-info/delete', async (req, res) => {
     try {
         if (req.session.user.check_shipper) {
-            await ordered_product.deleteMany({ customer_id: req.params.id })
+            await ordered_product.deleteMany({customer_id:req.params.id})
             res.redirect("/shipper")
         }
         else {
@@ -842,5 +850,52 @@ app.get('/user', (req, res) => {
     });
 });
 
+app.get("/search", async (req, res) => {
+	const searchTerm = req.query.q;
+	const sortOption = req.query.sort;
+
+	try {
+		let query = {}; // Empty query object
+
+		if (searchTerm) {
+			const regex = new RegExp(searchTerm, "i");
+			query = {
+				$or: [{ product_name: { $regex: regex } }],
+			};
+		}
+
+		let sort = {};
+
+		if (sortOption === "price_low") {
+			// Sort by price ascending (low to high)
+			sort = { price: 1 };
+		} else if (sortOption === "price_high") {
+			// Sort by price descending (high to low)
+			sort = { price: -1 };
+		}
+
+		await product
+			.find(query, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 })
+			.sort(sort)
+			.then((products) => {
+				let map_product = products.map((Product) => Product.toJSON());
+				for (let i = 0; i < map_product.length; i++) {
+					map_product[i].img = Buffer.from(
+						map_product[i].img.data.data
+					).toString("base64");
+				}
+
+				res.render("search", {
+					showUser: true,
+					loggedInUser: req.session.user,
+					products: map_product,
+					searchTerm: searchTerm,
+				});
+			});
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Internal Server Error");
+	}
+});
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
