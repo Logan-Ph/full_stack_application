@@ -519,6 +519,76 @@ app.post('/view-product/:id/update', upload.single("image"), async (req, res) =>
     }
 });
 
+app.post('/customer-account/:id/update', upload.single("image"), async (req, res) => {
+    try {
+        if (req.session.user.check_vendor) {
+            await vendor.findByIdAndUpdate(req.params.id,
+                {
+                    $set: {
+                        img: {
+                            data: fs.readFileSync("uploads/" + req.file.filename),
+                            contentType: "image/png",
+                        },
+                    }
+                }
+            )
+                .then((vendor) => {
+                    if (!vendor) {
+                        return res.send("Cannot found user!");
+                    }
+                    res.redirect("/customer-accountt");
+                })
+                .catch((error) => res.send(error));
+        }
+        else if (req.session.user.check_shipper) {
+            await shipper.findByIdAndUpdate(req.params.id,
+                {
+                    $set: {
+                        img: {
+                            data: fs.readFileSync("uploads/" + req.file.filename),
+                            contentType: "image/png",
+                        },
+                    }
+                }
+            )
+                .then((shipper) => {
+                    if (!shipper) {
+                        return res.send("Cannot found user shipper!");
+                    }
+                    res.redirect("/customer-account");
+                })
+                .catch((error) => res.send(error));
+        }
+        else if (req.session.user) {
+            console.log(req, session.user.check_shipper)
+            console.log(req.params.id)
+            await user.findByIdAndUpdate(req.params.id,
+                {
+                    $set: {
+                        img: {
+                            data: fs.readFileSync("uploads/" + req.file.filename),
+                            contentType: "image/png",
+                        },
+                    }
+                }
+            )
+                .then((user) => {
+                    if (!user) {
+                        return res.send("Cannot found user");
+                    }
+                    res.redirect("/customer-account");
+                })
+                .catch((error) => res.send(error));
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        console.log(error)
+        res.redirect("/")
+    }
+});
 
 
 app.post("/signup-user", upload.single("image"), async (req, res) => {
