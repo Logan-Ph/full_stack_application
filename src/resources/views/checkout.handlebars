@@ -150,14 +150,15 @@
     </script>
     <script>
         // Render products in cart
-        document.addEventListener('DOMContentLoaded', () => {
-            const orderedProducts = JSON.parse(localStorage.getItem('orderedProducts')) || [];
+        document.addEventListener('DOMContentLoaded', () => {//lấy từ trong database cart
 
-            if (orderedProducts.length > 0) {
-                renderCart(orderedProducts);
-            } else {
-                displayEmptyCart();
-            }
+        const orderedProducts = JSON.parse('{{productsJson}}');
+
+        if (orderedProducts.length > 0) {
+            renderCart(orderedProducts);
+        } else {
+            displayEmptyCart();
+        }
         });
 
         function renderCart(orderedProducts) {
@@ -222,6 +223,9 @@
         }
 
         function createProductRow(product) {
+            const order_content = document.createElement('div');
+            order_content.className = 'order-content'
+
             const orderInfo = document.createElement('div');
             orderInfo.className = 'checkout order-details';
 
@@ -231,27 +235,48 @@
             const info = document.createElement('div');
             info.className = 'order-info-product px-3';
 
+            const float_start = document.createElement("div");
+            float_start.className = 'float-start'
+
             const name = document.createElement('p');
+            name.className = 'float-start'
             name.innerHTML = `<strong>${product.product_name}</strong>`;
+            const br = document.createElement("br");
+            const br1 = document.createElement("br");
+            const hr = document.createElement("hr");
+
+
             const quantity = document.createElement('p');
-            quantity.textContent = `Quantity: ${product.quantity}`;
+            quantity.className = 'float-start'
+            quantity.innerHTML = `Quantity: ${product.quantity}`;
+
+            const p = document.createElement("p");
+
             const remove = document.createElement('button');
             remove.textContent = 'Remove';
+            remove.setAttribute('type', 'button')
             remove.className = 'remove btn btn-primary float-start';
             remove.addEventListener('click', () => {
                 removeProductFromCart(product._id);
             });
-            info.appendChild(name);
-            info.appendChild(quantity);
-            info.appendChild(remove);
+            float_start.appendChild(name);
+            float_start.appendChild(br)
+            float_start.appendChild(quantity);
+            float_start.appendChild(br1)
+            float_start.appendChild(remove);
+            info.appendChild(float_start);
+            info.appendChild(p)
 
             // Image for carted products
             const imgContainer = document.createElement('div');
             imgContainer.className = 'order-product-img';
+            const div_img = document.createElement('div')
             const img = document.createElement('img');
-            img.src = product.img;
+            img.src = `data:image/png;base64,${product.img}`;
+            console.log(img)
             img.alt = product.product_name;
-            imgContainer.appendChild(img);
+            div_img.appendChild(img);
+            imgContainer.appendChild(div_img)
 
             const price = document.createElement('div');
             price.className = 'order-product-price';
@@ -262,8 +287,11 @@
             columns.appendChild(price);
 
             orderInfo.appendChild(columns);
+            order_content.appendChild(orderInfo)
+            order_content.appendChild(hr)
 
-            return orderInfo;
+
+            return order_content;
         }
 
         function removeProductFromCart(productId) {
