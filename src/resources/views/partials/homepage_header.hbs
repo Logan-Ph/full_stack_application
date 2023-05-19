@@ -1,5 +1,5 @@
 
-<div class= "tmai_container_fuild container-fuild navbar">
+<div class= "tmai_container_fuild container-fuild px-5 mb-2 navbar">
 
     <div class="navb-logo">
         <a href="/home">
@@ -8,13 +8,13 @@
     </div>
 
         <form class="homepage_navb d-flex" role="search">
-                <input class="nnthm_form_control form-control me-2" type="search" placeholder="Search" aria-label="Search" style="width:500px; height:40px">
+                <input class="nnthm_form_control form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button type="button" class="tmai_danger_btn btn btn-outline-danger">Search</button>
         </form>
 
         <div class="dropdown text-end" style="margin-left:20px">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="data:image/png;base64,{{loggedInUser.img}}" alt="user_image" width="32" height="32" class="rounded-circle">
+                    <img src="data:image/png;base64,{{loggedInUser.img}}" alt="user_image" width="32" height="32" class="me-2 rounded-circle">{{loggedInUser.username}}
                 </a>
                 <ul class="dropdown-menu text-small" style="top:108%; left:-40px">
                     <li><a class="dropdown-item" href="/customer-account">Settings</a></li>

@@ -578,7 +578,7 @@ app.post("/signup-vendor", upload.single("image"), async (req, res) => {
                     name: req.body.name,
                     bussiness_name: req.body.bussiness_name,
                     bussiness_address: req.body.bussiness_address,
-                    phone_number: req.body.phone_number,
+                    bussiness_phone_number: req.body.bussiness_phone_number,
                     img: {
                         data: fs.readFileSync("uploads/" + req.file.filename),
                         contentType: "image/png",
