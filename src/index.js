@@ -278,7 +278,7 @@ app.get("/view-product", async (req, res, next) => {
                         checkproduct: true
                     });
                 }
-                await product.find({ owner: req.session.user.check_vendor.username }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                await product.find({ owner: req.session.user.check_vendor.bussiness_name }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
                     if (products.length === 0) {
                         res.render('view-product', {
                             loggedInUser: req.session.user,
@@ -450,6 +450,7 @@ app.get("/view-product/:id/update", (req, res) => {
     }
 })
 
+
 app.post("/add-product", upload.single("image"), async (req, res) => {
     const product_info = product({
         owner: req.session.user.check_vendor.bussiness_name,
@@ -577,7 +578,7 @@ app.post("/signup-vendor", upload.single("image"), async (req, res) => {
                     name: req.body.name,
                     bussiness_name: req.body.bussiness_name,
                     bussiness_address: req.body.bussiness_address,
-                    phone_number: req.body.phone_number,
+                    bussiness_phone_number: req.body.bussiness_phone_number,
                     img: {
                         data: fs.readFileSync("uploads/" + req.file.filename),
                         contentType: "image/png",
