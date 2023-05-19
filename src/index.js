@@ -511,6 +511,74 @@ app.post('/view-product/:id/update', upload.single("image"), async (req, res) =>
     }
 });
 
+app.post('/customer-account/:id/update', upload.single("image"), async (req, res) => {
+    try {
+        if (req.session.user.check_vendor) {
+            await vendor.findByIdAndUpdate(req.params.id,
+                {
+                    $set: {
+                        img: {
+                            data: fs.readFileSync("uploads/" + req.file.filename),
+                            contentType: "image/png",
+                        },
+                    }
+                }
+            )
+                .then((vendor) => {
+                    if (!vendor) {
+                        return res.send("Cannot found user!");
+                    }
+                    res.redirect("/customer-accountt");
+                })
+                .catch((error) => res.send(error));
+        }
+        else if (req.session.user.shipper) {
+            await  shipper.findByIdAndUpdate(req.params.id,
+                {
+                    $set: {
+                        img: {
+                            data: fs.readFileSync("uploads/" + req.file.filename),
+                            contentType: "image/png",
+                        },
+                    }
+                }
+            )
+                .then((shipper) => {
+                    if (!shipper) {
+                        return res.send("Cannot found user!");
+                    }
+                    res.redirect("/customer-account");
+                })
+                .catch((error) => res.send(error));
+        }
+       else  if (req.session.user) {
+            console.log(req.params.id)
+            await user.findByIdAndUpdate(req.params.id,
+                {
+                    $set: {
+                        img: {
+                            data: fs.readFileSync("uploads/" + req.file.filename),
+                            contentType: "image/png",
+                        },
+                    }
+                }
+            )
+                .then((user) => {
+                    if (!user) {
+                        return res.send("Cannot found user");
+                    }
+                    res.redirect("/customer-account");
+                })
+                .catch((error) => res.send(error));
+        }
+        else {
+            res.redirect("/")
+        }
+    }
+    catch {
+        res.redirect("/")
+    }
+});
 
 
 app.post("/signup-user", upload.single("image"), async (req, res) => {
@@ -578,7 +646,7 @@ app.post("/signup-vendor", upload.single("image"), async (req, res) => {
                     name: req.body.name,
                     bussiness_name: req.body.bussiness_name,
                     bussiness_address: req.body.bussiness_address,
-                    phone_number: req.body.phone_number,
+                    bussiness_phone_number: req.body.bussiness_phone_number,
                     img: {
                         data: fs.readFileSync("uploads/" + req.file.filename),
                         contentType: "image/png",
