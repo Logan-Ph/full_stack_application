@@ -384,21 +384,21 @@ app.get("/shipper", async (req, res) => {
 app.get("/:id/parcel-info", async (req, res) => {
     try {
         if (req.session.user.check_shipper) {
-            await ordered_product.find({customer_id:req.params.id},{}).then(ordered_products => {
+            await ordered_product.find({ customer_id: req.params.id }, {}).then(ordered_products => {
                 let map_product = ordered_products.map(Product => Product.toJSON());
                 for (let i = 0; i < map_product.length; i++) {
                     map_product[i].img = Buffer.from(map_product[i].img.data.data).toString('base64');
                 }
             })
 
-            
-            res.render("parcel-info",{
+
+            res.render("parcel-info", {
                 loggedInUser: req.session.user,
                 map_product: map_product,
-                cusotmer_name:map_product.receiver,
-                cusotmer_address:map_product.address,
-                cusotmer_phone_number:map_product.cusotmer_phone_number,
-                customer_id:req.params.id
+                cusotmer_name: map_product.receiver,
+                cusotmer_address: map_product.address,
+                cusotmer_phone_number: map_product.cusotmer_phone_number,
+                customer_id: req.params.id
             });
         }
         else {
@@ -413,7 +413,7 @@ app.get("/:id/parcel-info", async (req, res) => {
 app.get('/:id/parcel-info/delete', async (req, res) => {
     try {
         if (req.session.user.check_shipper) {
-            await ordered_product.deleteMany({customer_id:req.params.id})
+            await ordered_product.deleteMany({ customer_id: req.params.id })
             res.redirect("/shipper")
         }
         else {
@@ -532,8 +532,8 @@ app.post('/customer-account/:id/update', upload.single("image"), async (req, res
                 })
                 .catch((error) => res.send(error));
         }
-        else if (req.session.user.shipper) {
-            await  shipper.findByIdAndUpdate(req.params.id,
+        else if (req.session.user.check_shipper) {
+            await shipper.findByIdAndUpdate(req.params.id,
                 {
                     $set: {
                         img: {
@@ -551,9 +551,9 @@ app.post('/customer-account/:id/update', upload.single("image"), async (req, res
                 })
                 .catch((error) => res.send(error));
         }
-       else  if (req.session.user) {
+        else if (req.session.user) {
+            console.log(req, session.user.check_shipper)
             console.log(req.params.id)
-            console.log(req,session.user.check_shipper)
             await user.findByIdAndUpdate(req.params.id,
                 {
                     $set: {
@@ -577,6 +577,7 @@ app.post('/customer-account/:id/update', upload.single("image"), async (req, res
         }
     }
     catch {
+        console.log(error)
         res.redirect("/")
     }
 });
