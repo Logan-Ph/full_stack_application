@@ -66,21 +66,17 @@
                     {{/each}}
                     {{else}}
                     {{/if}} --}}
-
-
-
                     <div class="card container mb-2">
                         <div class="container mb-3">
-                            <div class="order-shop py-3">
-                                Cellphone S</div>
+                            <br>
                             <div class="order-content">
                                 <div class="checkout order-details">
+                                    {{#each products}}
                                     <div class="order-columns">
                                         <div class="order-info-product px-3">
                                             <div class="float-start">
-                                                <p class="float-start"><strong>
-                                                        Iphone 13</strong></p><br>
-                                                <p class="float-start">Quantity: 2</p><br>
+                                                <p class="float-start"><strong>{{this.product_name}}</strong></p><br>
+                                                <p class="float-start quantity">Quantity: {{this.quantity}}</p><br>
                                                 <button type="button"
                                                     class="remove btn btn-primary float-start ">Remove</button>
                                             </div>
@@ -88,77 +84,17 @@
                                         </div>
                                         <div class="order-product-img">
                                             <div>
-                                                <img src="/image/example-order.jpeg" alt="">
+                                                <img src="data:image/png;base64,{{this.img}}" alt="">
                                             </div>
                                         </div>
                                         <div class="order-product-price">
-                                            <p>$50</p>
+                                            <p class="product_price">${{this.price}}</p>
                                         </div>
                                     </div>
-
-                                </div>
-
-                            </div>
-                            <hr>
-                            <div class="order-total pb-3">
-                                Total: $100
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="card container mb-2">
-                        <div class="container mb-3">
-                            <div class="order-shop py-3">Radiant Beauty</div>
-                            <div class="order-content">
-                                <div class="checkout order-details">
-                                    <div class="order-columns">
-                                        <div class="order-info-product px-3">
-                                            <div class="float-start">
-                                                <p class="float-start"><strong>Ofelia Lipstick</strong></p><br>
-                                                <p class="float-start">Quantity: 1</p><br>
-                                                <button type="button"
-                                                    class="remove btn btn-primary float-start ">Remove</button>
-                                            </div>
-                                            </p>
-                                        </div>
-                                        <div class="order-product-img">
-                                            <div>
-                                                <img src="/image/example-order.jpeg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="order-product-price">
-                                            <p>$30</p>
-                                        </div>
-                                    </div>
-
-                                    <!--If customer buy 2 different items of one shop-->
                                     <hr>
-
-                                    <div class="order-columns">
-                                        <div class="order-info-product px-3">
-                                            <div class="float-start">
-                                                <p class="float-start"><strong>Rare Beauty Blush</strong></p><br>
-                                                <p class="float-start">Quantity: 1</p><br>
-                                                <button type="button"
-                                                    class="remove btn btn-primary float-start ">Remove</button>
-                                            </div>
-                                            </p>
-                                        </div>
-                                        <div class="order-product-img">
-                                            <div>
-                                                <img src="/image/example-order.jpeg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="order-product-price">
-                                            <p>$40</p>
-                                        </div>
-                                    </div>
-
+                                    {{/each}}
                                 </div>
-
                             </div>
-                            <hr>
                             <div class="order-total pb-3">
                                 Total: $70
                             </div>
@@ -182,7 +118,7 @@
                                 <p class="float-start">Items:</p>
                             </div>
                             <div class="col">
-                                <p class="float-end">4</p>
+                                <p class="float-end number_order">4</p>
                             </div>
                         </div>
                         <div class="row">
@@ -290,6 +226,13 @@
 
     </script>
     <script>
+        let total_order = document.querySelectorAll(".order-columns");
+        let number_order = document.querySelector(".number_order");
+        number_order.innerText = total_order.length
+
+        console.log(total_order)
+
+
         // Render products in cart
         
 // document.addEventListener('DOMContentLoaded', () => {//lấy từ trong database cart

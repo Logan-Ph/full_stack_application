@@ -148,7 +148,7 @@ app.get("/customer-account", async (req, res) => {
 					let map_cartEntries = cartEntries.map((cartEntry) =>
 						cartEntry.toJSON()
 					);
-					console.log(map_cartEntries[0].product_id.img.data.data)
+					// console.log(map_cartEntries[0].product_id.img.data.data)
 					// Get images from products
 					for (let i = 0; i < map_cartEntries.length; i++) {
 						let map_img = map_cartEntries[i].product_id.img.data.data;
@@ -162,7 +162,7 @@ app.get("/customer-account", async (req, res) => {
 						total_spent += map_cartEntries[i].product_id.price;
 					}
 
-					console.log(map_cartEntries[0]);
+					// console.log(map_cartEntries[0]);
 					res.render("customer-account", {
 						check_customer: true,
 						loggedInUser: req.session.user,
@@ -264,18 +264,6 @@ app.get("/home/:id/product-detail", async (req, res) => {
 			} catch (error) {
 				console.log(error.message);
 			}
-		} else {
-			res.redirect("/");
-		}
-	} catch {
-		res.redirect("/");
-	}
-});
-
-app.get("/delivered-orders", (req, res) => {
-	try {
-		if (req.session.user.check_shipper) {
-			res.render("delivered-orders");
 		} else {
 			res.redirect("/");
 		}
@@ -462,45 +450,51 @@ app.get("/shipper", async (req, res) => {
 app.get("/:id/parcel-info", async (req, res) => {
 	try {
 		if (req.session.user.check_shipper) {
-			await ordered_product
-				.find(
-					{
-						customer_id: req.params.id,
-					},
-					{}
-				)
-				.populate("product_id")
-				.populate("customer_id")
-				.then(async (cartEntries) => {
-					let map_cartEntries = cartEntries.map((cartEntry) =>
-						cartEntry.toJSON()
-					);
-					//   console.log(map_cartEntries[0].product_id.img.data.data)
-					// Get images from products
-					for (let i = 0; i < map_cartEntries.length; i++) {
-						const result = customer_list.find(({ username }) => username === map_cartEntries[i].customer_id.username); //find an instance inside customer_list
-						if (!result) {
-							customer_list.push(
-								{
-									id: map_cartEntries[i].customer_id._id,
-									username: map_cartEntries[i].customer_id.username,
-									address: map_cartEntries[i].customer_id.address,
-								}
-							);
+			let customer_list = [];
+			let check_list = [];
+			try {
+				await ordered_product
+					.find(
+						{
+							customer_id: new mongoose.Types.ObjectId(req.params.id),
+						},
+						{}
+					)
+					.populate("product_id")
+					.populate("customer_id")
+					.then(async (cartEntries) => {
+						let map_cartEntries = cartEntries.map((cartEntry) =>
+							cartEntry.toJSON()
+						);
+						//   console.log(map_cartEntries[0].product_id.img.data.data)
+						// Get images from products
+						for (let i = 0; i < map_cartEntries.length; i++) {
+							const result = customer_list.find(({ username }) => username === map_cartEntries[i].customer_id.username); //find an instance inside customer_list
+							if (!result) {
+								customer_list.push(
+									{
+										id: map_cartEntries[i].customer_id._id,
+										username: map_cartEntries[i].customer_id.username,
+										address: map_cartEntries[i].customer_id.address,
+										phone_number: map_cartEntries[i].customer_id.phone_number,
+									}
+								);
+							}
+							let map_img = map_cartEntries[i].product_id.img.data.data;
+							// console.log(map_img);
+							map_cartEntries[i].img = Buffer.from(map_img).toString("base64");
 						}
-						let map_img = map_cartEntries[i].product_id.img.data.data;
-						// console.log(map_img);
-						map_cartEntries[i].img = Buffer.from(map_img).toString("base64");
-					}
-
-					console.log(customer_list);
-					res.render("shipper", {
-						check_customer: true,
-						loggedInUser: req.session.user,
-						// products: map_cartEntries,
-						customer_list: customer_list,
+							
+						// console.log(customer_list);
+						res.render("parcel-info", {
+							products: map_cartEntries,
+							customer_list: customer_list,
+							id:customer_list[0].id
+						});
 					});
-				});
+			} catch (error) {
+				console.log(error.message);
+			}
 		} else {
 			res.redirect("/");
 		}
@@ -512,21 +506,8 @@ app.get("/:id/parcel-info", async (req, res) => {
 app.get("/:id/parcel-info/delete", async (req, res) => {
 	try {
 		if (req.session.user.check_shipper) {
-			await ordered_product.deleteMany({ customer_id: req.params.id });
+			await ordered_product.deleteMany({ customer_id: new mongoose.Types.ObjectId(req.params.id) });
 			res.redirect("/shipper");
-		} else {
-			res.redirect("/");
-		}
-	} catch {
-		res.redirect("/");
-	}
-});
-
-// để tạm thời
-app.get("/parcel-info", (req, res) => {
-	try {
-		if (req.session.user.check_shipper) {
-			res.render("parcel-info");
 		} else {
 			res.redirect("/");
 		}
