@@ -469,26 +469,12 @@
             console.log("placeOrder() called");
             const form = document.querySelector("form");
             const distributionSelect = document.getElementById("distributionSelect");
-            const statusBoxContainer = document.getElementById("status-box-container");
-
-            event.preventDefault();
             const distributionHubValue = distributionSelect.value;
 
-            const orderedProductsString = localStorage.getItem("orderedProducts"); // Get the orderedProducts array from localStorage
-            const orderedProducts = JSON.parse(orderedProductsString); // Parse the string into a usable object
-
-            // Remove the img field from orderedProducts
-            const orderedProductsMinimized = orderedProducts.map((product) => {
-                const { img, ...productWithoutImg } = product;
-                return productWithoutImg;
-            });
-
-            console.log(orderedProductsMinimized);
             console.log(distributionHubValue);
 
             try {
                 const requestBody = {
-                    orderedProducts: orderedProducts,
                     distributionHub: distributionHubValue,
                 };
                 const response = await fetch("/home/product-detail/checkout", {

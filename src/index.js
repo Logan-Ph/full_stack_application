@@ -76,7 +76,11 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.render("login");
+  if (!req.session.user) {
+    res.redirect("login");
+  } else {
+    res.redirect("home");
+  }
 });
 
 app.get("/home", async (req, res, next) => {
@@ -148,7 +152,7 @@ app.get("/customer-account", async (req, res) => {
           // Get images from products
           for (let i = 0; i < map_cartEntries.length; i++) {
             let map_img = map_cartEntries[i].product_id.img.data.data;
-            console.log(map_img);
+            // console.log(map_img);
             map_cartEntries[i].img = Buffer.from(map_img).toString("base64");
           }
 
@@ -194,7 +198,14 @@ app.get("/home/product-detail/checkout", async (req, res) => {
       try {
         // Find all cart entries
         await cart
-          .find({ customer_id: new mongoose.Types.ObjectId(req.session.user.user_id) }, {})
+          .find(
+            {
+              customer_id: new mongoose.Types.ObjectId(
+                req.session.user.user_id
+              ),
+            },
+            {}
+          )
           .populate("product_id")
           .then(async (cartEntries) => {
             let map_cartEntries = cartEntries.map((cartEntry) =>
@@ -204,7 +215,7 @@ app.get("/home/product-detail/checkout", async (req, res) => {
             // Get images from products
             for (let i = 0; i < map_cartEntries.length; i++) {
               let map_img = map_cartEntries[i].product_id.img.data.data;
-              console.log(map_img);
+              //   console.log(map_img);
               map_cartEntries[i].img = Buffer.from(map_img).toString("base64");
             }
             console.log(map_cartEntries[0]);
@@ -889,14 +900,15 @@ app.post("/add-to-cart/:id", async (req, res) => {
 });
 
 app.post("/home/product-detail/checkout", async (req, res) => {
+  console.log("checkout POST route called at " + new Date().toLocaleString());
   try {
     if (req.session.user) {
-      const customerID = req.session.user.user_id;
+      const customerID = new mongoose.Types.ObjectId(req.session.user.user_id);
       const distributionHub = req.body.distributionHub;
 
       // Fetch cart items for the current user
-      const cartItems = await cart.find({ customer_id: new mongoose.Types.ObjectId(customerID) }).exec();
-
+      const cartItems = await cart.find({ customer_id: customerID }).exec();
+      //  console.log(cartItems)
       // Create ordered_product documents for each cart item
       const createOrderedProductsPromises = cartItems.map((cartItem) => {
         const orderedProductData = {
@@ -917,12 +929,19 @@ app.post("/home/product-detail/checkout", async (req, res) => {
       await Promise.all(createOrderedProductsPromises);
 
       // Remove cart items for the current user
-      await cart.deleteMany({ customer_id: customerID }).exec();
+      await cart
+        .deleteMany({ customer_id: customerID })
+        .exec()
+        .then((result) => {
+          console.log("Deleted successfully:", result);
+        })
+        .catch((error) => {
+          console.log("Error while deleting:", error);
+        });
 
-      // Redirect or render a success message
-      res.redirect("/home"); // or res.render("success", { message: "Order placed successfully" });
+      res.sendStatus(200);
     } else {
-      res.redirect("/");
+      res.status(401).json({ message: "Invalid session" });
     }
   } catch (error) {
     console.log(error.message);
