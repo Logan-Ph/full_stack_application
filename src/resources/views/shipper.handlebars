@@ -74,24 +74,12 @@
                 <tbody class="table-group-divider">
                     {{#each customer_list}}
                     <tr>
-                        <th scope="row">{{this.customer_id}}</th>
+                        <th scope="row">{{this.id}}</th>
                         <td>{{this.address}}</td>
                         <td class="text-success"><i class="fa-solid fa-circle fa-beat-fade fa-xs"></i> Active</td>
                         <td><a href="/{{this.customer_id}}/parcel-info"><i class="fa-solid fa-pen-to-square"></i></a></td>
                     </tr>
                     {{/each}}
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>District 2</td>
-                        <td class="text-success"><i class="fa-solid fa-circle fa-beat-fade fa-xs"></i> Active</td>
-                        <td><a href="/parcel-info"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>District 3</td>
-                        <td class="text-success"><i class="fa-solid fa-circle fa-beat-fade fa-xs"></i> Active</td>
-                        <td><a href="/parcel-info"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                    </tr>
                 </tbody>   
             </table>
         </div>
