@@ -103,7 +103,7 @@ const LogInVendor = new mongoose.Schema({
         require: true,
     },
 
-    phone_number: {
+    bussiness_phone_number: {
         type: String,
     },
 
