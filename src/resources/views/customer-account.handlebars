@@ -155,6 +155,7 @@
                             <hr>
                             <div class="order-content">
                                 <div class="order-details">
+                                {{#if products}}
                                     {{#each products}}
                                     <div class="order-columns">
                                         <div class="order-info-product px-3">
@@ -175,47 +176,11 @@
                                     <!--If there are more products-->
                                     <hr>
                                     {{/each}}
-                                    <div class="order-columns">
-                                        <div class="order-info-product px-3">
-                                            <h4>Iphone 13</h4>
-                                            <p>Category: Phone
-                                                <br>Quantity: 1
-                                            </p>
-                                        </div>
-                                        <div class="order-product-img">
-                                            <div>
-                                                <img src="image/example-order.jpeg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="order-product-price">
-                                            <p>747.000</p>
-                                        </div>
-                                    </div>
-                                    <!--If there are more products-->
-                                    <hr>
-                                    <div class="order-columns">
-                                        <div class="order-info-product px-3">
-                                            <h4>Iphone 13</h4>
-                                            <p>Category: Phone
-                                                <br>Quantity: 1
-                                            </p>
-                                        </div>
-                                        <div class="order-product-img">
-                                            <div>
-                                                <img src="image/example-order.jpeg" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="order-product-price">
-                                            <p>747.000</p>
-                                        </div>
-                                    </div>
-                                    <!---->
-                                </div>
-
-                            </div>
-                            <hr>
+                                {{else}}
+                                <p>No orders yet</p>
+                                {{/if}}
                             <div class="order-total pb-3">
-                                Total: 1.494.000
+                                Total: ${{total_spent}}
                             </div>
                         </div>
                         {{/if}}

@@ -20,12 +20,153 @@
         <div class="container">
             <div class="row mb-3 text-center">
                 <h2 class="float-start p-4">Review Your Order</h2>
-
-                {{!-- Product in Cart --}}
                 <div class="col-md-8 themed-grid-col">
-                </div>
 
-                {{!-- Order Summary --}}
+                    {{!-- {{#if products}}
+                    {{#each products}}
+                        {{#each products.owner}}
+                        <div class="card container mb-2">
+                        <div class="container mb-3">
+                            <div class="order-shop py-3">
+                                {{product.product_name}}</div>
+                            <div class="order-content">
+                                <div class="checkout order-details">
+                                    <div class="order-columns">
+                                        <div class="order-info-product px-3">
+                                            <div class="float-start">
+                                                <p class="float-start"><strong>
+                                                        Iphone 13</strong></p><br>
+                                                <p class="float-start">Quantity: 2</p><br>
+                                                <button type="button"
+                                                    class="remove btn btn-primary float-start ">Remove</button>
+                                            </div>
+                                            </p>
+                                        </div>
+                                        <div class="order-product-img">
+                                            <div>
+                                                <img src="/image/example-order.jpeg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="order-product-price">
+                                            <p>$50</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="order-total pb-3">
+                                Total: $100
+                            </div>
+                        </div>
+
+                    </div>
+                        {{/each}}
+                    {{/each}}
+                    {{else}}
+                    {{/if}} --}}
+
+
+
+                    <div class="card container mb-2">
+                        <div class="container mb-3">
+                            <div class="order-shop py-3">
+                                Cellphone S</div>
+                            <div class="order-content">
+                                <div class="checkout order-details">
+                                    <div class="order-columns">
+                                        <div class="order-info-product px-3">
+                                            <div class="float-start">
+                                                <p class="float-start"><strong>
+                                                        Iphone 13</strong></p><br>
+                                                <p class="float-start">Quantity: 2</p><br>
+                                                <button type="button"
+                                                    class="remove btn btn-primary float-start ">Remove</button>
+                                            </div>
+                                            </p>
+                                        </div>
+                                        <div class="order-product-img">
+                                            <div>
+                                                <img src="/image/example-order.jpeg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="order-product-price">
+                                            <p>$50</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="order-total pb-3">
+                                Total: $100
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card container mb-2">
+                        <div class="container mb-3">
+                            <div class="order-shop py-3">Radiant Beauty</div>
+                            <div class="order-content">
+                                <div class="checkout order-details">
+                                    <div class="order-columns">
+                                        <div class="order-info-product px-3">
+                                            <div class="float-start">
+                                                <p class="float-start"><strong>Ofelia Lipstick</strong></p><br>
+                                                <p class="float-start">Quantity: 1</p><br>
+                                                <button type="button"
+                                                    class="remove btn btn-primary float-start ">Remove</button>
+                                            </div>
+                                            </p>
+                                        </div>
+                                        <div class="order-product-img">
+                                            <div>
+                                                <img src="/image/example-order.jpeg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="order-product-price">
+                                            <p>$30</p>
+                                        </div>
+                                    </div>
+
+                                    <!--If customer buy 2 different items of one shop-->
+                                    <hr>
+
+                                    <div class="order-columns">
+                                        <div class="order-info-product px-3">
+                                            <div class="float-start">
+                                                <p class="float-start"><strong>Rare Beauty Blush</strong></p><br>
+                                                <p class="float-start">Quantity: 1</p><br>
+                                                <button type="button"
+                                                    class="remove btn btn-primary float-start ">Remove</button>
+                                            </div>
+                                            </p>
+                                        </div>
+                                        <div class="order-product-img">
+                                            <div>
+                                                <img src="/image/example-order.jpeg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="order-product-price">
+                                            <p>$40</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="order-total pb-3">
+                                Total: $70
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
                 <div class=" col-md-4 themed-grid-col">
                     <div class="card container px-4 mb-2">
                         <br>
@@ -41,7 +182,7 @@
                                 <p class="float-start">Items:</p>
                             </div>
                             <div class="col">
-                                <p id="order-items" class="float-end"></p>
+                                <p class="float-end">4</p>
                             </div>
                         </div>
                         <div class="row">
@@ -49,7 +190,7 @@
                                 <p class="float-start">Subtotal:</p>
                             </div>
                             <div class="col">
-                                <p id="sub_total" class="float-end"></p>
+                                <p class="float-end">$170</p>
                             </div>
                         </div>
                         <div class="row">
@@ -57,7 +198,7 @@
                                 <p class="float-start">Shipping fee:</p>
                             </div>
                             <div class="col">
-                                <p id="shipping-fee" class="float-end">$5</p>
+                                <p class="float-end">$5</p>
                             </div>
                         </div>
                         <div class="form-floating">
@@ -75,7 +216,7 @@
                                 <p class="float-start">Order Total:</p>
                             </div>
                             <div class="col">
-                                <p id="final_total" class="float-end"></p>
+                                <p class="float-end">$175</p>
                             </div>
                         </div>
                         <div class="row">
@@ -150,163 +291,164 @@
     </script>
     <script>
         // Render products in cart
-        document.addEventListener('DOMContentLoaded', () => {//lấy từ trong database cart
+        
+// document.addEventListener('DOMContentLoaded', () => {//lấy từ trong database cart
 
-        const orderedProducts = JSON.parse('{{productsJson}}');
+//     const orderedProducts = JSON.parse('{{productsJson}}');
 
-        if (orderedProducts.length > 0) {
-            renderCart(orderedProducts);
-        } else {
-            displayEmptyCart();
-        }
-        });
+//     if (orderedProducts.length > 0) {
+//         renderCart(orderedProducts);
+//     } else {
+//         displayEmptyCart();
+//     }
+//     });
 
-        function renderCart(orderedProducts) {
-            let owners = {};
-            const container = document.querySelector('.col-md-8.themed-grid-col');
+//     function renderCart(orderedProducts) {
+//         let owners = {};
+//         const container = document.querySelector('.col-md-8.themed-grid-col');
 
-            orderedProducts.forEach(product => {
-                if (!owners[product.owner]) {
-                    owners[product.owner] = [];
-                }
-                owners[product.owner].push(product);
-            });
+//         orderedProducts.forEach(product => {
+//             if (!owners[product.owner]) {
+//                 owners[product.owner] = [];
+//             }
+//             owners[product.owner].push(product);
+//         });
 
-            for (const owner in owners) {
-                const card = createCard(owners[owner], owner);
-                container.appendChild(card);
-            }
-        }
+//         for (const owner in owners) {
+//             const card = createCard(owners[owner], owner);
+//             container.appendChild(card);
+//         }
+//     }
 
-        function createCard(products, owner) {
-            const card = document.createElement('div');
-            card.className = 'card container mb-2';
+//     function createCard(products, owner) {
+//         const card = document.createElement('div');
+//         card.className = 'card container mb-2';
 
-            const cardContent = document.createElement('div');
-            cardContent.className = 'container mb-3';
+//         const cardContent = document.createElement('div');
+//         cardContent.className = 'container mb-3';
 
-            const ownerTitle = document.createElement('div');
-            ownerTitle.className = 'order-shop py-3';
-            ownerTitle.textContent = owner;
+//         const ownerTitle = document.createElement('div');
+//         ownerTitle.className = 'order-shop py-3';
+//         ownerTitle.textContent = owner;
 
-            const divider = document.createElement('hr');
+//         const divider = document.createElement('hr');
 
-            const orderTotal = document.createElement('div');
-            orderTotal.className = 'order-total pb-3';
-            const totalPrice = products.reduce((sum, product) => sum + product.price * product.quantity, 0);
+//         const orderTotal = document.createElement('div');
+//         orderTotal.className = 'order-total pb-3';
+//         const totalPrice = products.reduce((sum, product) => sum + product.price * product.quantity, 0);
 
-            // Changing order summary
-            orderTotal.textContent = `Total: $${totalPrice}`;
-            const subTotal = document.querySelector('#sub_total');
-            subTotal.textContent = `$${totalPrice}`;
-            const shippingFeeElem = document.querySelector('#shipping-fee');
-            const itemsElem = document.querySelector('#order-items');
-            const finalTotal = document.querySelector('#final_total');
+//         // Changing order summary
+//         orderTotal.textContent = `Total: $${totalPrice}`;
+//         const subTotal = document.querySelector('#sub_total');
+//         subTotal.textContent = `$${totalPrice}`;
+//         const shippingFeeElem = document.querySelector('#shipping-fee');
+//         const itemsElem = document.querySelector('#order-items');
+//         const finalTotal = document.querySelector('#final_total');
 
-            itemsElem.textContent = products.length;
-            const shippingFee = 5
-            shippingFeeElem.textContent = `$${shippingFee}`;
-            finalTotal.textContent = `$${totalPrice + shippingFee}`;
+//         itemsElem.textContent = products.length;
+//         const shippingFee = 5
+//         shippingFeeElem.textContent = `$${shippingFee}`;
+//         finalTotal.textContent = `$${totalPrice + shippingFee}`;
 
-            cardContent.appendChild(ownerTitle);
+//         cardContent.appendChild(ownerTitle);
 
-            products.forEach(product => {
-                const productRow = createProductRow(product);
-                cardContent.appendChild(productRow);
-            });
+//         products.forEach(product => {
+//             const productRow = createProductRow(product);
+//             cardContent.appendChild(productRow);
+//         });
 
-            cardContent.appendChild(divider);
-            cardContent.appendChild(orderTotal);
-            card.appendChild(cardContent);
+//         cardContent.appendChild(divider);
+//         cardContent.appendChild(orderTotal);
+//         card.appendChild(cardContent);
 
-            return card;
-        }
+//         return card;
+//     }
 
-        function createProductRow(product) {
-            const order_content = document.createElement('div');
-            order_content.className = 'order-content'
+//     function createProductRow(product) {
+//         const order_content = document.createElement('div');
+//         order_content.className = 'order-content'
 
-            const orderInfo = document.createElement('div');
-            orderInfo.className = 'checkout order-details';
+//         const orderInfo = document.createElement('div');
+//         orderInfo.className = 'checkout order-details';
 
-            const columns = document.createElement('div');
-            columns.className = 'order-columns';
+//         const columns = document.createElement('div');
+//         columns.className = 'order-columns';
 
-            const info = document.createElement('div');
-            info.className = 'order-info-product px-3';
+//         const info = document.createElement('div');
+//         info.className = 'order-info-product px-3';
 
-            const float_start = document.createElement("div");
-            float_start.className = 'float-start'
+//         const float_start = document.createElement("div");
+//         float_start.className = 'float-start'
 
-            const name = document.createElement('p');
-            name.className = 'float-start'
-            name.innerHTML = `<strong>${product.product_name}</strong>`;
-            const br = document.createElement("br");
-            const br1 = document.createElement("br");
-            const hr = document.createElement("hr");
-
-
-            const quantity = document.createElement('p');
-            quantity.className = 'float-start'
-            quantity.innerHTML = `Quantity: ${product.quantity}`;
-
-            const p = document.createElement("p");
-
-            const remove = document.createElement('button');
-            remove.textContent = 'Remove';
-            remove.setAttribute('type', 'button')
-            remove.className = 'remove btn btn-primary float-start';
-            remove.addEventListener('click', () => {
-                removeProductFromCart(product._id);
-            });
-            float_start.appendChild(name);
-            float_start.appendChild(br)
-            float_start.appendChild(quantity);
-            float_start.appendChild(br1)
-            float_start.appendChild(remove);
-            info.appendChild(float_start);
-            info.appendChild(p)
-
-            // Image for carted products
-            const imgContainer = document.createElement('div');
-            imgContainer.className = 'order-product-img';
-            const div_img = document.createElement('div')
-            const img = document.createElement('img');
-            img.src = `data:image/png;base64,${product.img}`;
-            console.log(img)
-            img.alt = product.product_name;
-            div_img.appendChild(img);
-            imgContainer.appendChild(div_img)
-
-            const price = document.createElement('div');
-            price.className = 'order-product-price';
-            price.innerHTML = `<p>$${product.price * product.quantity}</p>`;
-
-            columns.appendChild(info);
-            columns.appendChild(imgContainer);
-            columns.appendChild(price);
-
-            orderInfo.appendChild(columns);
-            order_content.appendChild(orderInfo)
-            order_content.appendChild(hr)
+//         const name = document.createElement('p');
+//         name.className = 'float-start'
+//         name.innerHTML = `<strong>${product.product_name}</strong>`;
+//         const br = document.createElement("br");
+//         const br1 = document.createElement("br");
+//         const hr = document.createElement("hr");
 
 
-            return order_content;
-        }
+//         const quantity = document.createElement('p');
+//         quantity.className = 'float-start'
+//         quantity.innerHTML = `Quantity: ${product.quantity}`;
 
-        function removeProductFromCart(productId) {
-            let orderedProducts = JSON.parse(localStorage.getItem('orderedProducts')) || [];
-            orderedProducts = orderedProducts.filter(product => product._id !== productId);
-            localStorage.setItem('orderedProducts', JSON.stringify(orderedProducts));
-            location.reload();
-        }
+//         const p = document.createElement("p");
 
-        function displayEmptyCart() {
-            const container = document.querySelector('.col-md-8.themed-grid-col');
-            const message = document.createElement('p');
-            message.textContent = 'There are no items in your cart.';
-            container.appendChild(message);
-        }
+//         const remove = document.createElement('button');
+//         remove.textContent = 'Remove';
+//         remove.setAttribute('type', 'button')
+//         remove.className = 'remove btn btn-primary float-start';
+//         remove.addEventListener('click', () => {
+//             removeProductFromCart(product._id);
+//         });
+//         float_start.appendChild(name);
+//         float_start.appendChild(br)
+//         float_start.appendChild(quantity);
+//         float_start.appendChild(br1)
+//         float_start.appendChild(remove);
+//         info.appendChild(float_start);
+//         info.appendChild(p)
+
+//         // Image for carted products
+//         const imgContainer = document.createElement('div');
+//         imgContainer.className = 'order-product-img';
+//         const div_img = document.createElement('div')
+//         const img = document.createElement('img');
+//         img.src = `data:image/png;base64,${product.img}`;
+//         console.log(img)
+//         img.alt = product.product_name;
+//         div_img.appendChild(img);
+//         imgContainer.appendChild(div_img)
+
+//         const price = document.createElement('div');
+//         price.className = 'order-product-price';
+//         price.innerHTML = `<p>$${product.price * product.quantity}</p>`;
+
+//         columns.appendChild(info);
+//         columns.appendChild(imgContainer);
+//         columns.appendChild(price);
+
+//         orderInfo.appendChild(columns);
+//         order_content.appendChild(orderInfo)
+//         order_content.appendChild(hr)
+
+
+//         return order_content;
+//     }
+
+//     function removeProductFromCart(productId) {
+//         let orderedProducts = JSON.parse(localStorage.getItem('orderedProducts')) || [];
+//         orderedProducts = orderedProducts.filter(product => product._id !== productId);
+//         localStorage.setItem('orderedProducts', JSON.stringify(orderedProducts));
+//         location.reload();
+//     }
+
+//     function displayEmptyCart() {
+//         const container = document.querySelector('.col-md-8.themed-grid-col');
+//         const message = document.createElement('p');
+//         message.textContent = 'There are no items in your cart.';
+//         container.appendChild(message);
+//     }
 
 
     </script>
