@@ -4,6 +4,7 @@ Semester: 2023A
 Assessment: Assignment 2
 Author and ID: Mai(s3978486)
 Acknowledgement: https://www.lazada.vn/--}}
+
 <div class= "tmai_container_fuild container-fuild px-5 mb-2 navbar">
 
     <div class="navb-logo">
@@ -12,9 +13,9 @@ Acknowledgement: https://www.lazada.vn/--}}
         </a>
     </div>
 
-        <form class="homepage_navb d-flex" role="search">
-                <input class="nnthm_form_control form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button type="button" class="tmai_danger_btn btn btn-outline-danger">Search</button>
+        <form id="searchForm" class="homepage_navb d-flex" role="search">
+                <input  id="searchInput" class="nnthm_form_control form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button id="searchButton" type="button" class="tmai_danger_btn btn btn-outline-danger">Search</button>
         </form>
 
         <div class="dropdown text-end" style="margin-left:20px">
@@ -29,3 +30,31 @@ Acknowledgement: https://www.lazada.vn/--}}
                 </ul>
         </div>
     </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchForm = document.getElementById('searchForm');
+        const searchInput = document.getElementById('searchInput');
+        const searchButton = document.getElementById('searchButton');
+
+        // Add event listener for form submission
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            performSearch();
+        });
+
+        // Add event listener for search button click
+        searchButton.addEventListener('click', function () {
+            performSearch();
+        });
+
+        // Function to perform search
+        function performSearch() {
+            const searchTerm = searchInput.value.trim();
+            if (searchTerm !== '') {
+                // Redirect to /search with the appropriate query
+                window.location.href = '/search?q=' + encodeURIComponent(searchTerm);
+            }
+        }
+    });
+</script>
