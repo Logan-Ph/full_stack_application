@@ -1012,7 +1012,7 @@ app.post("/home/product-detail/checkout", async (req, res) => {
           }
 
           return {
-            customer_id: customerID,
+            customer_id: new mongoose.Types.ObjectId(customerID),
             owner: orderedProduct.owner,
             product_name: orderedProduct.product_name,
             category: orderedProduct.category,
