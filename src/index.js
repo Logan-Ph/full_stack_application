@@ -545,7 +545,7 @@ app.post('/customer-account/:id/update', upload.single("image"), async (req, res
             )
                 .then((shipper) => {
                     if (!shipper) {
-                        return res.send("Cannot found user!");
+                        return res.send("Cannot found user shipper!");
                     }
                     res.redirect("/customer-account");
                 })
@@ -553,6 +553,7 @@ app.post('/customer-account/:id/update', upload.single("image"), async (req, res
         }
        else  if (req.session.user) {
             console.log(req.params.id)
+            console.log(req,session.user.check_shipper)
             await user.findByIdAndUpdate(req.params.id,
                 {
                     $set: {
