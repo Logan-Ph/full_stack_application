@@ -802,5 +802,52 @@ app.get('/user', (req, res) => {
     });
 });
 
+app.get("/search", async (req, res) => {
+	const searchTerm = req.query.q;
+	const sortOption = req.query.sort;
+
+	try {
+		let query = {}; // Empty query object
+
+		if (searchTerm) {
+			const regex = new RegExp(searchTerm, "i");
+			query = {
+				$or: [{ product_name: { $regex: regex } }],
+			};
+		}
+
+		let sort = {};
+
+		if (sortOption === "price_low") {
+			// Sort by price ascending (low to high)
+			sort = { price: 1 };
+		} else if (sortOption === "price_high") {
+			// Sort by price descending (high to low)
+			sort = { price: -1 };
+		}
+
+		await product
+			.find(query, { img: 1, product_name: 1, category: 1, price: 1, _id: 1 })
+			.sort(sort)
+			.then((products) => {
+				let map_product = products.map((Product) => Product.toJSON());
+				for (let i = 0; i < map_product.length; i++) {
+					map_product[i].img = Buffer.from(
+						map_product[i].img.data.data
+					).toString("base64");
+				}
+
+				res.render("search", {
+					showUser: true,
+					loggedInUser: req.session.user,
+					products: map_product,
+					searchTerm: searchTerm,
+				});
+			});
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Internal Server Error");
+	}
+});
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
