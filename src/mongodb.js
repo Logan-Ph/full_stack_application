@@ -2,10 +2,8 @@ const dotenv = require("dotenv")
 const path = require('path');
 // Init dotenv config path
 dotenv.config({ path: path.resolve(__dirname, '.', '.env') });
-const connectionUrl = "mongodb+srv://s3975979:Sang5850@cluster0.uuhro1a.mongodb.net/login?retryWrites=true&w=majority"
 const mongoose = require("mongoose");
-// const connectionUrl = process.env.MONGODB_URL;
-=======
+const connectionUrl = process.env.MONGODB_URL;
 
 // const mongoose = require("mongoose");
 // const connectionUrl = process.env.MONGODB_URL;
@@ -191,29 +189,8 @@ const Ordered_Product = new mongoose.Schema({
     require: true,
   },
 
-  img: {
-    data: Buffer,
-    contentType: String,
-  },
-});
-
-const Checkout = new mongoose.Schema({
-  customer_id: {
-    type: mongoose.Types.ObjectId,
-    ref: "LogInUser",
-    require: true,
-  },
-  distribution_hub: {
-    type: String,
-    enum: ["HCM", "HN", "DN"],
-    require: true,
-  },
-  total_price: {
+  quantity: {
     type: Number,
-    require: true,
-  },
-  ordered_products: {
-    type: [Ordered_Product],
     require: true,
   },
 });
@@ -223,7 +200,6 @@ const user = new mongoose.model("LogInUser", LogInUser);
 const vendor = new mongoose.model("LogInVendor", LogInVendor);
 const product = new mongoose.model("Product", Product);
 const ordered_product = new mongoose.model("Ordered_Product", Ordered_Product);
-const checkout = new mongoose.model("Checkout", Checkout);
 
 module.exports = {
   connectionUrl,
@@ -232,5 +208,4 @@ module.exports = {
   vendor,
   product,
   ordered_product,
-  checkout,
 };

@@ -47,15 +47,19 @@
                         </div>
                     </div>
                     <h1 class="price mt-4 ms-3">${{this.price}}</h1>
-                    <form class="quantity mt-3" action="" method="post">
+
+                    <div class="quantity mt-3">
                         <label class="ms-3 " for="quantity">Quantity: </label>
                         <input type="number" id="quantity" name="quantity" min="1" max="100" value="1">
                         <div class="row mt-4 mx-3" id="button-container">
-                            <button class="col-4 btn add-to-cart me-3" type="submit" onclick="addToCart("{{this._id}}")"
-                                value="Add To Cart"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button>
+                            <button class="col-4 btn add-to-cart me-3" onclick="addToCart('{{this._id}}')"
+                                value="Add To Cart">
+                                <i class="fa-solid fa-cart-plus"></i> Add To Cart
+                            </button>
+
                             <button class="col-4 btn buy-now" type="submit" value="Buy Now">Buy Now</button>
                         </div>
-                    </form>
+                    </div>
                     <div id="status-box-container"></div>
                 </div>
             </div>
@@ -224,21 +228,36 @@
     </div>
     <script>
         function addToCart(productId) {
-            // Create an AJAX POST request using jQuery
-            $.ajax({
-                url: `/add-to-cart/${productId}`,
-                type: "POST",
-                dataType: "json",
-                success: function (response) {
-                    // Show success dialog
-                    showStatusBox("Product added to cart successfully", "success");
+            const quantityInput = document.getElementById('quantity');
+            const quantity = parseInt(quantityInput.value);
+            console.log(productId);
+            fetch(`/add-to-cart/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                error: function (xhr, status, error) {
-                    // Show error dialog
-                    showStatusBox("Failed to add product to cart", "danger");
-                }
-            });
+                body: JSON.stringify({ quantity }),
+            })
+                .then(response => response.json())
+                .then(orderedProduct => {
+                    // Get the existing ordered products from the browser instance
+                    let orderedProducts = JSON.parse(localStorage.getItem('orderedProducts')) || [];
+
+                    // Add the new ordered product to the array
+                    orderedProducts.push(orderedProduct);
+
+                    // Update the ordered products in the browser instance
+                    localStorage.setItem('orderedProducts', JSON.stringify(orderedProducts));
+
+                    // Show a status message
+                    showStatusBox('Product added to cart.', 'success');
+                })
+                .catch(error => {
+                    console.error('Error fetching product:', error);
+                    showStatusBox('Failed to add product to cart.', 'danger');
+                });
         }
+
         function showStatusBox(message, type) {
             const statusBox = document.createElement("div");
             statusBox.classList.add("alert", `alert-${type}`);
