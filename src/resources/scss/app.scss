@@ -1466,7 +1466,7 @@ form.search button:hover{
   }
   
   /*Pop up to edit product or confirm user of deleting product*/
-  .delete-button .modal-dialog, .edit-button .modal-dialog, .order-success-button .modal-dialog, .product-added .modal-dialog {
+  .delete-button .modal-dialog, .edit-button .modal-dialog, .order-success-button .modal-dialog, .product-added .modal-dialog, .edit-picture .modal-dialog {
     position: absolute !important;
     top: 50% !important;
     left: 48% !important;
@@ -1478,7 +1478,7 @@ form.search button:hover{
     height: 50% !important;
   }
   
-  .edit-button .modal-content, .order-success-button .modal-content {
+  .edit-button .modal-content, .order-success-button .modal-content, .edit-picture .modal-content {
     height: 95% !important;
   }
   
