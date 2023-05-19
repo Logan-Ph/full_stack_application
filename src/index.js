@@ -279,7 +279,7 @@ app.get("/view-product", async (req, res, next) => {
                         checkproduct: true
                     });
                 }
-                await product.find({ owner: req.session.user.check_vendor.username }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
+                await product.find({ owner: req.session.user.check_vendor.bussiness_name }, { img: 1, description: 1, product_name: 1, category: 1, price: 1, _id: 1 }).then(products => {
                     if (products.length === 0) {
                         res.render('view-product', {
                             loggedInUser: req.session.user,
