@@ -51,6 +51,7 @@ app.engine(
           return true;
         }
       },
+      
     },
   })
 );
@@ -85,7 +86,7 @@ app.get("/", (req, res) => {
 
 app.get("/home", async (req, res, next) => {
   if (!req.session.user) {
-    res.redirect("/");
+    res.redirect("/login");
     return;
   } else {
     if (!req.session.user.check_shipper && !req.session.user.check_vendor) {
@@ -162,7 +163,7 @@ app.get("/customer-account", async (req, res) => {
             total_spent += map_cartEntries[i].product_id.price;
           }
 
-          console.log(map_cartEntries[0]);
+        //   console.log(map_cartEntries[0]);
           res.render("customer-account", {
             check_customer: true,
             loggedInUser: req.session.user,
@@ -218,7 +219,10 @@ app.get("/home/product-detail/checkout", async (req, res) => {
               //   console.log(map_img);
               map_cartEntries[i].img = Buffer.from(map_img).toString("base64");
             }
+
+            // Debug
             console.log(map_cartEntries[0]);
+
             res.render("checkout", {
               loggedInUser: req.session.user,
               products: map_cartEntries,
@@ -310,7 +314,7 @@ app.get("/login", (req, res) => {
       res.redirect("/home");
     }
   } catch {
-    res.redirect("/login"); //this is for sometime the req.session.user does not recognize the 'check_vendor' and 'check_shipper' properties
+    res.render("login"); //this is for sometime the req.session.user does not recognize the 'check_vendor' and 'check_shipper' properties
   }
 });
 
@@ -898,6 +902,26 @@ app.post("/add-to-cart/:id", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
+app.post("/delete-from-cart/:id", async (req, res) => {
+    try {
+      if (req.session.user) {
+        cart
+          .findByIdAndDelete(req.params.id)
+          .then((product) => {
+            if (!product) {
+              return res.send("Cart Item not found");
+            }
+            res.redirect("/home/product-detail/checkout");
+          })
+          .catch((error) => res.send(error));
+      } else {
+        res.redirect("/home/product-detail/checkout");
+      }
+    } catch {
+      res.redirect("/home/product-detail/checkout");
+    }
+  });
 
 app.post("/home/product-detail/checkout", async (req, res) => {
   console.log("checkout POST route called at " + new Date().toLocaleString());
