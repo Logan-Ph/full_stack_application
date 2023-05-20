@@ -1,5 +1,6 @@
 
 GITHUB URL: https://github.com/Logan-Ph/full_stack_application.git
+
 YOUTUBE URL:
 
 NOTE: to conduct test faster, these accounts have passwords that does not meet the requirements, however when signing up for a new account, the requirements are still applied.
