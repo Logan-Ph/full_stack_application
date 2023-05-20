@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
-
-    {{!-- Bootstrap --}}
-    <link href="https:/cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    {{!-- Css --}}
-    <link href="css/app.css" rel="stylesheet">
-    {{!-- fontawsome embedded --}}
-    <script src="https:/kit.fontawesome.com/3b3da2da02.js" crossorigin="anonymous"></script>
-
-
-
-</head>
-
-
 <body>
     {{> homepage_header}}
 
@@ -38,44 +15,38 @@
         </nav>
     </div>
 
-     <div class="search container">
+    <div class="search container">
         <div class="search info row">
-            <div class="search-info col-8">
-                <h3> search results for "{{searchTerm}}"</h3>
+            <div class="search-info col-md-8 themed-grid-col mb-3">
+                <h3> Search results for "{{searchTerm}}"</h3>
             </div>
-            <div class="search-result">
-                <div class="search-info">
-                    <span class="detailed-result">{{products.length}} items found for "{{searchTerm}}"</span>
-                </div>
-
-                <div class="col-4">
-                    <div class="row filter">
-                        <div class="col-4 sort-by-name ">
-                            <span class="text-center"></span>
-                        </div>
-                        <div class="col-4 sort-by-name ">
-                            <span class="text-center">Sort By:</span>
-                        </div>
-                        <div class="col-4 sort-by">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Best Match
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="/search?q={{searchTerm}}">Best Matched</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/search?q={{searchTerm}}&sort=price_low">Price Low to
-                                        High</a>
-                                </li>
-                                <li><a class="dropdown-item" href="/search?q={{searchTerm}}&sort=price_high">Price High to
-                                        Low</a>
-                                </li>
-                            </ul>
-                        </div>
+            <div class="col-md-4 themed-grid-col mb-3">
+                <div class="filter justify-content-start">
+                    <div class="sort-by-name ">
+                        <span class="text-center pe-3">Sort By:</span>
+                    </div>
+                    <div class="sort-by dropdown">
+                        <a class=" bestmatch nav-link dropdown-toggle p-1 rounded" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Best Match
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="/search?q={{searchTerm}}">Best Matched</a></li>
+                            <li><a class="dropdown-item" href="/search?q={{searchTerm}}&sort=price_low">Price Low to High</a></li>
+                            <li><a class="dropdown-item" href="/search?q={{searchTerm}}&sort=price_high">Price High to Low</a></li>
+                        </ul>
                     </div>
                 </div>
-               
             </div>
+            <div class="row">
+                <div class="search-result">
+                    <div class="search-info">
+                        <span class="detailed-result">{{products.length}} items found for "{{searchTerm}}"</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
 
 
         </div>
@@ -91,9 +62,9 @@
             <p>No results found.</p>
             {{/if}}
             {{#if products.length}}
-            <div class="row row-cols-3 m-5 pb-5">
+            <div class="row mb-3">
             {{#each products}}
-                <div class="col">
+                <div class="col-md-4 themed-grid-col mb-3">
                     <div class="card">
                         <a href="/home/{{this._id}}/product-detail" class="product_detail">
                             <div class="product-img">
@@ -120,24 +91,6 @@
 
         </div>
     </div>
-
-  
-
     {{> footer}}
 
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
-        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
-        crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
-        integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
-        crossorigin="anonymous"></script>
-
-    <script src="https:/cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-
 </body>
-
-</html>

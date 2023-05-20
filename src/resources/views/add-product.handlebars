@@ -144,7 +144,7 @@ Acknowledgement: Acknowledge the resources that you use here.--}}
             let submit_btn = document.querySelector(".submit_btn");
             console.log(product_image.value);
 
-            if (Boolean(product_image.value && product_name.value && (category.value === "cosmetics" || category.value === "electronic-devices") && price.value && description.value)) {
+            if (Boolean(product_image.value && (+product_name.value.length > 10) && (category.value === "cosmetics" || category.value === "electronic-devices") && price.value && description.value)) {
                 submit_btn.removeAttribute("disabled");
             }
             else {

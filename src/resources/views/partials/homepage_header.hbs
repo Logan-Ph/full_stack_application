@@ -20,12 +20,13 @@ Acknowledgement: https://www.lazada.vn/--}}
         <button id="searchButton" type="button" class="tmai_danger_btn btn btn-outline-danger">Search</button>
     </form>
 
-    <div class="iscart-ava-row row">
-        <div class="cart-img col-6">
+      <div class="navb-right">
+        <div class="cart-img">
             <a id="cart" href="/home/product-detail/checkout"><img src="/image/shopping-cart_1.png"
                     alt="shopping-cart-icon" width="40px"></a>
         </div>
-        <div class="dropdown text-end col-6" style="margin-left:20px">
+
+        <div class="dropdown text-end" style="margin-left:20px">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle " data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <img src="data:image/png;base64,{{loggedInUser.img}}" alt="user_image" width="32" height="32"
@@ -33,7 +34,7 @@ Acknowledgement: https://www.lazada.vn/--}}
             </a>
             <ul class="dropdown-menu text-small" style="top:108%; left:-40px">
                 <li><a class="dropdown-item" href="/customer-account">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Order Tracking</a></li>
+                <li><a class="dropdown-item" href="/customer-account#item-2">Order Tracking</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>

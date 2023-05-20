@@ -147,25 +147,36 @@ app.get("/customer-account", async (req, res) => {
                     // console.log(map_cartEntries[0].product_id.img.data.data)
                     // Get images from products
                     for (let i = 0; i < map_cartEntries.length; i++) {
-                        console.log(map_cartEntries[i])
                         let map_img = map_cartEntries[i].product_id.img.data.data;
                         // console.log(map_img);
                         map_cartEntries[i].img = Buffer.from(map_img).toString("base64");
                     }
 
                     // Calculate total spent money on ordered_products
-                    let total_spent = 0;
+                    let total_spent = 5;
+                    console.log(map_cartEntries[0])
                     for (let i = 0; i < map_cartEntries.length; i++) {
-                        total_spent += map_cartEntries[i].product_id.price;
+                        let price = Number(map_cartEntries[i].product_id.price);
+                        let quanity = map_cartEntries[i].quantity;
+                        total_spent += price * quanity;
+                    }
+                    total_spent= "$" + total_spent
+                    if (total_spent === '$5' ){
+                        res.render("customer-account", {
+                            check_customer: true,
+                            loggedInUser: req.session.user,
+                            products: map_cartEntries,
+                        });
+                    }
+                    else{
+                        res.render("customer-account", {
+                            check_customer: true,
+                            loggedInUser: req.session.user,
+                            products: map_cartEntries,
+                            total_spent: total_spent,
+                        });
                     }
 
-                    // console.log(map_cartEntries[0]);
-                    res.render("customer-account", {
-                        check_customer: true,
-                        loggedInUser: req.session.user,
-                        products: map_cartEntries,
-                        total_spent: total_spent,
-                    });
                 });
         }
     } else {
@@ -311,7 +322,7 @@ app.get("/view-product", async (req, res, next) => {
             try {
                 if (
                     !product.find(
-                        { owner: req.session.user.check_vendor.username },
+                        { owner: req.session.user.check_vendor.bussiness_name },
                         {
                             img: 1,
                             description: 1,
@@ -484,11 +495,19 @@ app.get("/:id/parcel-info", async (req, res) => {
                             // console.log(map_img);
                             map_cartEntries[i].img = Buffer.from(map_img).toString("base64");
                         }
+                        let total_spent = 5;
+                        console.log(map_cartEntries[0])
+                        for (let i = 0; i < map_cartEntries.length; i++) {
+                            let price = Number(map_cartEntries[i].product_id.price);
+                            let quanity = map_cartEntries[i].quantity;
+                            total_spent += price * quanity;
+                        }
 
                         // console.log(customer_list);
                         res.render("parcel-info", {
                             products: map_cartEntries,
                             customer_list: customer_list,
+                            total_spent:total_spent,
                             id: customer_list[0].id
                         });
                     });
@@ -527,7 +546,7 @@ app.get("/view-product/:id/update", (req, res) => {
 
 app.post("/add-product", upload.single("image"), async (req, res) => {
     const product_info = product({
-        owner: req.session.user.check_vendor.username,
+        owner: req.session.user.check_vendor.bussiness_name,
         product_name: req.body.product_name,
         category: req.body.category,
         price: req.body.price,
