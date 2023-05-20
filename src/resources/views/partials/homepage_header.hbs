@@ -1,4 +1,11 @@
-<div class="tmai_container_fuild container-fuild navbar">
+{{!-- RMIT University Vietnam
+Course: COSC2430 Web Programming
+Semester: 2023A
+Assessment: Assignment 2
+Author and ID: Mai(s3978486)
+Acknowledgement: https://www.lazada.vn/--}}
+
+<div class="tmai_container_fuild container-fuild px-5 mb-2 navbar">
 
     <div class="navb-logo">
         <a href="/home">
@@ -6,23 +13,23 @@
         </a>
     </div>
 
+
     <form id="searchForm" class="homepage_navb d-flex" role="search">
         <input id="searchInput" class="nnthm_form_control form-control me-2" type="search" placeholder="Search"
-            aria-label="Search" style="width:500px; height:40px">
+            aria-label="Search">
         <button id="searchButton" type="button" class="tmai_danger_btn btn btn-outline-danger">Search</button>
     </form>
 
-    <div class="navb-right">
-        <div class="cart-img">
+    <div class="iscart-ava-row row">
+        <div class="cart-img col-6">
             <a id="cart" href="/home/product-detail/checkout"><img src="/image/shopping-cart_1.png"
                     alt="shopping-cart-icon" width="40px"></a>
         </div>
-
-        <div class="dropdown text-end" style="margin-left:20px">
+        <div class="dropdown text-end col-6" style="margin-left:20px">
             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle " data-bs-toggle="dropdown"
                 aria-expanded="false">
                 <img src="data:image/png;base64,{{loggedInUser.img}}" alt="user_image" width="32" height="32"
-                    class="rounded-circle">
+                    class="me-2 rounded-circle">{{loggedInUser.username}}
             </a>
             <ul class="dropdown-menu text-small" style="top:108%; left:-40px">
                 <li><a class="dropdown-item" href="/customer-account">Settings</a></li>
@@ -34,9 +41,9 @@
             </ul>
         </div>
     </div>
+
+
 </div>
-
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

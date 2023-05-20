@@ -1,26 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-
-    {{!-- Bootstrap --}}
-    <link href="https:/cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    {{!-- Css --}}
-    <link href="css/homepage.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/khang.css">
-    {{!-- fontawsome embedded --}}
-    <script src="https:/kit.fontawesome.com/3b3da2da02.js" crossorigin="anonymous"></script>
-
-
-
-</head>
-
+{{!-- RMIT University Vietnam
+Course: COSC2430 Web Programming
+Semester: 2023A
+Assessment: Assignment 2
+Author and ID: Mai(s3978486), Sang(s3975979), Khang(s3979229)
+Acknowledgement: Acknowledge the resources that you use here.--}}
 <body>
     {{> homepage_header}}
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -59,8 +42,8 @@
     {{!-- feature nav --}}
     <div class="feature-nav">
         <div class="container feature">
-            <div class="row row-cols-md-2 row-cols-lg-4 g-4 p-2 m-10">
-                <div class="tmai_col col mt-10">
+            <div class="row">
+                <div class="tmai_col col-xl-3 col-lg-6 col-sm-12">
                     <div class="feature-card">
                         <a class="feature-navigation" href="#Electonic_Products">
                             <div class="img-wrapper">
@@ -73,7 +56,7 @@
                     </div>
 
                 </div>
-                <div class="tmai_col col">
+                <div class="tmai_col col-xl-3 col-lg-6 col-sm-12">
                     <div class="feature-card">
                         <a class="feature-navigation" href="#Cosmetics_Products">
                             <div class="img-wrapper">
@@ -85,7 +68,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="tmai_col col">
+                <div class="tmai_col col-xl-3 col-lg-6 col-sm-12">
                     <div class="feature-card">
                         <a class="feature-navigation" href="#promotion_product">
                             <div class="img-wrapper">
@@ -97,7 +80,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="tmai_col col">
+                <div class="tmai_col col-xl-3 col-lg-6 col-sm-12">
                     <div class="feature-card">
                         <a class="feature-navigation" href="#Payment_Voucher">
                             <div class="img-wrapper">
@@ -118,12 +101,12 @@
     <div id="about" class="about section-padding mt-5 mb-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-12 col-12">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="about-img">
                         <img class="img-fluid" src="image/lzd-mall.jpg">
                     </div>
                 </div>
-                <div class="col-lg-7 col-md-12 col-sm-12 ">
+                <div class="col-lg-6 col-md-12 col-sm-12 text-center">
                     <div class="about-text">
                         <h2>Lazada Mall</h2>
                         <h4>We provide the best quality and services</h4>
@@ -200,54 +183,52 @@
     </div>
 
 
-    <div class="container">
-        <div class="trending">
-            <div class="announcement" id="promotion_product">
-                <img src="image/discount.png" alt="promotional-icon" width="30px">
-                <h1>On Sale Products</h1>
-            </div>
-            <hr class="line">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 p-2 m-10">
-                <div class="col">
-                    <div class="card" style="width: 100%; height:max-content">
-                        <span class="hot">
+{{!-- On sale product section --}}
+
+    <div class="mai container">
+        <div class="announcement detail">
+            <img src="image/discount.png" alt="promotion-icon" width="35px">
+            <h1>On Sale Products</h1>
+        </div>
+        <hr class="line">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <div class="col">
+                <div class="card">
+                    <span class="hot">
                             <img src="image/promotional.png" alt="promotional-icon" width="35px">
                         </span>
-                        <div class="on-sale-product-img" width="314px" , height="314px">
-                            <img src="image/son.jpg" class="card-img-top" alt="mac-lipstick" width="inherit" ,
-                                height="inherit">
+                        <div class="on-sale-product-img">
+                            <img src="image/son.jpg" class="card-img-top" alt="mac-lipstick">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Powder Kiss Liquid Lipcolour <br> Moiseture Matte Lipstick
+                        <div class="homepage_card_body card-body">
+                            <h5 class="card-title">Mac Lipstick
                             </h5>
                             <p class="new-price">$33.64</p>
                             <p><span class="old-price">$35.39</span><span class="promotion">-5%</span></p>
                             <a href="#" class="tmain_btn_warning btn btn-warning">More Details</a>
                         </div>
-                    </div>
                 </div>
-
-                <div class="col">
-                    <div class="card" style="width: 100%; height:max-content">
+            </div>
+            <div class="col">
+                <div class="card">
                         <span class="hot">
                             <img src="image/promotional.png" alt="promotional-icon" width="35px">
                         </span>
-                        <div class="on-sale-product-img" width="314px" , height="314px">
-                            <img src="image/loreal-serum.png" class="card-img-top" alt="loreal serum" width="inherit" ,
-                                height="inherit">
+                        <div class="on-sale-product-img">
+                            <img src="image/loreal-serum.png" class="card-img-top" alt="loreal serum">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">L'Oreal Paris Revitalift 1.5%<br>Hyaluronic Acid Serum
+                        <div class="homepage_card_body card-body">
+                            <h5 class="card-title">L'Oreal Serum
                             </h5>
                             <p class="new-price">$21.40</p>
                             <p><span class="old-price">$25.16</span><span class="promotion">-15%</span></p>
                             <a href="#" class="tmain_btn_warning btn btn-warning">More Details</a>
                         </div>
-                    </div>
                 </div>
+            </div>
 
-                <div class="col">
-                    <div class="card" style="width: 100%; height:max-content">
+            <div class="col">
+                <div class="card">
                         <span class="hot">
                             <img src="image/promotional.png" alt="promotional-icon" width="35px">
                         </span>
@@ -255,18 +236,18 @@
                             <img src="image/sheseido-cream.jpg" class="card-img-top" alt="shiseido-cream"
                                 width="inherit" , height="inherit">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Shiseido Essential Energy<br>Hydrating Cream
+                        <div class="homepage_card_body card-body">
+                            <h5 class="card-title">Shiseido Hydrating Cream
                             </h5>
                             <p class="new-price">$51.17</p>
                             <p><span class="old-price">$63.96</span><span class="promotion">-20%</span></p>
                             <a href="#" class="tmain_btn_warning btn btn-warning">More Details</a>
                         </div>
-                    </div>
                 </div>
+            </div>
 
-                <div class="col">
-                    <div class="card" style="width: 100%; height:max-content">
+            <div class="col">
+                <div class="card">
                         <span class="hot">
                             <img src="image/promotional.png" alt="promotional-icon" width="35px">
                         </span>
@@ -274,14 +255,13 @@
                             <img src="image/nyx.jpg" class="card-img-top" alt="mac-lipstick" width="inherit" ,
                                 height="inherit">
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">NYX Can't Stop <br> Won't Stop Foundation
+                        <div class="homepage_card_body card-body">
+                            <h5 class="card-title">NYX Foundation
                             </h5>
                             <p class="new-price">$16.2</p>
                             <p><span class="old-price">$18.00</span><span class="promotion">-10%</span></p>
                             <a href="#" class="tmain_btn_warning btn btn-warning">More Details</a>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -346,13 +326,13 @@
             <div class="col">
                 <div class="card">
                     <a href="/home/{{this._id}}/product-detail" class="product_detail">
-                        <div class="product-img" width="320px" height="322px">
+                        <div class="product-img">
                             <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="..." width="inherit"
                                 , height="inherit">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title sub">{{this.product_name}}</h5>
-                            <p class="price">$ {{this.price}}</p>
+                            <h5 class="product_name card-title">{{this.product_name}}</h5>
+                            <p class="product_price price">$ {{this.price}}</p>
                             <div class="stars">
                                 <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                 <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
@@ -360,7 +340,7 @@
                                 <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                 <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                             </div>
-                            <a href="#" class="tmain_btn_warning btn btn-warning mt-2">More Details</a>
+                            <a href="/home/{{this._id}}/product-detail" class="tmain_btn_warning btn btn-warning mt-2">More Details</a>
                         </div>
                     </a>
                 </div>
@@ -397,6 +377,7 @@
                                 <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                                 <i class="fa-solid fa-star" style="color: #ffdd00;"></i>
                             </div>
+                             <a href="/home/{{this._id}}/product-detail" class="tmain_btn_warning btn btn-warning mt-2">More Details</a>
                         </div>
                     </a>
                 </div>
@@ -405,79 +386,15 @@
             {{/each}}
         </div>
     </div>
-    {{!-- <div id="page" class="site">
-
-
-        <div class="shopping">
-            <img src="image/shopping-cart (1).png">
-            <span class="quantity">0</span>
-        </div>
-
-        <div class="list"></div>
-    </div>
-    </header>
-
-    <div class="card">
-        <h1>Card</h1>
-        <ul class="listCard"></ul>
-        <div class="checkOut">
-            <div class="total">0</div>
-            <div class="closeShopping">Close</div>
-        </div>
-    </div> --}}
-
-
-
-
-
-
-
-
-    {{!-- <h1>Home</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        {{#each products}}
-        <div class="col">
-            <div class="card bg-light">
-                <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{this.product_name}}</h5>
-                    <p class="card-text">{{this.description}}</p>
-                    <p class="card-text">Category: {{this.category}}</p>
-                    <p class="card-text">Price: {{this.price}}.000 VND</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card bg-light">
-                <img src="data:image/png;base64,{{this.img}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{this.product_name}}</h5>
-                    <p class="card-text">{{this.description}}</p>
-                    <p class="card-text">Category: {{this.category}}</p>
-                    <p class="card-text">Price: {{this.price}}.000 VND</p>
-                </div>
-            </div>
-        </div>
-
-        {{/each}}
-
-    </div> --}}
 
     {{> footer}}
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
-        integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE"
-        crossorigin="anonymous"></script>
 
+    {{!--Bootstrap 5--}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"
         integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ"
         crossorigin="anonymous"></script>
 
-    <script src="https:/cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-</body>
 
-</html>
+</body>

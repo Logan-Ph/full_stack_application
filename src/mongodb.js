@@ -244,4 +244,3 @@ module.exports = {
   ordered_product,
   cart,
 };
-
